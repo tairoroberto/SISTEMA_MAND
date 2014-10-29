@@ -1,0 +1,268 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	margin: 0px;
+	background-color:#f1f1f1;
+	height:100%;
+}
+
+html {
+	height:100%;
+}
+
+#col-esq {
+	width:17%;
+	height: 300%;
+	float:left;
+	background-color:#32323a;
+	left:0px;
+	bottom:0px;
+}
+
+#esq-logo {
+	width:220px;
+	height:200px;
+	padding-top:50px;
+}
+
+#esq-serv {
+	width:200px;
+	height:47px;
+	border-top-style:solid;
+	border-top-color:#3b3b43;
+	padding-left:20px;
+	padding-top:8px;
+}
+
+#esq-pdf {
+	width:200px;
+	height:45px;
+	margin-top:20px;
+	margin-bottom:50px;
+}
+
+
+
+#col-dir {
+
+	width:550px;
+	height:300%;
+	float:left;
+	background-color:#FFF;
+	background-image:url(imagens/fundo-topo.jpg);
+	background-repeat:no-repeat;
+	background-position:top left;
+}
+
+#dir-tit {
+	width:700px;
+	height:90px;
+	margin-top:100px;
+	background-color:#FFF;
+	background-image:url(imagens/fund-tit.png);
+	background-repeat:no-repeat;
+	background-position:left;
+	padding-left:50px;
+	padding-top:30px;
+}
+
+#dir-dados-pessoais {
+	width:750px;
+	height:240px;
+	background-image:url(imagens/fundo-dados.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+	background-color:#FFF;
+}
+
+#dir-rejeitar {
+	width:750px;
+	height:200px;
+	background-image:url(imagens/fundo-dados.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+	background-color:#FFF;
+}
+
+#dir-aceitar1 {
+	width:750px;
+	height:200px;
+	background-image:url(imagens/fundo-dados2.jpg);
+	background-repeat: repeat-y;
+	background-position:left top;
+	background-color:#FFF;
+}
+
+#dir-aceitar2 {
+	width:750px;
+	height:auto;
+	background-image:url(imagens/fundo-dados2.jpg);
+	background-repeat: repeat-y;
+	background-position:left top;
+	background-color:#FFF;
+}
+
+
+#dir-contrato {
+	width:690px;
+	height:auto;
+	background-image:url(imagens/fundo-dados2.jpg);
+	background-repeat: repeat-y;
+	background-position:left top;
+	background-color:#FFF;
+	padding-bottom:30px;
+	padding-left:50px;
+	padding-right:10px;
+	padding-top:10px;
+}
+
+
+#dir-linha-form1 {
+	width:550px;
+	height: auto;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#cccccc;
+	margin-left:50px;
+	padding-top:10px;
+	padding-bottom:20px;
+}
+
+
+#dir-linha-dados {
+	width:600px;
+	height:30px;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#cccccc;
+	margin-left:50px;
+	padding-top:10px;
+}
+	
+
+#dir-tit-serv {
+	background-image:url(imagens/fundo-tit-servicos.jpg);
+	padding-top:5px;
+	padding-left:5px;
+}
+
+#dir-linha-serv {	
+	padding-left:50px;
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-right:20px;
+	background-color:#FFF;
+	margin-bottom:50px;
+}
+
+#dir-btn {
+	width:550px;
+	height:120px;
+	padding-left:50px;
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-right:20px;
+	background-color:#FFF;
+	margin-bottom:50px;
+}
+
+#dir-btn2 {
+	width:550px;
+	height:100px;
+	padding-left:50px;
+	padding-bottom:10px;
+	padding-right:20px;
+	background-color:#FFF;
+	margin-bottom:50px;
+}
+
+
+
+
+
+
+.ver-azu {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #95a0aa;
+	text-decoration: none;
+}
+
+.ver-bra {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FFF;
+	text-decoration: none;
+}
+
+
+.tit{
+	font-family: 'Open Sans', 'sans-serif';
+	font-size: 44px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #333;
+	text-decoration: none;
+}
+
+.open-20{
+	font-family: 'Open Sans', 'sans-serif';
+	font-size: 20px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #333;
+	text-decoration: none;
+}
+
+.open-20-bra{
+	font-family: 'Open Sans', 'sans-serif';
+	font-size: 20px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.open-15{
+	font-family: 'Open Sans', 'sans-serif';
+	font-size: 15px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #333;
+	text-decoration: none;
+}
+
+.open-13{
+	font-family: 'Open Sans', 'sans-serif';
+	font-size: 13px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #333;
+	text-decoration: none;
+}
