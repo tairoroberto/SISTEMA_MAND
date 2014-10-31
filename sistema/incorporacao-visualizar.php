@@ -205,7 +205,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                <button type="button" class="btn btn-white btn-cons" onclick="escondeIncorporacaoVisualizar();">Filtrar</button>
 
                 <?php
-                   $NomeArquivo = "Pdf-Incorporação.pdf-".date('d-m-Y').".pdf";
+                    $NomeArquivo = "Pdf-Incorporação-".$IdIncorporacao."-".date('d-m-Y').".pdf";
                    if(file_exists("impressao/".$NomeArquivo)){ ?>
 
                    <a href="impressao/salvar.php?arquivo=<?php echo $NomeArquivo; ?>"><button type='button' class='btn btn-white btn-cons'>Baixar Pdf</button></a>

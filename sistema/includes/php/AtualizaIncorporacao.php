@@ -534,8 +534,11 @@
     $TituloFoto6 =    $_POST['TituloFoto6'];
 
     $IdIncorporacao =    $_POST['IdIncorporacaoAux'];
-   
 
+
+
+   
+/*
 function get_furl($url) {
     $furl = false;
 // First check response headers
@@ -554,6 +557,7 @@ function get_furl($url) {
 }
 
 //$url = get_furl("$ImagemMapa");
+
 $LocalIncorporacao2 = str_replace(" ", "%", $LocalIncorporacao);
 $NumeroIncorporacao2 = str_replace(" ", "%", $NumeroIncorporacao);
 $EstadoIncorporacao2 = str_replace(" ", "%", $EstadoIncorporacao);
@@ -570,8 +574,58 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 curl_setopt($ch, CURLOPT_FILE, $fp);
 $contents = curl_exec($ch);
 curl_close($ch);
+*/
 
 
+//aqui
+
+ function get_furl($url) {
+    $furl = false;
+// First check response headers
+    $headers = get_headers($url);
+// Test for 301 or 302
+    if(preg_match('/^HTTP\/\d\.\d\s+(301|302)/',$headers[0])) {
+        foreach($headers as $value) {
+            if(substr(strtolower($value), 0, 9) == "location:") {
+                $furl = trim(substr($value, 9, strlen($value)));
+            }
+        }
+    }
+// Set final URL
+    $furl = ($furl) ? $furl : $url;
+    return $furl;
+}
+
+
+function recebe_imagem ($url_origem,$arquivo_destino){ 
+    $minha_curl = curl_init ($url_origem); 
+    $fs_arquivo = fopen ($arquivo_destino, "w+b"); 
+    curl_setopt ($minha_curl, CURLOPT_FILE, $fs_arquivo); 
+    curl_setopt ($minha_curl, CURLOPT_HEADER, 0); 
+    curl_exec ($minha_curl); 
+    curl_close ($minha_curl); 
+    fclose ($fs_arquivo); 
+} 
+
+//Auxiliar para imagem do mapa
+$EnderecoMapa  = $LocalIncorporacao.",".$BairroIncorporacao.",".$CidadeIncorporacao.",".$EstadoIncorporacao;
+
+
+$EnderecoMapa2 = str_replace(" ", "+", $EnderecoMapa); 
+$url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$EnderecoMapa2."&zoom=16&size=900x300&scale=2&markers=color%3red%7Clabel%3aS%7C11211".$EnderecoMapa2."|size:mid&sensor=false");
+$ch = curl_init($url);
+
+$fp = fopen('fotos/incorporacao/ImagemMapaIncorporacao'.$CepIncorporacao.'.jpg', 'wb');
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+curl_setopt($ch, CURLOPT_FILE, $fp);
+$contents = curl_exec($ch);
+
+curl_close($ch);
+
+
+//aqui
     $caminho = "fotos/incorporacao/";
         $buscarFoto->set('sql',"SELECT Imagem1,Imagem2,Imagem3,Imagem4,Imagem5,Imagem6 
                                 FROM CadastraIncorporacao 
@@ -693,7 +747,7 @@ if (($DataArray[$i] != "") && ($DescricaoArray[$j] != "")) {
     }
 
 	echo("<script type='text/javascript'> location.href='../../incorporacao-editar-lista.php'; alert('Dados atualizados com sucesso'); </script>");
-	 
+
 }else{
         echo("<script type='text/javascript'> location.href='../../incorporacao-editar-lista.php'; alert('Dados não atualizados'); </script>");
 }

@@ -32,10 +32,10 @@ include('php/EnviarEmail.php');
       $buscaOportunidade->selecionarDB(); 
 
 
-      $buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                     FROM Oportunidade
-                                     INNER JOIN CadastraOrcamentoB
-                                     ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
+      $buscaOportunidade->set('sql',"SELECT Oportunidade.*, CadastraOrcamentoB.*
+                                     FROM CadastraOrcamentoB 
+                                     INNER JOIN Oportunidade
+                                     ON Oportunidade.IdOportunidade = $IdOportunidade AND 
                                         CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
 
       $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 

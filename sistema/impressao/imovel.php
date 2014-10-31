@@ -529,12 +529,12 @@
    //Mostra a saída como download
    //
    //Nome do arquivo
-    $NomeArquivo = "Pdf-Imovel-".date('d-m-Y').".pdf";
+    $NomeArquivo = "Pdf-Imovel-".$IdImovel."-".date('d-m-Y').".pdf";
 
     $mpdf->Output($NomeArquivo);
 
    
    // echo("<script type='text/javascript'> location.href='../imovel-ficha-tecnica.php?imovelAux='".$IdImovel."'; </script>");
 
-    header("Location: http://mandprojetos.com.br/sistema/imovel-ficha-tecnica.php?imovelAux=".$IdImovel)
+    header("Location: http://mandprojetos.com.br/sistema/imovel-ficha-tecnica.php?imovelAux=".$IdImovel);
 ?>

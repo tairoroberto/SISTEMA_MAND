@@ -394,9 +394,9 @@
    $mpdf->WriteHTML($content,2);
    //Mostra a saída como download
    //
-   $NomeArquivo = "Pdf-Incorporação.pdf-".date('d-m-Y').".pdf";
+   $NomeArquivo = "Pdf-Incorporação-".$IdIncorporacao."-".date('d-m-Y').".pdf";
    $mpdf->Output($NomeArquivo);
    
 
-   header("Location: http://mandprojetos.com.br/sistema/incorporacao-visualizar.php?IdIncorporacaoAux=".$IdIncorporacao)
+   header("Location: http://mandprojetos.com.br/sistema/incorporacao-visualizar.php?IdIncorporacaoAux=".$IdIncorporacao);
 ?>

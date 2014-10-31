@@ -367,7 +367,7 @@ if (isset($_POST['DataEmissao'],
 		  $ValorTolalMultas  = $_POST['ValorTolalMultas'];
 		  $TotalExercicios  = $_POST['TotalExercicios'];
 		  $ComentariosDividas  = $_POST['ComentariosDividas'];
-		  $ImagemMapa  = $_POST['EnderecoMapaAux'];
+		  $EnderecoMapa  = $_POST['EnderecoMapaAux'];
 		  $SituacaoImovel  = "";
 
 
@@ -378,6 +378,8 @@ if (isset($_POST['DataEmissao'],
 		  }if ($ComentariosOperacaoUrbana =="Comentários") {
 		  	$ComentariosOperacaoUrbana = "";
 		  }
+
+/*
 
 function get_furl($url) {
     $furl = false;
@@ -408,7 +410,49 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 curl_setopt($ch, CURLOPT_FILE, $fp);
 $contents = curl_exec($ch);
 curl_close($ch);
+*/
 
+ function get_furl($url) {
+    $furl = false;
+// First check response headers
+    $headers = get_headers($url);
+// Test for 301 or 302
+    if(preg_match('/^HTTP\/\d\.\d\s+(301|302)/',$headers[0])) {
+        foreach($headers as $value) {
+            if(substr(strtolower($value), 0, 9) == "location:") {
+                $furl = trim(substr($value, 9, strlen($value)));
+            }
+        }
+    }
+// Set final URL
+    $furl = ($furl) ? $furl : $url;
+    return $furl;
+}
+
+
+function recebe_imagem ($url_origem,$arquivo_destino){ 
+	$minha_curl = curl_init ($url_origem); 
+	$fs_arquivo = fopen ($arquivo_destino, "w+b"); 
+	curl_setopt ($minha_curl, CURLOPT_FILE, $fs_arquivo); 
+	curl_setopt ($minha_curl, CURLOPT_HEADER, 0); 
+	curl_exec ($minha_curl); 
+	curl_close ($minha_curl); 
+	fclose ($fs_arquivo); 
+} 
+
+//$url = get_furl("$ImagemMapa");
+$EnderecoMapa2 = str_replace(" ", "+", $EnderecoMapa); 
+$url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$EnderecoMapa2."&zoom=16&size=900x300&scale=2&markers=color%3red%7Clabel%3aS%7C11211".$EnderecoMapa2."|size:mid&sensor=false");
+$ch = curl_init($url);
+
+$fp = fopen('fotos/Imovel/ImagemMapa'.$CodigoImovel."-".$Cep.'.jpg', 'wb');
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+curl_setopt($ch, CURLOPT_FILE, $fp);
+$contents = curl_exec($ch);
+
+curl_close($ch);
 		  
 		  $buscaHolding->set('sql',"SELECT `IdEmpresa`, RazaoSocial FROM `CadastroHolding` WHERE IdEmpresa = '$SelectHolding' ");
 		  $retornoHolding = mysql_fetch_object($buscaHolding->executarQuery());
@@ -447,6 +491,7 @@ curl_close($ch);
 	/********************************************************************************************************/
     /*	Seleciona o ID do Responsável para poder inserir na TABELA CadastroEmpresa como chave estrangeira	*/
     /********************************************************************************************************/
+   /*
     $insereImovel->set('sql',"SELECT `IdImovel` FROM `CadastraImovel` WHERE CodigoImovel = '$CodigoImovel' AND 
 																			IdEmpresa = '$retornoHolding->IdEmpresa' AND 
 																			IdRequerente = '$retornoRequerente->IdRequerente' AND 
@@ -487,6 +532,10 @@ curl_close($ch);
 																			QuadraFiscal = '$NomeQuadraFiscal' AND  
 																			Geomapas = '$NomeGeomapas' AND  
 																			ImagemLocal = '$NomeImagemLocal' ;");
+    */
+   
+    $insereImovel->set('sql',"SELECT `IdImovel` FROM `CadastraImovel` WHERE IdImovel =  LAST_INSERT_ID()");
+
     $retorno = mysql_fetch_object($insereImovel->executarQuery());
   	  
    /********************************************************************************************/

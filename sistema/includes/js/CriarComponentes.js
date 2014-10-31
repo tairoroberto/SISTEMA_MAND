@@ -30,7 +30,7 @@
 		document.getElementById("Historico"+qdivCamposHistorico).innerHTML =
 					
 		"<div class='col-md-3'>"
-        +"<input name='SqlHistoricoArray[]' id='SqlHistoricoArray["+qdivCamposHistorico+"]' type='text'  class='form-control' placeholder='SQL'>"
+        +"<input name='SqlHistoricoArray[]' id='SqlHistoricoArray[]' type='text'  class='form-control' placeholder='SQL'>"
         +"</div>"
         +"<div class='col-md-2'>"
         +" <input name='DataHistoricoArray[]' id='DataHistoricoArray["+qdivCamposHistorico+"]' type='text' maxlength='4' class='form-control' placeholder='Data (ano)'>"
@@ -67,7 +67,7 @@
 		//Escrevendo algo no filho recŽm-criado:
 		document.getElementById("OutrosLotes"+qdivCamposOutrosLotes).innerHTML =
 				  "<div class='col-md-3'>"
-				  +"<input name='SqlOutrosLotesArray[]' id='SqlOutrosLotesArray["+qdivCamposOutrosLotes+"]' type='text'  class='form-control' placeholder='SQL'>"
+				  +"<input name='SqlOutrosLotesArray[]' id='SqlOutrosLotesArray[]' type='text'  class='form-control' placeholder='SQL'>"
 				  +" </div>"
 				  +" <div class='col-md-2'>"
 				  +" <input name='AreaTerrenoOutrosLotesArray[]' id='AreaTerrenoOutrosLotesArray["+qdivCamposOutrosLotes+"]' type='text'  class='form-control' placeholder='Area do Terreno(m2)'>"

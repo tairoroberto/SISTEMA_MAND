@@ -93,11 +93,12 @@
     /********************************************************************************************/
 
         $IdUsuario =	  $_POST['IdUsuario'];
+        $data = date('d/m/Y');
         /********************************************************************************************/
         /*                      Muda a String SQL para inserir no banco                             */
         /********************************************************************************************/
-         $insereDocumento->set('sql',"INSERT INTO DocumentosUsuario(NomeDocumento,IdUsuario) 
-                              VALUES ('$NomeDocumento',$IdUsuario)");
+         $insereDocumento->set('sql',"INSERT INTO DocumentosUsuario(NomeDocumento,data,IdUsuario) 
+                              VALUES ('$NomeDocumento','$data',$IdUsuario)");
 
 /********************************************************************************************/
 /*								Execulta a String SQL 										*/

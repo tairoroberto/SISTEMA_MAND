@@ -22,9 +22,11 @@ include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
    ob_start();
    //recebe a pagina pela função
    $content = curl("http://www.mandprojetos.com.br/orca/ContratoPdf.php?IdOportunidadeAux2=".$IdOportunidade."&IdOrcamentoBAux2=".$IdOrcamentoB."");
+   //$content = curl("http://localhost/git/SISTEMA-MAND/orca/ContratoPdf.php?IdOportunidadeAux2=".$IdOportunidade."&IdOrcamentoBAux2=".$IdOrcamentoB."");
+
    //printa a página 
    //
-   //
+  
    print($content);
    //pega o que foi impresso e joga em uma variável
    $content = ob_get_contents();
@@ -33,14 +35,20 @@ include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
    $stylesheet = file_get_contents('style-orcamento.css'); 
 
    //instancia a nova classe do Mpdf
-   $mpdf=new mPDF();  
+   $mpdf = new mPDF();  
    // Passa o css para a classe
    $mpdf->WriteHTML($stylesheet,1);
    //seta a página como pagina completa
    //imprime nossa variável em PDF
    $mpdf->WriteHTML($content,2);    
    //Mostra a saída como download
-   $mpdf->Output('Contrato.pdf','D');
-   exit; 
+   //
+   $NomeArquivo = "Contrato-Mand-".date('d-m-Y').".pdf";
+   $mpdf->Output($NomeArquivo);
+
+
+   //mudar aqui ver icone de botão do pdf
+   //header("Location: http://localhost/git/SISTEMA-MAND/orca/contrato.php?IdOportunidadeAux=".$IdOportunidade."&IdOrcamentoBAux=".$IdOrcamentoB);
+   header("Location: http://www.mandprojetos.com.br/orca/contrato.php?IdOportunidadeAux=".$IdOportunidade."&IdOrcamentoBAux=".$IdOrcamentoB);
 
 ?>

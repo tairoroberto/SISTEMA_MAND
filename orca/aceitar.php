@@ -5,9 +5,29 @@
 <title>Mand Projetos - Orçamento</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../sistema/includes/js/ValidaCampos.js"></script>
+
+<!--Mascara para inputs-->
+<script src="../sistema/assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="../sistema/assets/plugins/jquery-mask/jquery.maskedinput.js"></script>
+<script type="text/javascript" src="../sistema/assets/plugins/jquery-mask/jquery.mask.js"></script>
+
+
+
+<script type="text/javascript">
+
+  function mudaMascaraCnpj(){
+    if (formAceitar.radioCnpjCpf.value == "CNPJ") {
+     $("#CnpjCpf").mask("99.999.999/9999-99");
+   }else{    
+    $("#CnpjCpf").mask("999.999.999-99");   
+   }
+
+  }
+
+</script>
 </head>
 
-<body >
+<body onload="mudaMascaraCnpj();">
 <form id="formAceitar" name="formAceitar" method="post" action="contrato">
 
 <!--ESQUERDA-->
@@ -30,10 +50,10 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       $buscaOportunidade->selecionarDB(); 
 
 
-      $buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                     FROM Oportunidade
-                                     INNER JOIN CadastraOrcamentoB
-                                     ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
+      $buscaOportunidade->set('sql',"SELECT Oportunidade.*, CadastraOrcamentoB.*
+                                     FROM CadastraOrcamentoB 
+                                     INNER JOIN Oportunidade
+                                     ON Oportunidade.IdOportunidade = $IdOportunidade AND 
                                         CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
 
       $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 
@@ -87,11 +107,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
     
 </div>
 <!--ESQUERDA-->
-<?php $cpf = $retornoOportunidade->CnpjCpf;
-      $cpf = str_replace("." , '' , $cpf );
-      $cpf = str_replace("/" , '' , $cpf );
-      $cpf = str_replace("-" , '' , $cpf );
- ?>
+<?php $cpf = $retornoOportunidade->CnpjCpf;?>
 
 
 <!--DIREITA-->
@@ -139,7 +155,20 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
     <div id="dir-linha-form1">
     	<table width="100%" height="100%" border="0" cellpadding="2" class="open-15">
   <tr>
-    <td width="16%">CPF/ CNPJ: </td>
+    <td width="20%"> 
+
+      <div class="radio">
+        <label>
+          <input type="radio" name="radioCnpjCpf" id="radioCnpjCpf" value="CPF" checked="checked" onchange="mudaMascaraCnpj();">
+          Cpf
+        </label>
+        <label>
+          <input type="radio" name="radioCnpjCpf" id="radioCnpjCpf" value="CNPJ" onchange="mudaMascaraCnpj();">
+          Cnpj
+        </label>
+      </div>
+    </td>
+
     <td width="84%"><input name="CnpjCpf" id="CnpjCpf" type="text"  style="width:300px;" class="open-15" onkeypress="Entrar();" ></td>
   </tr>
   <tr>

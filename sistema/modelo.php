@@ -103,15 +103,52 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 </body>
 </html>
 
+
+
   <?php 
-       //Deleta os Pdf antigos
-       $NomeArquivo = "Pdf-Imovel-".date('d-m-Y').".pdf";
-       $NomeArquivo2 = "Pdf-Incorporação.pdf-".date('d-m-Y').".pdf";
+
+     /********************************************************************************************/
+     /*      Variáveis para inserção no banco de dados, insere o Responsável e a empresa         */
+     /********************************************************************************************/
+         
+      $buscaImovel = new Conexao();
+      $buscaImovel->conectar();
+      $buscaImovel->selecionarDB(); 
+
+      $buscaIncorporacao = new Conexao();
+      $buscaIncorporacao->conectar();
+      $buscaIncorporacao->selecionarDB(); 
+
+      $buscaIncorporacao->set("sql","SELECT * FROM CadastraIncorporacao ");
+      $queryIcorporacao = $buscaIncorporacao->executarQuery();
+      while ($retornoIncorporacao = mysql_fetch_object($queryIcorporacao)) {
+       
+          $NomeArquivo2 = "Pdf-Incorporação-".$retornoIncorporacao->IdIncorporacao."-".date('d-m-Y').".pdf";
 
           foreach (glob("impressao/*.pdf") as $filename) {
-            if (($filename == "impressao/".$NomeArquivo) || ($filename == "impressao/".$NomeArquivo2)) {
+            if ($filename == "impressao/".$NomeArquivo2) {
               unlink($filename);
             }                 
-           }
+          }
+
+      }
+
+
+      $buscaImovel->set("sql","SELECT * FROM CadastraImovel ");
+      $queryImovel = $buscaImovel->executarQuery();
+      while ($retornoImovel = mysql_fetch_object($queryImovel)) {
+
+       //Deleta os Pdf antigos
+       $NomeArquivo = "Pdf-Imovel-".$retornoImovel->IdImovel."-".date('d-m-Y').".pdf";
+     
+          foreach (glob("impressao/*.pdf") as $filename) {
+            if ($filename == "impressao/".$NomeArquivo) {
+              unlink($filename);
+            }                 
+          }       
+      }
+     
+
+      
 
    ?>

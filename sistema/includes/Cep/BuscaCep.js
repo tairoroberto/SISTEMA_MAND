@@ -129,18 +129,22 @@
                         $("#BairroIncorporacao").val(unescape(resultadoCEP["bairro"]));
                         $("#CidadeIncorporacao").val(unescape(resultadoCEP["cidade"]));
                         $("#EstadoIncorporacao").val(unescape(resultadoCEP["uf"]));
+                        
                         $("#NumeroIncorporacao").val("");
                         $("#NumeroIncorporacao").focus();
                         
                     }else{
                         alert("Endereço não encontrado para o cep ");
                     }
-                    $("#ajax-loading").hide();
+                    $("#ajax-loading").hide(); //EnderecoMapaAux
                     
                 });
             }
         }
         
+
+
+
     /********************************************************************************************/
     /*                       Função para a busca de CEP do Imóvel                            */
     /********************************************************************************************/

@@ -17,12 +17,18 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
 <!-- BEGIN CORE CSS FRAMEWORK -->
+<link href="assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+<link href="assets/plugins/boostrap-checkbox/css/bootstrap-checkbox.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen"/>
+<!-- END PLUGIN CSS -->
+<!-- BEGIN CORE CSS FRAMEWORK -->
 <link href="assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
 <!-- END CORE CSS FRAMEWORK -->
-
 <!-- BEGIN CSS TEMPLATE -->
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
@@ -92,7 +98,7 @@ function receber(num){
                     <div class="grid-title no-border"></div>
                     <div class="grid-body no-border">
                     <form class="form-no-horizontal-spacing" id="formTarefaDocumentos" name="formTarefaDocumentos" method="POST">
-                      <div class="row column-seperation">
+                    <!--  <div class="row column-seperation">
                         <div class="col-md-12">
                           <h4>Filtro</h4>
                          
@@ -105,7 +111,7 @@ function receber(num){
                     /**************************************************************************************/
                     /*                       Busca o Holding  para preencher o select                    */
                     /************************************************************************************/
-                     
+                     /*
                         $buscarHolding = new Conexao();
                         $buscarHolding->conectar();
                         $buscarHolding->selecionarDB();                      
@@ -129,7 +135,7 @@ function receber(num){
                           /**************************************************************************************/
                           /*                       Busca o Holding  para preencher o select                    */
                           /************************************************************************************/
-                           
+                          /* 
                               $buscarRequerente = new Conexao();
                               $buscarRequerente->conectar();
                               $buscarRequerente->selecionarDB();                      
@@ -155,7 +161,7 @@ function receber(num){
                           /**************************************************************************************/
                           /*                       Busca o Holding  para preencher o select                    */
                           /************************************************************************************/
-                           
+                           /*
                               $buscarSql = new Conexao();
                               $buscarSql->conectar();
                               $buscarSql->selecionarDB();                      
@@ -167,7 +173,7 @@ function receber(num){
                             ?> 
                                <option value="<?php echo $retornoSql['IdImovel'] ?>"><?php echo $retornoSql['NumeroContribuinte'] ?></option>
                                  
-                        <?php } ?> 
+                        <?php } */?> 
 
                   
                   </select>
@@ -177,7 +183,7 @@ function receber(num){
                             <div class="col-md-3">
                               <button class="btn btn-primary btn-cons" type="button">Filtrar </button>
                               <button class="btn btn-primary btn-cons" type="button" onclick="window.location.reload();">Atualizar </button>
-                              <input type="hidden" name="ContAux" id="ContAux" >
+                             
                             </div>
                           </div>
                         
@@ -187,6 +193,7 @@ function receber(num){
                         
                         
                 </div>
+                -->
               
             <!-- END FORM -->
               <!-- START FORM -->
@@ -197,8 +204,10 @@ function receber(num){
                                
                             </div>
                             <div class="grid-body no-border">
+
+                             <input type="hidden" name="ContAux" id="ContAux" >
                                   
-                                   <table class="table table-hover no-more-tables">
+                                   <table class="table table-hover no-more-tables" id="example">
                                                 <thead>
                                                     <tr>
                                                         <th style="width:13%">Holding</th>
@@ -303,8 +312,134 @@ function receber(num){
                                                               <?php } ?>
 
                                                       <?php $cont++; } } ?> 
-                                                    
-              
+
+
+
+
+
+
+
+
+
+                                                     <!--Begin of table-->
+
+
+
+
+
+
+                                              <?php                      
+                                                    /**************************************************************************************/
+                                                    /*                       Busca os dados para preencher a tabela                      */
+                                                    /************************************************************************************/
+                                                     
+                                                      $buscarHistoricoTarefa = new Conexao();
+                                                        $buscarHistoricoTarefa->conectar();
+                                                        $buscarHistoricoTarefa->selecionarDB();
+
+                                                        $buscarTarefa = new Conexao();
+                                                        $buscarTarefa->conectar();
+                                                        $buscarTarefa->selecionarDB();    
+
+                                                        $buscarTarefaOportunidade = new Conexao();
+                                                        $buscarTarefaOportunidade->conectar();
+                                                        $buscarTarefaOportunidade->selecionarDB();                 
+
+
+                                                        $NomeUsuario = $_SESSION ['usuarioNome']; 
+                                                        $usuarioTipo = $_SESSION ['usuarioTipo']; 
+
+
+
+                                                        //busca todos os documentos
+                                                       $buscarHistoricoTarefa->set('sql',"SELECT SolicitacaoDocumetosTarefa.*, Oportunidade.* 
+                                                                                          FROM Oportunidade
+                                                                                          INNER JOIN SolicitacaoDocumetosTarefa
+                                                                                          WHERE SolicitacaoDocumetosTarefa.IdOportunidade = Oportunidade.IdOportunidade 
+                                                                                          GROUP BY IdSolicitacaoDocUmento
+                                                                                          ORDER BY IdSolicitacaoDocUmento DESC");
+                                                       
+                                                        $query= $buscarHistoricoTarefa->executarQuery();
+                                                        while($retornoHistoricoTarefa = mysql_fetch_object($query)) { 
+
+
+                                                          //echo $retornoTarefaOportunidade->CnpjCpf."-";
+                                                         //echo $retornoHistoricoTarefa->Solicitar."-";
+
+
+
+                                                              if (($retornoHistoricoTarefa->Solicitar == "") || ($retornoHistoricoTarefa->Recebido == "")) {
+
+                                                              if (($retornoHistoricoTarefa->NomeUsuario == "$NomeUsuario") || ($usuarioTipo == "Administrador")) {?> 
+
+                                                                   <tr>
+                                                              <td><?php echo $retornoHistoricoTarefa->RazaoSocial //IdOportunidade?></td>
+                                                              <td><?php echo $retornoHistoricoTarefa->NomeContato ?></td>
+                                                              <td><?php echo $retornoHistoricoTarefa->CnpjCpf ?></td>
+                                                              <td><?php echo $retornoHistoricoTarefa->NomeUsuario ?></td>    
+                                                              <td><?php echo $retornoHistoricoTarefa->DocumentosSolicitacao ?></td>
+                                                              <td><?php echo $retornoHistoricoTarefa->DataSolicitacao ?></td>
+
+                                                              <?php                      
+                                                              /**************************************************************************************/
+                                                              /*                       Busca as etapas relacionadas com a tarefa                   */
+                                                              /************************************************************************************/
+                                                               
+                                                              $buscarTarefa = new Conexao();
+                                                              $buscarTarefa->conectar();
+                                                              $buscarTarefa->selecionarDB();                      
+                                                             
+                                                              $buscarTarefa->set('sql',"SELECT count(EtapaTarefa.IdEtapaTarefa) as countEtapaTarefa
+                                                                                                FROM EtapaTarefa
+                                                                                                INNER JOIN CadastraTarefa
+                                                                                                ON EtapaTarefa.IdTarefa = $retornoHistoricoTarefa->IdTarefa 
+                                                                                                GROUP BY CadastraTarefa.IdTarefa");
+                                                                 
+                                                              $retornoTarefa=mysql_fetch_object($buscarTarefa->executarQuery()) ?> 
+
+                                                              <td><?php echo $retornoTarefa->countEtapaTarefa ?></td>
+
+                                                              <td>
+                                                                 <div class="checkbox check-default">
+                                                                    <!--CheckBox SOLICITAR-->
+                                                                    <!--Verificação para ver se campo SOLICITAR é null, se for cria o check box-->
+                                                                    <?php if ($retornoHistoricoTarefa->Solicitar == "") {
+                                                                        echo "<input onclick='solicitar(".$retornoHistoricoTarefa->IdSolicitacaoDocUmento.");' id='checkSolicitar".$cont."' type='checkbox' >
+                                                                              <label for='checkSolicitar".$cont."'></label>";
+                                                                    }else{
+                                                                        echo "$retornoHistoricoTarefa->Solicitar";                                                                                                                                               
+                                                                      }  ?>
+                                                                    
+                                                                 </div>  
+                                                              
+                                                              </td>
+
+                                                              <td>
+                                                                 <div class="checkbox check-default">
+                                                                 <!--CheckBox RECEBIDO-->
+                                                                 <!--Verificação para ver se campo RECEBIDO é null, se for cria o check box-->
+                                                                    <?php if ($retornoHistoricoTarefa->Recebido == "") {
+                                                                      echo "<input onchange='receber(".$retornoHistoricoTarefa->IdSolicitacaoDocUmento.");' id='checkRecebido".$cont."' type='checkbox' >
+                                                                            <label for='checkRecebido".$cont."'></label>";
+                                                                    }else{
+                                                                        echo "$retornoHistoricoTarefa->Recebido";                                                                                                                                               
+                                                                      }  ?>
+                                                                 
+                                                                 </div>
+                                                              </td>                                                        
+                                                          </tr>
+
+
+                                                              <?php } ?>
+
+                                                      <?php $cont++; } } ?> 
+
+                                                     <!--End of table-->
+
+
+
+
+
                                                 </tbody>
                                             </table>
                             </div>
@@ -330,22 +465,29 @@ function receber(num){
 <!-- BEGIN CORE JS FRAMEWORK--> 
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 
-<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
-<!-- END CORE JS FRAMEWORK --> 
-<!-- BEGIN PAGE LEVEL JS --> 	
-<script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script> 	
-<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
+</script> <!-- BEGIN CORE JS FRAMEWORK-->
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/plugins/breakpoints.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+<!-- END CORE JS FRAMEWORK -->
+<!-- BEGIN PAGE LEVEL JS -->
+<script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS --> 	
-
-<!-- BEGIN CORE TEMPLATE JS --> 
-<script src="assets/js/core.js" type="text/javascript"></script> 
-<script src="assets/js/chat.js" type="text/javascript"></script> 
-<script src="assets/js/demo.js" type="text/javascript"></script> 
+<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript" ></script>
+<script src="assets/plugins/jquery-datatable/extra/js/TableTools.min.js" type="text/javascript" ></script>
+<script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+<script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<script src="assets/js/datatables.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<script src="assets/js/core.js" type="text/javascript"></script>
+<script src="assets/js/chat.js" type="text/javascript"></script>
+<script src="assets/js/demo.js" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS --> 
 </body>
 </html>

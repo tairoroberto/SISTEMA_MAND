@@ -106,6 +106,34 @@ function encerraImovel(){
     <div class='content'>  
     <div class='page-title'>  
        <h3>Visualizar - <span class='semi-bold'>Ficha Tecnica</span></h3>   
+
+                 <?php $IdImovel; 
+             if (isset($_POST['imovelAux'])){
+                $IdImovel = $_POST['imovelAux'];
+             }elseif (isset($_GET['imovelAux'])) {
+               $IdImovel = $_GET['imovelAux'];
+             }
+       
+        /********************************************************************************************/
+        /*      Variáveis para inserção no banco de dados, insere o Responsável e a empresa         */
+        /********************************************************************************************/
+       
+          $buscaImovel = new Conexao();
+          $buscaImovel->conectar();
+          $buscaImovel->selecionarDB(); 
+
+          $buscaImovel->set("sql","SELECT CadastraImovel.*,RazaoSocial, Nome 
+                                   FROM CadastroHolding,CadastroRequerente
+                                   INNER JOIN CadastraImovel
+                                   WHERE CadastroHolding.IdEmpresa = CadastraImovel.IdEmpresa AND
+                                         CadastroRequerente.IdRequerente = CadastraImovel.IdRequerente AND
+                                         IdImovel = '$IdImovel'");
+
+          $retornoImovel = mysql_fetch_object($buscaImovel->executarQuery());
+
+              ?>
+
+              
     </div>
     <div class="tiles white added-margin   m-b-20">
           <div class="tiles-body">
@@ -150,7 +178,7 @@ function encerraImovel(){
             <br>
 
            <?php
-           $NomeArquivo = "Pdf-Imovel-".date('d-m-Y').".pdf";
+           $NomeArquivo = "Pdf-Imovel-".$IdImovel."-".date('d-m-Y').".pdf";
            if(file_exists("impressao/".$NomeArquivo)){ ?>
 
            <a href="impressao/salvar.php?arquivo=<?php echo $NomeArquivo; ?>"><button type='button' class='btn btn-white btn-cons'>Baixar Pdf</button></a>
@@ -188,31 +216,7 @@ function encerraImovel(){
               
               <!-- TITULO -->
               
-             <?php $IdImovel; 
-             if (isset($_POST['imovelAux'])){
-                $IdImovel = $_POST['imovelAux'];
-             }elseif (isset($_GET['imovelAux'])) {
-               $IdImovel = $_GET['imovelAux'];
-             }
-       
-        /********************************************************************************************/
-        /*      Variáveis para inserção no banco de dados, insere o Responsável e a empresa         */
-        /********************************************************************************************/
-       
-          $buscaImovel = new Conexao();
-          $buscaImovel->conectar();
-          $buscaImovel->selecionarDB(); 
-
-          $buscaImovel->set("sql","SELECT CadastraImovel.*,RazaoSocial, Nome 
-                                   FROM CadastroHolding,CadastroRequerente
-                                   INNER JOIN CadastraImovel
-                                   WHERE CadastroHolding.IdEmpresa = CadastraImovel.IdEmpresa AND
-                                         CadastroRequerente.IdRequerente = CadastraImovel.IdRequerente AND
-                                         IdImovel = '$IdImovel'");
-
-          $retornoImovel = mysql_fetch_object($buscaImovel->executarQuery());
-
-              ?>
+   
               
               
               

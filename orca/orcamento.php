@@ -28,9 +28,14 @@
 <body>
 <form id="formIndex" name="formIndex" method="polst" action="aceitar">
 
-<!--ESQUERDA-->
-<div id="col-esq">
+<!--ESQUERDA
+
 <div id="esq-logo" align="center"><img src="imagens/logo.png" width="169" height="169" /></div>
+
+-->
+<div id="col-esq">
+
+    <div id="esq-logo" align="center"><a href="#" onclick="enviar('inicio');"><img src="imagens/logo.png" width="169" height="169" /></a></div>
  <?php
     $IdOportunidade;
     $IdOrcamentoB;
@@ -58,10 +63,10 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       $buscaOportunidade->selecionarDB(); 
 
 
-      $buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                     FROM Oportunidade
-                                     INNER JOIN CadastraOrcamentoB
-                                     ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
+      $buscaOportunidade->set('sql',"SELECT Oportunidade.*, CadastraOrcamentoB.*
+                                     FROM CadastraOrcamentoB 
+                                     INNER JOIN Oportunidade
+                                     ON Oportunidade.IdOportunidade = $IdOportunidade AND 
                                         CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
 
       $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 

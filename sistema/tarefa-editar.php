@@ -81,21 +81,21 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
   <div class="page-content">
 
 
-  <?php  $IdTarefa;
+  <?php
 
-         if (isset($_POST['IdTarefaAux'])) {
+        $IdTarefa;
+        $buscarTarefa = new Conexao();
+        $buscarTarefa->conectar();
+        $buscarTarefa->selecionarDB();  
+
+         if ((isset($_POST['IdTarefaAux'])) &&
+              ($_POST['HoldingAux'] != 0) && ($_POST['RequerenteAux'] != 0) && ($_POST['SqlAux'] != 0)) {
+
             $IdTarefa = $_POST['IdTarefaAux'];
-          } 
 
-             /********************************************************************************************/
-            /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
-           /********************************************************************************************/
-                     
-              $buscarTarefa = new Conexao();
-              $buscarTarefa->conectar();
-              $buscarTarefa->selecionarDB();                      
 
-              $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, RazaoSocial,Nome, CadastraImovel.* 
+
+            $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, RazaoSocial,Nome, CadastraImovel.* 
                                              FROM CadastroHolding, CadastroRequerente, CadastraImovel 
                                              INNER JOIN `CadastraTarefa`
                                              WHERE  CadastroHolding.IdEmpresa = CadastraTarefa.IdEmpresa AND
@@ -103,6 +103,20 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                                     CadastraImovel.IdImovel = CadastraTarefa.IdImovel AND
                                                     IdTarefa = '$IdTarefa'  
                                              GROUP BY CadastraTarefa.IdTarefa");
+          } 
+
+         if ((isset($_POST['IdTarefaAux'])) &&
+              ($_POST['HoldingAux'] == 0) && ($_POST['RequerenteAux'] == 0) && ($_POST['SqlAux'] == 0)) {
+
+            $IdTarefa = $_POST['IdTarefaAux'];
+
+            $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, Oportunidade.* 
+                                      FROM Oportunidade 
+                                      INNER JOIN `CadastraTarefa`
+                                      On  Oportunidade.IdOportunidade = CadastraTarefa.IdOportunidade 
+                                      GROUP BY CadastraTarefa.IdTarefa");
+          } 
+
 
            $retornoTarefa = mysql_fetch_object($buscarTarefa->executarQuery()); ?>
      
@@ -126,8 +140,13 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                        <br>
                             <div class="col-md-3">
                               <select id="SelectHolding" name="SelectHolding" style="width:100%" >
-                   
-                    <option value="<?php echo $retornoTarefa->IdEmpresa; ?>"><?php echo $retornoTarefa->RazaoSocial; ?></option>
+
+                              <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                    <option value="0"><?php echo $retornoTarefa->RazaoSocial; ?></option>
+                              <?php }else{ ?>
+                                    <option value="<?php echo $retornoTarefa->IdEmpresa; ?>"><?php echo $retornoTarefa->RazaoSocial; ?></option>
+                              
+                                                          
                            <?php                                
                                 /********************************************************************************************/
                                 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
@@ -144,15 +163,22 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                 <option value="<?php echo $retornoHolding['IdEmpresa'] ?>"> <?php echo $retornoHolding['RazaoSocial'] ?>
                                 </option>
              
-                              <?php } ?> 
+                                <?php } ?>
+                            <?php } ?> 
 
                   
                   </select>
                             </div>
                             <div class="col-md-3">
                               <select id="SelectRequerente" name="SelectRequerente" style="width:100%">
+
+                               <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                    <option value="0"><?php echo $retornoTarefa->NomeContato; ?></option>
+                              <?php }else{ ?>
+                                  <option value="<?php echo $retornoTarefa->IdRequerente; ?>"><?php echo $retornoTarefa->Nome; ?></option>
+                              
                    
-                           <option value="<?php echo $retornoTarefa->IdRequerente; ?>"><?php echo $retornoTarefa->Nome; ?></option>
+                           
                               <?php                                
                                 /********************************************************************************************/
                                 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
@@ -169,15 +195,21 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                 <option value="<?php echo $retornoRequerente['IdRequerente'] ?>"> <?php echo $retornoRequerente['Nome'] ?>
                                 </option>
              
-                              <?php } ?> 
+                                 <?php } ?> 
+                             <?php } ?>
 
                   
                   </select>
                             </div>
                             <div class="col-md-2">
                               <select id="SelectSql" name="SelectSql" style="width:100%">
-                   
-                        <option value="<?php echo $retornoTarefa->IdImovel; ?>"><?php echo $retornoTarefa->NumeroContribuinte; ?></option>
+
+                              <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                    <option value="0"><?php echo $retornoTarefa->CnpjCpf; ?></option>
+                              <?php }else{ ?>
+                                  <option value="<?php echo $retornoTarefa->IdImovel; ?>"><?php echo $retornoTarefa->NumeroContribuinte; ?></option>
+                                               
+                        
                              <?php                                
                                 /********************************************************************************************/
                                 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
@@ -194,7 +226,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                 <option value="<?php echo $retornoImovel['IdImovel'] ?>"> <?php echo $retornoImovel['NumeroContribuinte'] ?>
                                 </option>
              
-                              <?php } ?> 
+                                  <?php } ?>
+                              <?php } ?>  
 
                   
                   </select>

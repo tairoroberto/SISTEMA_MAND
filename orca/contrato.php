@@ -17,10 +17,22 @@
 <?php
   $IdOportunidade;
   $IdOrcamentoB;
-    if (($_POST['IdOportunidadeAux']) && ($_POST['IdOrcamentoBAux'])) {
 
-    $IdOportunidade = $_POST['IdOportunidadeAux'];
-    $IdOrcamentoB = $_POST['IdOrcamentoBAux'];
+  if (isset($_POST['IdOportunidadeAux'],$_POST['IdOrcamentoBAux'])) {
+
+      $IdOportunidade = $_POST['IdOportunidadeAux'];
+      $IdOrcamentoB = $_POST['IdOrcamentoBAux'];
+
+  }elseif (isset($_GET['IdOportunidadeAux'],$_GET['IdOrcamentoBAux'])) {
+
+      $IdOportunidade = $_GET['IdOportunidadeAux'];
+      $IdOrcamentoB = $_GET['IdOrcamentoBAux'];
+  }
+
+
+    if ((isset($_POST['IdOportunidadeAux'],$_POST['IdOrcamentoBAux'])) ||
+        (isset($_GET['IdOportunidadeAux'],$_GET['IdOrcamentoBAux']))) {
+
 
 /********************************************************************************************/
 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
@@ -34,10 +46,10 @@ include('php/EnviarEmail.php');
       $buscaOportunidade->selecionarDB(); 
 
 
-      $buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                     FROM Oportunidade
-                                     INNER JOIN CadastraOrcamentoB
-                                     ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
+      $buscaOportunidade->set('sql',"SELECT Oportunidade.*, CadastraOrcamentoB.*
+                                     FROM CadastraOrcamentoB 
+                                     INNER JOIN Oportunidade
+                                     ON Oportunidade.IdOportunidade = $IdOportunidade AND 
                                         CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
 
       $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 
@@ -88,12 +100,45 @@ include('php/EnviarEmail.php');
       VALOR TOTAL  <br />
       <span class="ver-bra">R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></span>
      </div>
-     
+ 
+ <!--    
  <div id="esq-pdf" onclick="expotarPdf();"> <a href="#"><img src="imagens/pdf.png" width="220" height="41" /></a> </div>
+ -->
+
+
+<!--Aqui Pdf-->
+ <?php $NomeArquivo = "Contrato-Mand-".date('d-m-Y').".pdf"; ?>
+
+ <?php  if(file_exists($NomeArquivo)){ ?>
+
+      <div id="esq-pdf">&nbsp;&nbsp;&nbsp; 
+        <a href="salvar.php?arquivo=<?php echo $NomeArquivo; ?>" style="text-decoration: none">
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Baixar Pdf </font>
+        </a> 
+      </div>
     
+ <?php }else{ ?>
+
+      <div id="esq-pdf" onclick="expotarPdf();">&nbsp;&nbsp;&nbsp; 
+        <a href="#" style="text-decoration: none">
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Exportar para Pdf </font>
+        </a> 
+      </div>
+
+ <?php } ?>
+
+
+
+
     
-      <!--Envia o email para cofirmar que cliente ceitou a proposta-->
-     <?php enviarEmail("atendimento@mandprojetos.com.br"," ACEITOU o orçamento",$IdOportunidade,$IdOrcamentoB);?> 
+      <!--Envia o email para cofirmar que cliente ceitou a proposta   -->
+      <?php if (isset($_POST['IdOportunidadeAux'],$_POST['IdOrcamentoBAux'])) {
+
+          enviarEmail("atendimento@mandprojetos.com.br"," ACEITOU o orçamento",$IdOportunidade,$IdOrcamentoB);
+
+        } ?>
      
 </div>
 <!--ESQUERDA-->
@@ -206,3 +251,16 @@ include('php/EnviarEmail.php');
 </form>
 </body>
 </html>
+
+
+<?php 
+    //Deleta os Pdf antigos
+       $NomeArquivo = "Orçamento-Mand-".date('d-m-Y').".pdf"; 
+     
+          foreach (glob("*.pdf") as $filename) {
+            if ($filename == $NomeArquivo) {
+              unlink($filename);
+            }
+          }   
+            
+ ?>

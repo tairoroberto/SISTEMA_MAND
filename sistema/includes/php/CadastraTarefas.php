@@ -33,7 +33,7 @@ if (isset($_POST['SelectHolding'],
     /*					Atribui os dados vindos do formulário às variáveis do php				*/
     /********************************************************************************************/
 
-    	  $SelectHolding =	  $_POST['SelectHolding']; 
+    	$SelectHolding =	  $_POST['SelectHolding']; 
 		  $SelectRequerente  = $_POST['SelectRequerente'];
 		  $SelectSql  = $_POST['SelectSql'];
 		  $DataInicio  = $_POST['DataInicio'];
@@ -44,8 +44,8 @@ if (isset($_POST['SelectHolding'],
       $SituacaoEtapaTarefa = "Trabalhando";
  
  		   
-	 $insereTarefa->set('sql',"INSERT INTO CadastraTarefa(IdEmpresa,IdRequerente,IdImovel,DataInicio,DataEntrega,NomeProjeto,DescricaoProjeto,SituacaoTarefa) 
-              VALUES ('$SelectHolding','$SelectRequerente','$SelectSql','$DataInicio','$DataEntrega','$NomeProjeto','$DescricaoProjeto','$SituacaoTarefa ');");  
+	 $insereTarefa->set('sql',"INSERT INTO CadastraTarefa(IdEmpresa,IdRequerente,IdImovel,IdOportunidade,DataInicio,DataEntrega,NomeProjeto,DescricaoProjeto,SituacaoTarefa) 
+              VALUES ('$SelectHolding','$SelectRequerente','$SelectSql',0,'$DataInicio','$DataEntrega','$NomeProjeto','$DescricaoProjeto','$SituacaoTarefa');");  
   
   	/********************************************************************************************/
     /*								Execulta a String SQL 										*/

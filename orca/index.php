@@ -60,10 +60,10 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       
 
 
-      $buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                     FROM Oportunidade
-                                     INNER JOIN CadastraOrcamentoB
-                                     ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
+      $buscaOportunidade->set('sql',"SELECT Oportunidade.*, CadastraOrcamentoB.*
+                                     FROM CadastraOrcamentoB 
+                                     INNER JOIN Oportunidade
+                                     ON Oportunidade.IdOportunidade = $IdOportunidade AND 
                                         CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
 
       $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 
@@ -114,7 +114,34 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       <span class="ver-bra">R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></span>
      </div>
      
-     <div id="esq-pdf" onclick="expotarPdf();"> <a href="#"><img src="imagens/pdf.png" width="220" height="41" /></a> </div>
+  
+
+
+<!--Aqui Pdf-->
+<?php $NomeArquivo = "Orçamento-Mand-".date('d-m-Y').".pdf"; ?>
+
+ <?php  if(file_exists($NomeArquivo)){ ?>
+
+      <div id="esq-pdf">&nbsp;&nbsp;&nbsp; 
+        <a href="salvar.php?arquivo=<?php echo $NomeArquivo; ?>" style="text-decoration: none">
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Baixar Pdf </font>
+        </a> 
+      </div>
+    
+ <?php }else{ ?>
+
+      <div id="esq-pdf" onclick="expotarPdf();">&nbsp;&nbsp;&nbsp; 
+        <a href="#" style="text-decoration: none">
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Exportar para Pdf </font>
+        </a> 
+      </div>
+
+ <?php } ?>
+
+
+
     
     
 </div>
@@ -203,4 +230,16 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
 </body>
 </html>
+
+<?php 
+    //Deleta os Pdf antigos
+       $NomeArquivo = "Contrato-Mand-".date('d-m-Y').".pdf";
+     
+          foreach (glob("*.pdf") as $filename) {
+            if ($filename == $NomeArquivo) {
+              unlink($filename);
+            } 
+         }  
+
+ ?>
 

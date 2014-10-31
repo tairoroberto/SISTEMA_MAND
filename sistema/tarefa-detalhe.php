@@ -218,6 +218,8 @@ $(document).ready(function() {
          $HoldingAux;
          $RequerenteAux;
          $SqlAux; 
+         $query;
+         $IdOportunidade;
             //Função para conversão de datas
              function converteData($data){
                 return (preg_match('/\//',$data)) ? implode('-', array_reverse(explode('/', $data))) : implode('/', array_reverse(explode('-', $data)));
@@ -225,19 +227,116 @@ $(document).ready(function() {
 
         //Recebe os auxiliares para fazer a consulta no banco de DADOS
                //usa-se o metodo GET para ver se foram enviados parametros par ao formulario, se não os parametros são pegos pelométodo POST.
-         if (isset($_POST['tarefaAux'])){
+         if ((isset($_POST['tarefaAux'])) && 
+             ($_POST['HoldingAux'] != 0) && ($_POST['RequerenteAux'] != 0) && ($_POST['SqlAux'] != 0)){
+
             $tarefaAux = $_POST['tarefaAux'];
             $HoldingAux = $_POST['HoldingAux'];
             $RequerenteAux = $_POST['RequerenteAux'];
             $SqlAux = $_POST['SqlAux'];
             $IdEtapaSeleciona = $_POST['IdEtapaTarefaAux'];
-         }elseif (isset($_GET['tarefaAux'])){
+            $IdOportunidade = 0;
+
+            $buscaTarefa2 = new Conexao();
+            $buscaTarefa2->conectar();
+            $buscaTarefa2->selecionarDB(); 
+            $IdEtapaTarefa;
+
+            $buscaTarefa2->set("sql","SELECT CadastraTarefa.*,EtapaTarefa.*, CadastroHolding.*,CadastroRequerente.*,CadastraImovel.* 
+                                      FROM EtapaTarefa,CadastroHolding,CadastroRequerente,CadastraImovel
+                                      INNER JOIN CadastraTarefa
+                                      WHERE  CadastraTarefa.IdTarefa = '$tarefaAux' AND
+                                             EtapaTarefa.IdTarefa = '$tarefaAux' AND
+                                             CadastroHolding.IdEmpresa = '$HoldingAux'AND
+                                             CadastroRequerente.IdRequerente = '$RequerenteAux' AND
+                                             CadastraImovel.IdImovel = '$SqlAux'
+                                      GROUP BY CadastraTarefa.IdTarefa
+                                      LIMIT 1");
+            $query = $buscaTarefa2->executarQuery();
+
+
+         }elseif ((isset($_GET['tarefaAux'])) && 
+                 ($_GET['HoldingAux'] != 0) && ($_GET['RequerenteAux'] != 0) && ($_GET['SqlAux'] != 0)){
 
             $tarefaAux = $_GET['tarefaAux'];
             $HoldingAux = $_GET['HoldingAux'];
             $RequerenteAux = $_GET['RequerenteAux'];
             $SqlAux = $_GET['SqlAux'];
-         } 
+            $IdOportunidade = 0;
+
+            $buscaTarefa2 = new Conexao();
+            $buscaTarefa2->conectar();
+            $buscaTarefa2->selecionarDB(); 
+            $IdEtapaTarefa;
+
+            $buscaTarefa2->set("sql","SELECT CadastraTarefa.*,EtapaTarefa.*, CadastroHolding.*,CadastroRequerente.*,CadastraImovel.* 
+                                      FROM EtapaTarefa,CadastroHolding,CadastroRequerente,CadastraImovel
+                                      INNER JOIN CadastraTarefa
+                                      WHERE  CadastraTarefa.IdTarefa = '$tarefaAux' AND
+                                             EtapaTarefa.IdTarefa = '$tarefaAux' AND
+                                             CadastroHolding.IdEmpresa = '$HoldingAux'AND
+                                             CadastroRequerente.IdRequerente = '$RequerenteAux' AND
+                                             CadastraImovel.IdImovel = '$SqlAux'
+                                      GROUP BY CadastraTarefa.IdTarefa
+                                      LIMIT 1");
+            $query= $buscaTarefa2->executarQuery();
+
+
+         }elseif ((isset($_POST['tarefaAux'],$_POST['HoldingAux'],$_POST['RequerenteAux'],$_POST['SqlAux'])) &&
+                    ($_POST['HoldingAux'] == 0) && ($_POST['RequerenteAux'] == 0) && ($_POST['SqlAux'] == 0)){
+          //se Holding,sql, e requerente forem = 0
+          //entao irá pegar a tarefa das oportunidades
+
+            $tarefaAux = $_POST['tarefaAux'];
+            $HoldingAux = $_POST['HoldingAux'];
+            $RequerenteAux = $_POST['RequerenteAux'];
+            $SqlAux = $_POST['SqlAux'];
+            $IdEtapaSeleciona = $_POST['IdEtapaTarefaAux'];
+            $IdOportunidade = $_POST['IdOportunidadeAux'];
+
+            $buscaTarefa2 = new Conexao();
+            $buscaTarefa2->conectar();
+            $buscaTarefa2->selecionarDB(); 
+            $IdEtapaTarefa;
+
+            $buscaTarefa2->set('sql',"SELECT CadastraTarefa.*, Oportunidade.* 
+                                                 FROM Oportunidade 
+                                                 INNER JOIN `CadastraTarefa`
+                                                 On  Oportunidade.IdOportunidade = CadastraTarefa.IdOportunidade AND
+                                                        SituacaoTarefa != 'Finalizada' AND
+                                                        SituacaoTarefa != 'Arquivada' 
+                                                  GROUP BY CadastraTarefa.IdTarefa
+                                                  LIMIT 1 ");
+            $query= $buscaTarefa2->executarQuery();
+
+         }elseif ((isset($_GET['tarefaAux'],$_GET['HoldingAux'],$_GET['RequerenteAux'],$_GET['SqlAux'])) &&
+                    ($_GET['HoldingAux'] == 0) && ($_GET['RequerenteAux'] == 0) && ($_GET['SqlAux'] == 0)){
+          //se Holding,sql, e requerente forem = 0
+          //entao irá pegar a tarefa das oportunidades
+
+            $tarefaAux = $_GET['tarefaAux'];
+            $HoldingAux = $_GET['HoldingAux'];
+            $RequerenteAux = $_GET['RequerenteAux'];
+            $SqlAux = $_GET['SqlAux'];
+            $IdOportunidade = $_GET['IdOportunidadeAux'];
+            //$IdEtapaSeleciona = $_GET['IdEtapaTarefaAux'];
+
+            $buscaTarefa2 = new Conexao();
+            $buscaTarefa2->conectar();
+            $buscaTarefa2->selecionarDB(); 
+            $IdEtapaTarefa;
+
+            $buscaTarefa2->set('sql',"SELECT CadastraTarefa.*, Oportunidade.* 
+                                                 FROM Oportunidade 
+                                                 INNER JOIN `CadastraTarefa`
+                                                 On  Oportunidade.IdOportunidade = CadastraTarefa.IdOportunidade AND
+                                                        SituacaoTarefa != 'Finalizada' AND
+                                                        SituacaoTarefa != 'Arquivada' 
+                                                  GROUP BY CadastraTarefa.IdTarefa
+                                                  LIMIT 1 ");
+            $query= $buscaTarefa2->executarQuery();
+
+         }   
          else{
    /****************************************************************************************************************************/
   /*     FAz uma busca no banco somente para preencher pagina caso não tenha sido selecionada uma empresa na pagna de listagem */
@@ -255,26 +354,14 @@ $(document).ready(function() {
           $SqlAux = $retornoTarefa->IdImovel;        
        }
  
-  /********************************************************************************************/
-  /*                   Variáveis para Busca no banco de dados para as tarefas                 */
-  /********************************************************************************************/ 
-    $buscaTarefa2 = new Conexao();
-    $buscaTarefa2->conectar();
-    $buscaTarefa2->selecionarDB(); 
-    $IdEtapaTarefa;
 
-    $buscaTarefa2->set("sql","SELECT CadastraTarefa.*,EtapaTarefa.*, CadastroHolding.*,CadastroRequerente.*,CadastraImovel.* 
-                              FROM EtapaTarefa,CadastroHolding,CadastroRequerente,CadastraImovel
-                              INNER JOIN CadastraTarefa
-                              WHERE  CadastraTarefa.IdTarefa = '$tarefaAux' AND
-                                     EtapaTarefa.IdTarefa = '$tarefaAux' AND
-                                     CadastroHolding.IdEmpresa = '$HoldingAux'AND
-                                     CadastroRequerente.IdRequerente = '$RequerenteAux' AND
-                                     CadastraImovel.IdImovel = '$SqlAux'
-                              GROUP BY CadastraTarefa.IdTarefa
-                              LIMIT 1");
 
-    $query= $buscaTarefa2->executarQuery();
+
+
+    /*********************************************************************************************/
+   /*                   Executa o query para consulta na base de dados                          */
+  /*********************************************************************************************/ 
+
                while($retornoTarefa2=mysql_fetch_object($query)) { 
         ?> 
                  
@@ -416,7 +503,7 @@ $(document).ready(function() {
                             $porcetagem = 0;
 
                             if((($diasCorridos / $segundos) < 0) && 
-                                ($retornoTarefa2->SituacaoEtapaTarefa != 'Finalizar')) {
+                                ($retornoEtapaTarefa2->SituacaoEtapaTarefa != 'Finalizar')) {
                                 $porcetagem = 100;
                               }else{
                                 $porcetagem = $dias * 100 / $duracao;
@@ -516,23 +603,44 @@ $(document).ready(function() {
                     <h3><span class="semi-bold">Solicitar</span></h3>
                     
                     <div class="col-md-3" >
-                  <input type="text" id="HoldingSolicitacao" name="HoldingSolicitacao" placeholder="<?php echo "$retornoTarefa2->RazaoSocial"; ?>" value="<?php echo "$retornoTarefa2->RazaoSocial"; ?>" class="form-control" readonly="true">
-                              </div>
-                              <div class="col-md-3" >
-                  <input type="text" id="RequerenteSolicitacao" name="RequerenteSolicitacao" placeholder="<?php echo "$retornoTarefa2->Nome"; ?>" value="<?php echo "$retornoTarefa2->Nome"; ?>" class="form-control" readonly="true">
-                              </div>
-                               <div class="col-md-3" >
-                  <input type="text" id="Sqlsolicitacao" name="Sqlsolicitacao" placeholder="<?php echo "$retornoTarefa2->NumeroContribuinte"; ?>" value="<?php echo "$retornoTarefa2->NumeroContribuinte"; ?>" class="form-control" readonly="true">
-                              </div>
+
+                           <?php if ($retornoTarefa2->IdImovel == 0) { ?>
+                                    <input type="text" id="HoldingSolicitacao" name="HoldingSolicitacao" value="<?php echo "$retornoTarefa2->RazaoSocial"; ?>" class="form-control" readonly="true">
+                              <?php }else{ ?>
+                                 <input type="text" id="HoldingSolicitacao" name="HoldingSolicitacao" value="<?php echo "$retornoTarefa2->RazaoSocial"; ?>" class="form-control" readonly="true">
+                           <?php } ?>     
+
+                    </div>
+                    
+                     <div class="col-md-3" >
+
+                           <?php if ($retornoTarefa2->IdImovel == 0) { ?>
+                                    <input type="text" id="HoldingSolicitacao" name="HoldingSolicitacao" value="<?php echo "$retornoTarefa2->NomeContato"; ?>" class="form-control" readonly="true">
+                              <?php }else{ ?>
+                                 <input type="text" id="RequerenteSolicitacao" name="RequerenteSolicitacao" placeholder="<?php echo "$retornoTarefa2->Nome"; ?>" value="<?php echo "$retornoTarefa2->Nome"; ?>" class="form-control" readonly="true">
+                           <?php } ?>  
+                        
+                     </div>
+                    
+                     <div class="col-md-3" >
+
+                            <?php if ($retornoTarefa2->IdImovel == 0) { ?>
+                                    <input type="text" id="HoldingSolicitacao" name="HoldingSolicitacao" value="<?php echo "$retornoTarefa2->CnpjCpf"; ?>" class="form-control" readonly="true">
+                              <?php }else{ ?>
+                                 <input type="text" id="Sqlsolicitacao" name="Sqlsolicitacao" placeholder="<?php echo "$retornoTarefa2->NumeroContribuinte"; ?>" value="<?php echo "$retornoTarefa2->NumeroContribuinte"; ?>" class="form-control" readonly="true">
+                           <?php } ?>  
+
+                         
+                     </div>
                               
-                               <div class="col-md-3" >
-                  <input type="text" id="UsuarioSolicitacao" name="UsuarioSolicitacao" placeholder="" class="form-control" readonly="true">
-                              </div>
+                     <div class="col-md-3" >
+                         <input type="text" id="UsuarioSolicitacao" name="UsuarioSolicitacao" placeholder="" class="form-control" readonly="true">
+                     </div>
                               
-                              <div class="col-md-12" >
-                              <br>
-                  <input type="text" placeholder="Documentos separados por virgula" class="form-control"  id="DocumentosEtapaSolicitacao" name="DocumentosEtapaSolicitacao">
-                              </div>
+                     <div class="col-md-12" >
+                     <br>
+                          <input type="text" placeholder="Documentos separados por virgula" class="form-control"  id="DocumentosEtapaSolicitacao" name="DocumentosEtapaSolicitacao">
+                     </div>
                     <br>
                     <div class="col-md-4">
                     <br>      
@@ -583,6 +691,7 @@ $(document).ready(function() {
                           <input type="hidden" name="RequerenteAux" id="RequerenteAux" value="<?php echo $retornoTarefa2->IdRequerente ?>" >
                            <input type="hidden" name="SqlAux" id="SqlAux" value="<?php echo $retornoTarefa2->IdImovel ?>" >
                             <input type="hidden" name="TarefaAux" id="TarefaAux" value="<?php echo $retornoTarefa2->IdTarefa ?>" >
+                            <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade ?>">
 
                             <!--Auxiliares para retornar para essa página quendo retornar dp formulario php -->
                             <input type="hidden" name="TarefaEnvia" id="TarefaEnvia" value="<?php echo $tarefaAux?>" > 

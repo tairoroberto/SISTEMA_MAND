@@ -528,8 +528,11 @@
     $TituloFoto4 =    $_POST['TituloFoto4'];  
     $TituloFoto5 =    $_POST['TituloFoto5'];  
     $TituloFoto6 =    $_POST['TituloFoto6'];
-   
 
+    //Auxiliar para imagem do mapa
+
+
+/*
 function get_furl($url) {
     $furl = false;
 // First check response headers
@@ -554,7 +557,7 @@ $EstadoIncorporacao2 = str_replace(" ", "%", $EstadoIncorporacao);
 $CidadeIncorporacao2 = str_replace(" ", "%", $CidadeIncorporacao);
 $BairroIncorporacao2 = str_replace(" ", "%", $BairroIncorporacao);
 //ver aqui para completar o endereço de busca do mapa no google
-$url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$LocalIncorporacao2.",".$NumeroIncorporacao2.",".$BairroIncorporacao2.",".$CidadeIncorporacao2.",".$EstadoIncorporacao2."-".$CepIncorporacao."&zoom=16&size=1500x1200&markers=color%3red%7Clabel%3aS%7C11211".$LocalIncorporacao2.",".$NumeroIncorporacao2.",".$BairroIncorporacao2.",".$CidadeIncorporacao2.",".$EstadoIncorporacao2."|size:mid&sensor=false");
+$url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$LocalIncorporacao2.",".$NumeroIncorporacao2.",".$BairroIncorporacao2.",".$CidadeIncorporacao2.",".$EstadoIncorporacao2."&zoom=16&size=1500x1200&markers=color%3red%7Clabel%3aS%7C11211".$LocalIncorporacao2.",".$NumeroIncorporacao2.",".$BairroIncorporacao2.",".$CidadeIncorporacao2.",".$EstadoIncorporacao2."|size:mid&sensor=false");
 $ch = curl_init($url);
 $fp = fopen('fotos/incorporacao/ImagemMapaIncorporacao'.$CepIncorporacao.'.jpg', 'wb');
 
@@ -564,6 +567,60 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 curl_setopt($ch, CURLOPT_FILE, $fp);
 $contents = curl_exec($ch);
 curl_close($ch);
+
+
+*/
+
+
+//aqui
+
+
+ function get_furl($url) {
+    $furl = false;
+// First check response headers
+    $headers = get_headers($url);
+// Test for 301 or 302
+    if(preg_match('/^HTTP\/\d\.\d\s+(301|302)/',$headers[0])) {
+        foreach($headers as $value) {
+            if(substr(strtolower($value), 0, 9) == "location:") {
+                $furl = trim(substr($value, 9, strlen($value)));
+            }
+        }
+    }
+// Set final URL
+    $furl = ($furl) ? $furl : $url;
+    return $furl;
+}
+
+
+function recebe_imagem ($url_origem,$arquivo_destino){ 
+    $minha_curl = curl_init ($url_origem); 
+    $fs_arquivo = fopen ($arquivo_destino, "w+b"); 
+    curl_setopt ($minha_curl, CURLOPT_FILE, $fs_arquivo); 
+    curl_setopt ($minha_curl, CURLOPT_HEADER, 0); 
+    curl_exec ($minha_curl); 
+    curl_close ($minha_curl); 
+    fclose ($fs_arquivo); 
+} 
+
+//Auxiliar para imagem do mapa
+$EnderecoMapa  = $LocalIncorporacao.",".$BairroIncorporacao.",".$CidadeIncorporacao.",".$EstadoIncorporacao;
+
+
+$EnderecoMapa2 = str_replace(" ", "+", $EnderecoMapa); 
+$url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$EnderecoMapa2."&zoom=16&size=900x300&scale=2&markers=color%3red%7Clabel%3aS%7C11211".$EnderecoMapa2."|size:mid&sensor=false");
+$ch = curl_init($url);
+
+$fp = fopen('fotos/incorporacao/ImagemMapaIncorporacao'.$CepIncorporacao.'.jpg', 'wb');
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+curl_setopt($ch, CURLOPT_FILE, $fp);
+$contents = curl_exec($ch);
+
+curl_close($ch);
+
+//aqui fim
 
 
      /********************************************************************************************/
@@ -643,6 +700,7 @@ curl_close($ch);
                                                                           'ImagemMapaIncorporacao".$CepIncorporacao.".jpg');");
          $insereIncorporacao->executarQuery();
 
+/*
          $buscarIncorporacao->set('sql',"SELECT IdIncorporacao FROM `CadastraIncorporacao`  WHERE SiglaIncorporacao = '$SiglaIncorporacao' AND
                                                                                                  TituloIncorporacao = '$TituloIncorporacao' AND
                                                                                                  CepIncorporacao = '$CepIncorporacao' AND
@@ -666,6 +724,9 @@ curl_close($ch);
                                                                                                  situacao = '$situacao' AND
                                                                                                  ProjetoAprovado = '$ProjetoAprovado' AND
                                                                                                  DocumentacaoIncorporacao = '$DocumentacaoIncorporacao' ");     
+        
+    */
+        $buscarIncorporacao->set('sql',"SELECT `IdIncorporacao` FROM `CadastraIncorporacao` WHERE IdIncorporacao =  LAST_INSERT_ID()");
         $retornoIncorporacao = mysql_fetch_object($buscarIncorporacao->executarQuery());  
 
 

@@ -45,14 +45,14 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 
 <!-- Inclui o arquivos para validação de campos-->
-<script src="includes/Cep/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="includes/Cep/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
 <script src="includes/Cep/BuscaCep.js" type="text/javascript"></script>
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
 <script type="text/javascript" src="includes/js/CriarComponentes.js"></script>
 
 <!--Mascara para inputs-->
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
+
 <script type="text/javascript" src="assets/plugins/jquery-mask/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery-mask/jquery.mask.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery.maskMoney.min.js"></script>
@@ -81,6 +81,17 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
    $("#ValorTolalMultas").maskMoney({prefix:'', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
    
 });
+
+
+  function mascaraSqlHistorico(){
+    $("input[id='SqlHistoricoArray[]']").mask("999.999.9999-9");
+  }
+
+   function mascaraSqloutrosLotes(){
+    $("input[id='SqlOutrosLotesArray[]']").mask("999.999.9999-9");
+  }
+
+  
 
 </script>
 
@@ -354,7 +365,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 	                           <input name="SqlHistorico1" id="SqlHistorico1" type="text"  class="form-control" placeholder="SQL">
 	                         </div>
 	                         <div class="col-md-2">
-	                           <input name="DataHistorico1" id="DataHistorico1" type="text" maxlength="4" class="form-control" placeholder="Data (ano)">
+	                           <input name="DataHistorico1" id="DataHistorico1" type="text" maxlength='4' class="form-control" placeholder="Data (ano)">
 	                         </div>
 	                         <div class="col-md-3">
 	                           <input name="AreaTerrenoHistorico1" id="AreaTerrenoHistorico1" type="text"  class="form-control" placeholder="Area do terreno (m2)">
@@ -386,7 +397,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
      
      
 
-                    <button type="button" class="btn btn-default btn-cons" onclick="criarCampoHistorico();">Adicionar Linha</button>
+                    <button type="button" class="btn btn-default btn-cons" onclick="criarCampoHistorico();mascaraSqlHistorico();">Adicionar Linha</button>
                         
                       </div>
                       
@@ -427,7 +438,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     
          
                     
-                     <button type="button" class="btn btn-default btn-cons" onclick="criarCampoOutrosLotes();">Adicionar Linha</button>
+                     <button type="button" class="btn btn-default btn-cons" onclick="criarCampoOutrosLotes();mascaraSqloutrosLotes();">Adicionar Linha</button>
                     
                         
                       </div>

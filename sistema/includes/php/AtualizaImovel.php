@@ -404,7 +404,7 @@ function recebe_imagem ($url_origem,$arquivo_destino){
 } 
 
 //$url = get_furl("$ImagemMapa");
-$EnderecoMapa2 = str_replace(" ", "%", $EnderecoMapa); 
+$EnderecoMapa2 = str_replace(" ", "+", $EnderecoMapa); 
 $url = get_furl("http://maps.googleapis.com/maps/api/staticmap?center=".$EnderecoMapa2."&zoom=16&size=900x300&scale=2&markers=color%3red%7Clabel%3aS%7C11211".$EnderecoMapa2."|size:mid&sensor=false");
 $ch = curl_init($url);
 

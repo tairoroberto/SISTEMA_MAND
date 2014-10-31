@@ -37,6 +37,10 @@
     $Incorporacao;    
     $Calendario;
 
+    $SelectProcesso = "";
+    $SelectProcessoAux;
+    $SelectProcessoArray;
+
     /********************************************************************************************/
     /*                      Função para inserir imagem1 no banco de dados                       */
     /********************************************************************************************/
@@ -125,8 +129,22 @@
             $NomeExibicao =    $_POST['NomeExibicao'];
             $DataCadastro = $_POST['DataCadastro'];
 
-            $SelectProcesso = $_POST['SelectProcesso'];
             $CreditoUsuario = $_POST['CreditoUsuario'];
+
+
+           if (isset($_POST['SelectProcessoArray'])) {
+
+                $i = 0;
+                $SelectProcessoArray = $_POST['SelectProcessoArray'];
+                
+                foreach ($SelectProcessoArray as $SelectProcessoAux) {
+                   $SelectProcesso .= $SelectProcessoAux.",";
+                   
+                }
+
+            }else{
+                $SelectProcesso = 0;
+            }
 
 
         /********************************************************************************************/

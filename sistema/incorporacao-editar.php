@@ -208,6 +208,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                               <input name="BairroIncorporacao" id="BairroIncorporacao" type="text"  class="form-control" placeholder="Bairro"
                                         value="<?php echo $retornoIncorporacao->BairroIncorporacao; ?>" >
                             </div>
+
+                            
                           </div>
                           <div class="row form-row">
                             <div class="col-md-2">
@@ -395,7 +397,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       <div class="form-actions">
                         <div class="pull-left"></div>
                         <div class="pull-right">
-                          <button class="btn btn-primary btn-cons" type="button" onclick="validaIncorporacaoCadastro2(); enviarFormIncorporacaoAtualiza('Atualizar');">Atualizar </button>
+                          <button class="btn btn-primary btn-cons" type="button" onclick="validaIncorporacaoCadastro2();enviarFormIncorporacaoAtualiza('Atualizar');">Atualizar </button>
                           
                           <button class="btn btn-danger btn-cons" type="button" onclick="enviarFormIncorporacaoAtualiza('Excluir');">Excluir</button>
                         </div>

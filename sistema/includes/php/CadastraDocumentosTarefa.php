@@ -31,21 +31,28 @@ if (isset($_POST['HoldingAux'],
           $UsuarioSolicitacao = $_POST['UsuarioSolicitacao'];
           $DocumentosEtapaSolicitacao = $_POST['DocumentosEtapaSolicitacao'];
           $DataSolicitacao = $_POST['DataSolicitacao'];
+          $IdOportunidade = $_POST['IdOportunidadeAux'];
           $Solicitar = "";
           $Recebido = "";
 
-          $insereDocumentosTarefa->set('sql',"INSERT INTO SolicitacaoDocumetosTarefa(IdEmpresa,IdRequerente,IdImovel,IdTarefa,NomeUsuario,DocumentosSolicitacao,DataSolicitacao, Solicitar, Recebido) 
-                               VALUES ('$HoldingAux','$RequerenteAux','$SqlAux','$TarefaAux','$UsuarioSolicitacao','$DocumentosEtapaSolicitacao','$DataSolicitacao','$Solicitar','$Recebido');");
+
+          $insereDocumentosTarefa->set('sql',"INSERT INTO SolicitacaoDocumetosTarefa(IdEmpresa,IdRequerente,IdImovel,IdOportunidade,IdTarefa,NomeUsuario,DocumentosSolicitacao,DataSolicitacao, Solicitar, Recebido) 
+                               VALUES ('$HoldingAux','$RequerenteAux','$SqlAux','$IdOportunidade','$TarefaAux','$UsuarioSolicitacao','$DocumentosEtapaSolicitacao','$DataSolicitacao','$Solicitar','$Recebido');");
 
           /********************************************************************************************/
           /*                              Execulta a String SQL                                       */
           /********************************************************************************************/
 
         if ($insereDocumentosTarefa->executarQuery()) {
-      	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe.php'; alert('Documentos Solicitados com sucesso'); </script>");
+      	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe?tarefaAux=".$TarefaAux."&HoldingAux=".$HoldingAux."&RequerenteAux=".$RequerenteAux."&SqlAux=".$SqlAux."&IdOportunidadeAux=".$IdOportunidade."'; alert('Documentos Solicitados com sucesso'); </script>");
       	 }else{
-      	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe.php'; alert('Documentos não Solicitados'); </script>");
+      	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe?tarefaAux=".$TarefaAux."&HoldingAux=".$HoldingAux."&RequerenteAux=".$RequerenteAux."&SqlAux=".$SqlAux."&IdOportunidadeAux=".$IdOportunidade."'; alert('Documentos não Solicitados'); </script>");
       	 }
+
+
+
+
+
 
 
 

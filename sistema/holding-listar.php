@@ -82,7 +82,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
               <div class="grid simple ">
               
                 <div class="grid-body ">
-                  <table class="table table-hover table-condensed" id="">
+                  <table class="table table-hover table-condensed" id="example">
                     <thead>
                       <tr>
                         <th style="width:1%"> </th>

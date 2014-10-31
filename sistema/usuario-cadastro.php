@@ -21,6 +21,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+
 <!-- END CORE CSS FRAMEWORK -->
 
 <!-- BEGIN CSS TEMPLATE -->
@@ -37,6 +38,10 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <script type="text/javascript" src="assets/plugins/jquery-mask/jquery.mask.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery.maskMoney.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.file-input.js"></script>
+
+<!--MultiSelect-->
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css">
+<script type="text/javascript" src="assets/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 
 
 <script type="text/javascript">
@@ -84,7 +89,32 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
   $(document).ready(function(){
     $('input[type=file]').bootstrapFileInput();
+
+    $('#SelectProcesso').multiselect({
+            buttonText: function(options, select) {
+                if (options.length === 0) {
+                    return 'Selecione um Processo';
+                }
+                else if (options.length > 4) {
+                    return alert("Selecione até 5 processos");
+                }
+                 else {
+                     var labels = [];
+                     options.each(function() {
+                         if ($(this).attr('label') !== undefined) {
+                             labels.push($(this).attr('label'));
+                         }
+                         else {
+                             labels.push($(this).html());
+                         }
+                     });
+                     return labels.join(', ') + ' ';
+                 }
+            }
+        });
   });
+
+
 </script>
 
 </head>
@@ -296,7 +326,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                               <div class="row form-row">
                                  <div class="col-md-12">
                                   <label class="form-label">Processos</label>
-                                  <select name="SelectProcesso" id="SelectProcesso" style="width:100%"  class="select2 form-control"  >
+                                  <select name="SelectProcessoArray[]" id="SelectProcesso" style="width:100%"  multiple="multiple" class="select2 form-control"  >
                                   <option value="Todos">Selecione o processo</option>
                                    <?php
                                     /********************************************************************************************/

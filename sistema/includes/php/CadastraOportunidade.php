@@ -16,6 +16,14 @@
     $insereHistoricoOportunidade->conectar();
     $insereHistoricoOportunidade->selecionarDB();
 
+    $insereTarefa = new Conexao();
+    $insereTarefa->conectar();
+    $insereTarefa->selecionarDB(); 
+
+    $insereEtapaTarefa = new Conexao();
+    $insereEtapaTarefa->conectar();
+    $insereEtapaTarefa->selecionarDB(); 
+
     $buscaUsuario = new Conexao();
     $buscaUsuario->conectar();
     $buscaUsuario->selecionarDB();
@@ -80,9 +88,8 @@ if (isset($_POST['TipoContato'],
 		  $DataSolicitacao2 = substr($DataSolicitacao,4,4)."/".substr($DataSolicitacao,2,2)."/".substr($DataSolicitacao,0,2);
 		}
 
-    $buscaUsuario->set('sql',"SELECT `IdUsuario` FROM `Usuarios` WHERE `IdUsuario` = '$SelectTecnico';");
-    $retornoUsuario = mysql_fetch_object($buscaUsuario->executarQuery());    	  
-    
+
+
      /********************************************************************************************/
     /*						Muda a String SQL para inserir no banco								*/
     /********************************************************************************************/
@@ -94,13 +101,15 @@ if (isset($_POST['TipoContato'],
                             	 				 	   VALUES ('$TipoContato','$Origem','$TipoCadastro','$RazaoSocial',
                                                                '$NomeContato','$CnpjCpf','$Atividade','$Celular','$Telefone','$Email',
                                                                '$ServicoSolicitado','$EnderecoArea','$ContribuinteIptu',
-                                                               '$ComentariosSolicitacao','$DataSolicitacao2','','$DataProrrogacao', 'Ficha Tecnica', '','', '$retornoUsuario->IdUsuario');");  
+                                                               '$ComentariosSolicitacao','$DataSolicitacao2','','$DataProrrogacao', 'Ficha Tecnica', '','', '$SelectTecnico');");  
   
   	/********************************************************************************************/
     /*								Execulta a String SQL 										*/
     /********************************************************************************************/
   	if ($insereOportunidade->executarQuery()) {
-  		$insereOportunidade->set('sql',"SELECT `IdOportunidade` FROM `Oportunidade`  WHERE TipoContato = '$TipoContato' AND  
+  	
+	/*
+	  $insereOportunidade->set('sql',"SELECT `IdOportunidade` FROM `Oportunidade`  WHERE TipoContato = '$TipoContato' AND  
 		  																				   Origem = '$Origem' AND 
 		  																				   TipoCadastro  = '$TipoCadastro' AND 
 		  																				   RazaoSocial  = '$RazaoSocial' AND 
@@ -119,11 +128,40 @@ if (isset($_POST['TipoContato'],
 						                                                                   Viabilidade = ''  AND 
 						                                                                   IdUsuario = '$retornoUsuario->IdUsuario'");
 		$retornoOprtunidade = mysql_fetch_object($insereOportunidade->executarQuery()); 
+	*/
+
+		$insereOportunidade->set('sql',"SELECT `IdOportunidade` FROM `Oportunidade` WHERE IdOportunidade =  LAST_INSERT_ID()");
+
+    	$retornoOprtunidade = mysql_fetch_object($insereOportunidade->executarQuery());
 
 		//Insere na Tabela HistoricoOportunidade
 		$insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
 	                            	 				 	   VALUES ('$DataSolicitacao2','','Ficha Tecnica','$retornoOprtunidade->IdOportunidade');");
 		$insereHistoricoOportunidade->executarQuery();
+
+
+		//Insere na Tabela Tarefa
+		$DataInicio = date('d-m-Y');
+		$DataEntrega = date('d-m-Y', strtotime($DataInicio . ' + 10 day'));
+
+		$DataInicio = str_replace("-" , '/' , $DataInicio); 
+		$DataEntrega = str_replace("-" , '/' , $DataEntrega); 
+		
+		//ver aqui como colocar a tarefa 	   
+	 	$insereTarefa->set('sql',"INSERT INTO CadastraTarefa(IdEmpresa,IdRequerente,IdImovel,IdOportunidade,DataInicio,DataEntrega,NomeProjeto,DescricaoProjeto,SituacaoTarefa) 
+              VALUES (0,0,0,'$retornoOprtunidade->IdOportunidade','$DataInicio','$DataEntrega','Oportunidade Nova','Ver Inicio de oportunidade','');");  
+  		$insereTarefa->executarQuery();
+
+  		//busca o id da tarefa
+	    $insereTarefa->set('sql',"SELECT `IdTarefa` FROM `CadastraTarefa` WHERE IdTarefa =  LAST_INSERT_ID()");
+	    $retornoTarefa = mysql_fetch_object($insereTarefa->executarQuery());
+	    
+	    //insere a etapa da tarefa	
+        $SituacaoEtapaTarefa = "Trabalhando";
+    	$insereEtapaTarefa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
+    												VALUES ('$SelectTecnico','Verificar oportunidade','Verificar oportunidade nova','$DataEntrega','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
+    	$insereEtapaTarefa->executarQuery();       	
+
 
 
 	 	echo("<script type='text/javascript'> location.href='../../oportunidade-cadastro.php'; alert('Dados cadastrados com sucesso'); </script>");

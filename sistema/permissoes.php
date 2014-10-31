@@ -506,6 +506,7 @@
                 $buscarTranferencia->set('sql',"SELECT * FROM TranferenciaEtapaTarefa 
                                                          WHERE IdUsuarioPegou = '$IdUsuario' AND
                                                                DataTranferencia = '$dataHoje'
+                                                         ORDER BY IdTransferencia DESC
                                                          LIMIT 1 ");
                 $retornoTranferencia= mysql_fetch_object($buscarTranferencia->executarQuery());  
 

@@ -63,8 +63,7 @@ if (isset($_POST['IdTarefaAux'],$_POST['IdEtapaTarefaAux'])) {
                                                           TituloEtapa = '$TituloArray[$j]',
                                                           DescricaoEtapa = '$DescricaoArray[$k]',
                                                           DataEntregaEtapa = '$DataEntregaArray[$l]',
-                                                          SituacaoEtapaTarefa = '$SituacaoEtapaTarefa', 
-                                                          IdTarefa = '$IdTarefa'
+                                                          SituacaoEtapaTarefa = '$SituacaoEtapaTarefa'
                                                       WHERE  IdEtapaTarefa = '$IdEtapaTarefa'");
    				$insereEtapa->executarQuery();
           
@@ -77,6 +76,9 @@ if (isset($_POST['IdTarefaAux'],$_POST['IdEtapaTarefaAux'])) {
           $insereHistoricoEtapa->set('sql',"INSERT INTO CadastraHistoricoTarefa(ConteudoHistoricoTarefa,IdEtapaTarefa)
                                             VALUES ('Etapa transferida para ".$retornoUsuario->NomeExibicao." ".$dia." ".$hora."','$IdEtapaTarefa')");
           $insereHistoricoEtapa->executarQuery();
+
+          $buscarEtapaHistorico->set('sql',"DELETE FROM TranferenciaEtapaTarefa WHERE IdEtapaTarefa = '$IdEtapaTarefa' ");
+          $buscarEtapaHistorico->executarQuery();
 
           $buscarEtapaHistorico->set('sql',"INSERT INTO TranferenciaEtapaTarefa(IdUsuarioTranferiu,IdUsuarioPegou,DataTranferencia,IdEtapaTarefa)
                                             VALUES ('$retornoEtapaHistorico->IdUsuario','$SelectUsuarioArray[$i]','".$dia."','$IdEtapaTarefa')");

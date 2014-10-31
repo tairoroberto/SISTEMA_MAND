@@ -213,13 +213,13 @@ $(document).ready(function(){
 
                                                       <?php
                                                       while($retornoServicosOrcamentoB = mysql_fetch_object($query)) {  ?>
-                                                         
+                                                         <?php $NomeDocumento = explode("-", $retornoServicosOrcamentoB->NomeDocumento) ?>
                                                          <tr>
                                                             <td>
                                                                <span class="label label-success">Concluído</span>
                                                             </td>
-                                                            <td>02/12/2014</td>
-                                                            <td>IPTU</td>
+                                                            <td><?php echo $retornoServicosOrcamentoB->data; ?></td> 
+                                                            <td><?php echo $NomeDocumento[0]; ?></td>
                                                             <td>Enviado</td>
                                                         </tr>
 
@@ -363,17 +363,51 @@ $(document).ready(function(){
                             $buscarProcesso = new Conexao();
                             $buscarProcesso->conectar();
                             $buscarProcesso->selecionarDB();                      
-                            $PermissaoProcesso = $_SESSION['PermissaoProcesso'];                       
+                            $PermissaoProcesso = explode(",",$_SESSION['PermissaoProcesso']);                       
                             $cont = 0;
 
-                           if ($PermissaoProcesso != "Todos") {
+                            
+
+                           if (isset($PermissaoProcesso[0],$PermissaoProcesso[1],$PermissaoProcesso[2],$PermissaoProcesso[3],$PermissaoProcesso[4])) {
                                $buscarProcesso->set('sql',"SELECT CadastraPocesso.*,CadastroHolding.*, CadastroRequerente.*, CadastraImovel.*
                                                            FROM CadastroHolding, CadastroRequerente,CadastraImovel
                                                            INNER JOIN `CadastraPocesso`
-                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso' 
-                                                           GROUP BY CadastraPocesso.IdProcesso");
-
-                                echo "Teste 2";
+                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso[0]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[1]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[2]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[3]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[4]'
+                                                           GROUP BY CadastraPocesso.IdProcesso");                                
+                            }elseif (isset($PermissaoProcesso[0],$PermissaoProcesso[1],$PermissaoProcesso[2],$PermissaoProcesso[3])) {
+                               $buscarProcesso->set('sql',"SELECT CadastraPocesso.*,CadastroHolding.*, CadastroRequerente.*, CadastraImovel.*
+                                                           FROM CadastroHolding, CadastroRequerente,CadastraImovel
+                                                           INNER JOIN `CadastraPocesso`
+                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso[0]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[1]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[2]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[3]' 
+                                                           GROUP BY CadastraPocesso.IdProcesso");                                
+                            }elseif (isset($PermissaoProcesso[0],$PermissaoProcesso[1],$PermissaoProcesso[2])) {
+                               $buscarProcesso->set('sql',"SELECT CadastraPocesso.*,CadastroHolding.*, CadastroRequerente.*, CadastraImovel.*
+                                                           FROM CadastroHolding, CadastroRequerente,CadastraImovel
+                                                           INNER JOIN `CadastraPocesso`
+                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso[0]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[1]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[2]' 
+                                                           GROUP BY CadastraPocesso.IdProcesso");                                
+                            }elseif (isset($PermissaoProcesso[0],$PermissaoProcesso[1])) {
+                               $buscarProcesso->set('sql',"SELECT CadastraPocesso.*,CadastroHolding.*, CadastroRequerente.*, CadastraImovel.*
+                                                           FROM CadastroHolding, CadastroRequerente,CadastraImovel
+                                                           INNER JOIN `CadastraPocesso`
+                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso[0]' OR
+                                                               CadastraPocesso.IdProcesso = '$PermissaoProcesso[1]' 
+                                                           GROUP BY CadastraPocesso.IdProcesso");                                
+                            }elseif (isset($PermissaoProcesso[0])) {
+                               $buscarProcesso->set('sql',"SELECT CadastraPocesso.*,CadastroHolding.*, CadastroRequerente.*, CadastraImovel.*
+                                                           FROM CadastroHolding, CadastroRequerente,CadastraImovel
+                                                           INNER JOIN `CadastraPocesso`
+                                                           ON  CadastraPocesso.IdProcesso = '$PermissaoProcesso[0]' 
+                                                           GROUP BY CadastraPocesso.IdProcesso");                                
                             }
 
 

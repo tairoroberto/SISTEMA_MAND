@@ -31,18 +31,13 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <!-- END CSS TEMPLATE -->
 
 <script type="text/javascript">
-	  function selecionaUsuario(num){
-    if (formUsuarioLista.Usuario[num]) {
-        formUsuarioLista.IdUsuarioAux.value = formUsuarioLista.Usuario[num].value; 
+	  function selecionaUsuario(id){
+        formUsuarioLista.IdUsuarioAux.value = id; 
         document.formUsuarioLista.submit();
-    }else{
-        formUsuarioLista.IdUsuarioAux.value = formUsuarioLista.Usuario.value; 
-        document.formUsuarioLista.submit();
-    }
+  
 }
 
 </script>
@@ -126,7 +121,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                            while($retornoUsuario=mysql_fetch_object($query)) { ?> 
                            
                               <tr >
-                                <td onclick="selecionaUsuario(<?php echo $cont;?>);">
+                                <td onclick="selecionaUsuario(<?php echo $retornoUsuario->IdUsuario;?>);">
                                   <a href="#">
                                      <i class="fa fa-paste"> 
                                        <input type="hidden" name="Usuario" id="Usuario" value="<?php echo $retornoUsuario->IdUsuario;?>">                                                   
@@ -161,6 +156,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK--> 
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <!-- BEGIN CORE JS FRAMEWORK-->
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
@@ -175,11 +171,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-
-<!--Se descomentar a tableta de usuarios aparecerá fora da ordem
 <script src="assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script src="assets/plugins/jquery-datatable/extra/js/TableTools.min.js" type="text/javascript" ></script>
--->
 <script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
 <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
