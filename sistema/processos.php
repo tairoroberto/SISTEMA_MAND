@@ -164,7 +164,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                  
                                  $buscarProcessoDetalhe->set('sql',"SELECT * FROM DetalheProcesso
                                                              INNER JOIN `CadastraPocesso`
-                                                             ON  DetalheProcesso.IdProcesso = $retornoProcesso->IdProcesso 
+                                                             ON  DetalheProcesso.IdProcesso = '$retornoProcesso->IdProcesso' 
                                                              GROUP BY IdDetalheProcesso");
 
                                  $query2= $buscarProcessoDetalhe->executarQuery();

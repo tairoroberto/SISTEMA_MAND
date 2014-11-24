@@ -1,6 +1,5 @@
-<?php ob_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?php// ob_start();?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,9 +8,17 @@
         <title>Mand Projetos</title>
         
     <link href="print.css" rel="stylesheet" type="text/css">
+
+   <script type="text/javascript">
+        function imprimir(){
+          window.print();
+          irPagina();          
+        }
+    </script>
+
 </head>
 
-<body>
+<body onload="imprimir();">
 <img src="img/logo.jpg" width="230" height="50" />
  <!--INICIO DO CÓDIGO DE BUSCA NO BANCO-->
    <?php 
@@ -367,10 +374,16 @@
 <?php } ?> 
 
 </body>
+<script type="text/javascript">
+  function irPagina(){
+     window.location.href = "http://mandprojetos.com.br/sistema/incorporacao-visualizar.php?IdIncorporacaoAux=<?php echo $IdIncorporacao;?>";
+  }
+</script>
 </html>
 
 
 <?php
+/*
  $content = ob_get_contents();
     include('../includes/php/conexao/MPDF57/mpdf.php');
     ini_set("memory_limit","1G");
@@ -397,6 +410,6 @@
    $NomeArquivo = "Pdf-Incorporação-".$IdIncorporacao."-".date('d-m-Y').".pdf";
    $mpdf->Output($NomeArquivo);
    
-
-   header("Location: http://mandprojetos.com.br/sistema/incorporacao-visualizar.php?IdIncorporacaoAux=".$IdIncorporacao);
+  header("Location: http://mandprojetos.com.br/sistema/incorporacao-visualizar.php?IdIncorporacaoAux=".$IdIncorporacao);
+*/
 ?>

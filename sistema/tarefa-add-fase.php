@@ -16,6 +16,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
 <!-- BEGIN CORE CSS FRAMEWORK -->
 <link href="assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
@@ -30,6 +32,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CSS TEMPLATE -->
 
 <!-- Inclui o arquivos para validação de campos-->
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
 <script type="text/javascript" src="includes/js/CriarComponentes.js"></script>
 
@@ -451,7 +454,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     <div class="col-md-10">
                     </div>
                     <div class="col-md-2">
-                     <button class="btn btn-primary btn-cons" type="button" onclick="criarCampoTarefa();insereSelect();">Adicionar Etapa </button>
+                     <button class="btn btn-primary btn-cons" id="btnAdicionar" type="button" onclick="criarCampoTarefa();insereSelect();">Adicionar Etapa </button>
                     </div>
                     </div>
                     
@@ -499,7 +502,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK--> 
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 
@@ -511,6 +513,9 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
 <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+
 <!-- END PAGE LEVEL PLUGINS --> 	
 
 <!-- BEGIN CORE TEMPLATE JS --> 
@@ -518,5 +523,64 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <script src="assets/js/chat.js" type="text/javascript"></script> 
 <script src="assets/js/demo.js" type="text/javascript"></script> 
 <!-- END CORE TEMPLATE JS --> 
+
+<script type="text/javascript">
+  $(document).ready(function () {
+              
+             $('#DataInicio').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntrega').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa1').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa2').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+            $('#DataEntregaTarefa3').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa4').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+            });
+
+  $('#btnAdicionar').click(function(){
+
+     $('.date').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+     $('#DataInicio').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntrega').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa1').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa2').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+            $('#DataEntregaTarefa3').datepicker({
+                    format: "dd/mm/yyyy"
+                }); 
+
+            $('#DataEntregaTarefa4').datepicker({
+                    format: "dd/mm/yyyy"
+                });
+                       
+  });
+
+</script>
 </body>
 </html>

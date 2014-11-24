@@ -47,9 +47,9 @@
     /*								Execulta a String SQL 										*/
     /********************************************************************************************/
   if ($AtualizaSituacaoTarefa->executarQuery()) {
-	 	echo("<script type='text/javascript'> location.href='../../tarefa-finalizadas.php'; alert('Tarefa Finalizada'); </script>");
+	 	echo("<script type='text/javascript'> location.href='../../tarefa-visualizar.php'; alert('Tarefa Finalizada'); </script>");
 	 }else{
-	 	echo("<script type='text/javascript'> location.href='../../tarefa-finalizadas.php'; alert('Tarefa não Finalizada'); </script>");
+	 	echo("<script type='text/javascript'> location.href='../../tarefa-visualizar.php'; alert('Tarefa não Finalizada'); </script>");
 	 }
 }
 

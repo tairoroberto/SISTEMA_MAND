@@ -463,7 +463,7 @@ text-align:inherit!important
                     Segue abaixo o link para acessar sua área no nosso sistema e ver como está o andamento, quais quer dúvidas estamos a disposição pelo e-mail atendimento@mandprojetos.com.br ou
                     (11) 3578-0840<br />
                     <br />
-                  <strong>Link: <a href='http://www.mandprojetos.com.br/sistema_mand/SISTEMA-MAND-3/login' target='_blank'>Acesso </a> <br />
+                  <strong>Link: <a href='http://www.mandprojetos.com.br/sistema/login' target='_blank'>Acesso </a> <br />
                   <strong>Login: ".$Email."<br />
                   <strong>Senha: ".$Senha." <br />
 

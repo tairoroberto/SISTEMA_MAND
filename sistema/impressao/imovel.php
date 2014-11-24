@@ -1,6 +1,5 @@
-<?php ob_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?php// ob_start();?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,10 +7,17 @@
         
         <title>Mand Projetos</title>
         
-    <link href="print.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" type="text/css" href="print.css" media="print">         
+    
+    <script type="text/javascript">
+      function imprimir(){
+        window.print();
+        irPagina();
+      }
+    </script>
 </head>
 
-<body>
+<body onload="imprimir();">
 <img src="img/logo.jpg" width="230" height="50" />
    <?php 
        include('../includes/php/conexao/Conexao.class.php');
@@ -129,7 +135,7 @@
    if ($retornoImovel->ImagemMapa != null) { 
       if (file_exists("../includes/php/fotos/Imovel/".$retornoImovel->ImagemMapa)) { ?>
         <tr>
-          <td colspan="3"><img src="../includes/php/fotos/Imovel/<?php echo $retornoImovel->ImagemMapa; ?>" width="670" height="235" /></td>
+          <td colspan="3"><img src="../includes/php/fotos/Imovel/<?php echo $retornoImovel->ImagemMapa; ?>" width="670" height="230" /></td>
         </tr>
       <?php }  ?>
   <?php }  ?>
@@ -501,10 +507,16 @@
 
 
 </body>
+<script type="text/javascript">
+  function irPagina(){
+    window.location.href = "http://mandprojetos.com.br/sistema/imovel-ficha-tecnica.php?imovelAux=<?php echo $IdImovel;?>";
+  }
+</script>
 </html>
 
 
 <?php
+/*
  $content = ob_get_contents();
     include('../includes/php/conexao/MPDF57/mpdf.php');
     ini_set("memory_limit","1G");
@@ -535,6 +547,8 @@
 
    
    // echo("<script type='text/javascript'> location.href='../imovel-ficha-tecnica.php?imovelAux='".$IdImovel."'; </script>");
+header("Location: http://mandprojetos.com.br/sistema/imovel-ficha-tecnica.php?imovelAux=".$IdImovel);
+ */
+ 
 
-    header("Location: http://mandprojetos.com.br/sistema/imovel-ficha-tecnica.php?imovelAux=".$IdImovel);
 ?>

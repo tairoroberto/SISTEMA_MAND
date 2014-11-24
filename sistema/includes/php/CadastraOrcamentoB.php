@@ -62,7 +62,7 @@ if(isset($_POST['RazaoSocialOrcamentoB'],
     /*					Atribui os dados vindos do formulário às variáveis do php				*/
     /********************************************************************************************/
 
-    	  $RazaoSocialOrcamentoB =	$_POST['RazaoSocialOrcamentoB']; 
+    	$RazaoSocialOrcamentoB =	$_POST['RazaoSocialOrcamentoB']; 
 		  $NomeContatoOrcamantoB  = $_POST['NomeContatoOrcamantoB'];		  
 		  $Taxas  = $_POST['Taxas'];
 		  $FormaPagamentoOrcamnetoB  = $_POST['FormaPagamentoOrcamnetoB'];

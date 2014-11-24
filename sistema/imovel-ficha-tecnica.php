@@ -205,8 +205,8 @@ function encerraImovel(){
         <!-- BLOCO 1 -->
         <div  class="row" id="DivDadosIniciais">
         
-             <a href="processos-lista.php"><button class="btn btn-primary btn-cons" type="button">Processos</button></a> 
-             <a href="tarefa-visualizar.php"><button class="btn btn-primary btn-cons" type="button">Tarefas</button></a> 
+             <a href="processo-pesquisa?idImovel=<?php echo $retornoImovel->IdImovel; ?>"><button class="btn btn-primary btn-cons" type="button">Processos</button></a> 
+             <a href="tarefa-visualizar"><button class="btn btn-primary btn-cons" type="button">Tarefas</button></a> 
               <!-- TITULO -->
               <div class="tiles green added-margin   m-b-20">
                 <div class="tiles-body" >
