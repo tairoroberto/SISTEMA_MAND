@@ -142,14 +142,14 @@ if (isset($_POST['TipoContato'],
 
 		//Insere na Tabela Tarefa
 		$DataInicio = date('d-m-Y');
-		$DataEntrega = date('d-m-Y', strtotime($DataInicio . ' + 10 day'));
+		$DataEntrega = date('d-m-Y', strtotime($DataInicio . ' + 02 day'));
 
 		$DataInicio = str_replace("-" , '/' , $DataInicio); 
 		$DataEntrega = str_replace("-" , '/' , $DataEntrega); 
 		
 		//ver aqui como colocar a tarefa 	   
 	 	$insereTarefa->set('sql',"INSERT INTO CadastraTarefa(IdEmpresa,IdRequerente,IdImovel,IdOportunidade,DataInicio,DataEntrega,NomeProjeto,DescricaoProjeto,SituacaoTarefa) 
-              VALUES (0,0,0,'$retornoOprtunidade->IdOportunidade','$DataInicio','$DataEntrega','Oportunidade Nova','Ver Inicio de oportunidade','');");  
+              VALUES (0,0,0,'$retornoOprtunidade->IdOportunidade','$DataInicio','$DataEntrega','Oportunidade Nova','$ServicoSolicitado','');");  
   		$insereTarefa->executarQuery();
 
   		//busca o id da tarefa
@@ -159,7 +159,7 @@ if (isset($_POST['TipoContato'],
 	    //insere a etapa da tarefa	
         $SituacaoEtapaTarefa = "Trabalhando";
     	$insereEtapaTarefa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
-    												VALUES ('$SelectTecnico','Verificar oportunidade','Verificar oportunidade nova','$DataEntrega','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
+    												VALUES ('$SelectTecnico','$ServicoSolicitado','Verificar oportunidade nova','$DataEntrega','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
     	$insereEtapaTarefa->executarQuery();       	
 
 

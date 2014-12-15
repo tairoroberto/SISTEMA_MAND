@@ -198,7 +198,7 @@ function validaRequerenteAtualiza(){
 /*********************************************************************************************/
 
 function validaOportunidade(){
-    if(formOportunidade.TipoContato.value == "Selecionar") {
+/*    if(formOportunidade.TipoContato.value == "Selecionar") {
      alert("Tipo de Contato não informado...!!!");
      formOportunidade.TipoContato.focus();
      exit();
@@ -271,7 +271,7 @@ function validaOportunidade(){
      formOportunidade.ContribuinteIptu.focus();
      exit();
      }
-
+    */
      if(formOportunidade.SelectTecnico.value == "Selecionar Técnico")  {
      alert("Técnico não informado...!!!");
      formOportunidade.SelectTecnico.focus();
@@ -932,11 +932,11 @@ function validaTarefa(){
      exit();
      } 
 
-     if(formTarefas.SelectSql.value == "SQL") {
+    /* if(formTarefas.SelectSql.value == "SQL") {
      alert("SQL não informado...!!!");
      formTarefas.SelectSql.focus();
      exit();
-     }
+     }*/
 
      if(formTarefas.DataInicio.value == "") {
      alert("Data Início não informada...!!!");
@@ -1376,6 +1376,32 @@ function escondeIncorporacaoVisualizar() {
         formPdf.ckCaMaximo.value = 1;  
     }
 
+
+        if (formIncorporacaoVisualizar.checkZonemaneto2.checked == false) {            
+        document.getElementById("DivZoneamento2").style.display = "none"; 
+        formPdf.ckZonemaneto2.value = 0;            
+    }else{
+        document.getElementById("DivZoneamento2").style.display = "block";  
+        formPdf.ckZonemaneto2.value = 1;  
+    }
+
+    if (formIncorporacaoVisualizar.checkCaBasico2.checked == false) {            
+        document.getElementById("DivCaBasico2").style.display = "none"; 
+        formPdf.ckCaBasico2.value = 0;            
+    }else{
+        document.getElementById("DivCaBasico2").style.display = "block";  
+        formPdf.ckCaBasico2.value = 1;  
+    }
+
+    if (formIncorporacaoVisualizar.checkCaMaximo2.checked == false) {            
+        document.getElementById("DivCaMaximo2").style.display = "none";
+        formPdf.ckCaMaximo2.value = 0;             
+    }else{
+        document.getElementById("DivCaMaximo2").style.display = "block";  
+        formPdf.ckCaMaximo2.value = 1;  
+    }
+    
+
     if (formIncorporacaoVisualizar.checkAtividade.checked == false) {            
         document.getElementById("DivAtividade").style.display = "none"; 
         formPdf.ckAtividade.value = 0;            
@@ -1526,6 +1552,14 @@ function escondeImovelFichaTecnica() {
     }else{
         document.getElementById("DivZoneamento").style.display = "block"; 
         formPdf.ckZoneamento.value = 1;  
+    }
+
+    if (formImovelFichaTecnica.checkZoneamento2.checked == false) {            
+        document.getElementById("DivZoneamento2").style.display = "none"; 
+        formPdf.ckZoneamento2.value = 0;           
+    }else{
+        document.getElementById("DivZoneamento2").style.display = "block"; 
+        formPdf.ckZoneamento2.value = 1;  
     }
 
     if (formImovelFichaTecnica.checkOperacaoUrbana.checked == false) {            

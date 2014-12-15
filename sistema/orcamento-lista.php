@@ -150,7 +150,17 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                                                   <?php if ($retornoOportunidade->Status == "Perdido") {
                                                                       echo $retornoOportunidade->Status.": ".$retornoOportunidade->ComentariosSolicitacao;
                                                                     }elseif ($retornoOportunidade->Status == "Rejeitado") {
-                                                                      echo $retornoOportunidade->Status.": ".$retornoOportunidade->ComentariosSolicitacao.".<br>"."Preço em mente: ".$retornoOportunidade->ValorQueClienteQueria;
+
+                                                                        if ($retornoOportunidade->ComentariosSolicitacao == "Os valores estão acima do que planejei") {
+                                                                          echo $retornoOportunidade->Status.": ".$retornoOportunidade->ComentariosSolicitacao.".<br>"."Preço em mente: ".$retornoOportunidade->ValorQueClienteQueria;
+                                                                        
+                                                                        }elseif ($retornoOportunidade->ComentariosSolicitacao == "A especificações do orçamento não atendem o que necessito") {
+                                                                          echo $retornoOportunidade->Status.": ".$retornoOportunidade->ComentariosSolicitacao.".<br>"."Observação: ".$retornoOportunidade->ValorQueClienteQueria;
+                                                                        
+                                                                        }elseif ($retornoOportunidade->ComentariosSolicitacao == "Outros") {
+                                                                          echo $retornoOportunidade->Status.": Motivo:".$retornoOportunidade->ComentariosSolicitacao.".<br>"."Observação: ".$retornoOportunidade->ValorQueClienteQueria;
+                                                                        } 
+
                                                                     }elseif ($retornoOportunidade->Status == "Prorrogar") {
                                                                       echo $retornoOportunidade->Status." até: ".$retornoOportunidade->DataProrrogacao.".<br>"."Motivo: ".$retornoOportunidade->ComentariosSolicitacao;
                                                                     }else{

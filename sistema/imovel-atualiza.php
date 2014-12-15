@@ -523,88 +523,143 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                            </div>
 
                     <!-- Fim do clone de OUTROS LOTES -->
-                    
-         
-                    
-                                            
+                                                                
                       </div>
-                      
+                     
                       
                        
-                      <div class="tab-pane" id="tab5"> <br>
-                        <h4 class="semi-bold">Etapa 5 - <span class="light">Zoneamento</span></h4>
-                        <br>
-                        
-                        
-                        <div class="row form-row">
-                      <div class="col-md-4">
-                        <input name="Zona" id="Zona" type="text"  class="form-control" placeholder="Zona" 
-                                    value="<?php echo $retornoImovel->Zona; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="CaBasico" id="CaBasico" type="text"  class="form-control" placeholder="C.A. basico" 
-                                    value="<?php echo $retornoImovel->CaBasico; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="Distrito" id="Distrito" type="text"  class="form-control" placeholder="Distrito" 
-                                    value="<?php echo $retornoImovel->Distrito; ?>">
-                      </div>
-                       
-                    </div>
-                    <div class="row form-row">
-                      <div class="col-md-4">
-                        <input name="SubPrefeitura" id="SubPrefeitura" type="text"  class="form-control" placeholder="SubPref." 
-                                    value="<?php echo $retornoImovel->SubPrefeitura; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="CaMaximo" id="CaMaximo" type="text"  class="form-control" placeholder="C.A. maximo" 
-                                    value="<?php echo $retornoImovel->CaMaximo; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="Gabarito" id="Gabarito" type="text"  class="form-control" placeholder="Gabarito" 
-                                    value="<?php echo $retornoImovel->Gabarito; ?>">
-                      </div>
-                       
-                    </div>
-                    
-                    
-                    <div class="row form-row">
-                      <div class="col-md-4">
-                        <input name="ToImovel" id="ToImovel" type="text"  class="form-control" placeholder="T.O." 
-                                    value="<?php echo $retornoImovel->ToImovel; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="TxPerm" id="TxPerm" type="text"  class="form-control" placeholder="Tx Perm." 
-                                    value="<?php echo $retornoImovel->TxPerm; ?>">
-                      </div>
-                      <div class="col-md-4">
-                        <input name="LargVia" id="LargVia" type="text"  class="form-control" placeholder="Larg. via." 
-                                    value="<?php echo $retornoImovel->LargVia; ?>">
-                      </div>
-                       
-                    </div>
-                        
-                        <div class="row form-row">
-                      <div class="col-md-4">
-                      <input name="ClassificacaoVia" id="ClassificacaoVia" type="text"  class="form-control" placeholder="Classificação da via" 
-                                  value="<?php echo $retornoImovel->ClassificacaoVia; ?>">
-                      </div>
-                      <div class="col-md-4">
-                      <input name="PagGeomapas" id="PagGeomapas" type="text"  class="form-control" placeholder="Pág. Geomapas" 
-                                  value="<?php echo $retornoImovel->PagGeomapas; ?>">
-                      </div>
-                        </div>
-                        
-                        <div class="row form-row">
-                      <div class="col-md-12">
-                      <textarea name="ComentariosZoneamento" id="ComentariosZoneamento"  rows="5" class="col-lg-12" 
-                                ><?php echo $retornoImovel->ComentariosZoneamento; ?></textarea>
-                      </div>
-                        </div>
-                        
-                        
-                        
-                      </div>
+    
+                      <!--NOVO ZONEAMENTO COMECA AQUI-->
+                          <div class="tab-pane" id="tab5"> <br>
+                           <h4 class="semi-bold">Etapa 5 - <span class="light">Zoneamento</span></h4>
+                              <br>
+                              
+                             <label><strong>Lei 13885</strong></label> 
+                            <div class="row form-row">
+                              <div class="col-md-4">
+                                <input name="ZonaLei13885" id="ZonaLei13885" type="text"  class="form-control" placeholder="Zona" 
+                                value="<?php echo $retornoImovel->ZonaLei13885; ?>">
+                              </div>
+                              <div class="col-md-4">
+                                <input name="CaBasicoLei13885" id="CaBasicoLei13885" type="text"  class="form-control" placeholder="C.A. basico" 
+                                value="<?php echo $retornoImovel->CaBasicoLei13885; ?>">
+                              </div>
+                              <div class="col-md-4">
+                                <input name="DistritoLei13885" id="DistritoLei13885" type="text"  class="form-control" placeholder="Distrito" 
+                                value="<?php echo $retornoImovel->DistritoLei13885; ?>">
+                              </div>                       
+                            </div>
+
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                              <input name="SubPrefeituraLei13885" id="SubPrefeituraLei13885" type="text"  class="form-control" placeholder="SubPref." 
+                              value="<?php echo $retornoImovel->SubPrefeituraLei13885; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="CaMaximoLei13885" id="CaMaximoLei13885" type="text"  class="form-control" placeholder="C.A. maximo" 
+                              value="<?php echo $retornoImovel->CaMaximoLei13885; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="GabaritoLei13885" id="GabaritoLei13885" type="text"  class="form-control" placeholder="Gabarito" 
+                              value="<?php echo $retornoImovel->GabaritoLei13885; ?>">
+                            </div>                       
+                          </div>
+                          
+                          
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                              <input name="ToImovelLei13885" id="ToImovelLei13885" type="text"  class="form-control" placeholder="T.O." 
+                              value="<?php echo $retornoImovel->ToImovelLei13885; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="TxPermLei13885" id="TxPermLei13885" type="text"  class="form-control" placeholder="Tx Perm." 
+                              value="<?php echo $retornoImovel->TxPermLei13885; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="LargViaLei13885" id="LargViaLei13885" type="text"  class="form-control" placeholder="Larg. via." 
+                              value="<?php echo $retornoImovel->LargViaLei13885; ?>">
+                            </div>                       
+                          </div>
+                              
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                            <input name="ClassificacaoViaLei13885" id="ClassificacaoViaLei13885" type="text"  class="form-control" placeholder="Classificação da via" 
+                            value="<?php echo $retornoImovel->ClassificacaoViaLei13885; ?>">
+                            </div>
+                            <div class="col-md-4">
+                            <input name="PagGeomapasLei13885" id="PagGeomapasLei13885" type="text"  class="form-control" placeholder="Pág. Geomapas" 
+                            value="<?php echo $retornoImovel->PagGeomapasLei13885; ?>">
+                            </div>
+                          </div>
+
+
+                          <!--Aqui começa o novo zoneamento-->
+                            <label><strong>Lei 16050</strong></label> 
+                            <div class="row form-row">
+                              <div class="col-md-4">
+                                <input name="ZonaLei16050" id="ZonaLei16050" type="text"  class="form-control" placeholder="Zona" 
+                                value="<?php echo $retornoImovel->ZonaLei16050; ?>">
+                              </div>
+                              <div class="col-md-4">
+                                <input name="CaBasicoLei16050" id="CaBasicoLei16050" type="text"  class="form-control" placeholder="C.A. basico" 
+                                value="<?php echo $retornoImovel->CaBasicoLei16050; ?>">
+                              </div>
+                              <div class="col-md-4">
+                                <input name="DistritoLei16050" id="DistritoLei16050" type="text"  class="form-control" placeholder="Distrito" 
+                                value="<?php echo $retornoImovel->DistritoLei16050; ?>">
+                              </div>                       
+                            </div>
+
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                              <input name="SubPrefeituraLei16050" id="SubPrefeituraLei16050" type="text"  class="form-control" placeholder="SubPref." 
+                              value="<?php echo $retornoImovel->SubPrefeituraLei16050; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="CaMaximoLei16050" id="CaMaximoLei16050" type="text"  class="form-control" placeholder="C.A. maximo" 
+                              value="<?php echo $retornoImovel->CaMaximoLei16050; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="GabaritoLei16050" id="GabaritoLei16050" type="text"  class="form-control" placeholder="Gabarito" 
+                              value="<?php echo $retornoImovel->GabaritoLei16050; ?>">
+                            </div>                       
+                          </div>
+                          
+                          
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                              <input name="ToImovelLei16050" id="ToImovelLei16050" type="text"  class="form-control" placeholder="T.O." 
+                              value="<?php echo $retornoImovel->ToImovelLei16050; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="TxPermLei16050" id="TxPermLei16050" type="text"  class="form-control" placeholder="Tx Perm." 
+                              value="<?php echo $retornoImovel->TxPermLei16050; ?>">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="LargViaLei16050" id="LargViaLei16050" type="text"  class="form-control" placeholder="Larg. via." 
+                              value="<?php echo $retornoImovel->LargViaLei16050; ?>">
+                            </div>                       
+                          </div>
+                              
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                            <input name="ClassificacaoViaLei16050" id="ClassificacaoViaLei16050" type="text"  class="form-control" placeholder="Classificação da via" 
+                            value="<?php echo $retornoImovel->ClassificacaoViaLei16050; ?>">
+                            </div>
+                            <div class="col-md-4">
+                            <input name="PagGeomapasLei16050" id="PagGeomapasLei16050" type="text"  class="form-control" placeholder="Pág. Geomapas" 
+                            value="<?php echo $retornoImovel->PagGeomapasLei16050; ?>">
+                            </div>
+                          </div>
+                          <!--Aqui termina o novo zoneamento-->    
+                          <div class="row form-row">
+                            <div class="col-md-12">
+                            <textarea name="ComentariosZoneamento" id="ComentariosZoneamento"  rows="5" class="col-lg-12"><?php echo $retornoImovel->ComentariosZoneamento; ?></textarea>
+                            </div>
+                          </div>   
+                  
+                     </div>
+                      <!--NOVO ZONEAMENTO TERMINA AQUI-->
                       
                       
                       
@@ -891,29 +946,41 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       </div>
                       
                       
-                      <div class="tab-pane" id="tab10"> <br>
-                        <h4 class="semi-bold">Etapa 10 - <span class="light">Imagens</span></h4>
 
-                        <br>
-                        
-                        <div class="row form-row">
-                        	<div class="col-md-4">
-                            Quadra Fiscal
-                        <input name="QuadraFiscal" id="QuadraFiscal" type="file"  accept="image/*" multiple class="dropzone no-border"  />
-                        	</div>
-                            <div class="col-md-4">
-                             Geomapas
-                        <input name="Geomapas" id="Geomapas" type="file" accept="image/*" multiple class="dropzone no-border"  />
-                        	</div>
-                            <div class="col-md-4">
-                             Imagem Local
-                        <input name="ImagemLocal" id="ImagemLocal" type="file" accept="image/*" multiple class="dropzone no-border"  />
-                        	</div>
+
+
+
+
+                       <div class="tab-pane" id="tab10"> <br>
+                        <h4 class="semi-bold">Etapa 10 - <span class="light">Imagens</span></h4>
+                        <br>                        
+                          <div class="row form-row">  
+
+                            <div class="col-md-3">
+                              Quadra Fiscal
+                              <input name="QuadraFiscal" id="QuadraFiscal" type="file"  accept="image/*" multiple class="dropzone no-border"  />
+                            </div>
+                            
+                            <div class="col-md-3">
+                               Geomapas
+                              <input name="Geomapas" id="Geomapas" type="file" accept="image/*" multiple class="dropzone no-border"  />
+                            </div>
+
+                            <div class="col-md-3">
+                               Imagem Local
+                              <input name="ImagemLocal" id="ImagemLocal" type="file" accept="image/*" multiple class="dropzone no-border"  />
+                            </div>
+                            <div class="col-md-3">
+                               Lei 16050
+                              <input name="ImagemLei" id="ImagemLei" type="file" accept="image/*" multiple class="dropzone no-border"  />
+                            </div>
+                          </div>
                         </div>
-                        </div>
-                        
-                        
-                        
+
+     
+
+
+                       
                          <div class="tab-pane" id="tab11"> <br>
                         <h4 class="semi-bold">Etapa 11 - <span class="light">Dados Adicionais</span></h4>
 

@@ -57,6 +57,10 @@
     $NomeImagemLocal = null;
     $CaminhoImagemLocal;
 
+    $ImagemLei;
+    $NomeImagemLei = null;
+    $CaminhoImagemLei;
+
     $error =  array();
         
     /********************************************************************************************/
@@ -274,6 +278,77 @@ if (!empty($_FILES['ImagemLocal'])){
 	$NomeImagemLocal = null;
 }
 
+
+
+/********************************************************************************************/
+/*                      Função para inserir Lei no banco de dados                       */
+/********************************************************************************************/
+
+// Se o usuário clicou no botão cadastrar efetua as ações
+if (!empty($_FILES['ImagemLei'])){
+
+
+	$ImagemLei = $_FILES["ImagemLei"];
+
+	// Se a foto estiver sido selecionada
+	if (!empty($ImagemLei["name"])) {
+
+		// Largura máxima em pixels
+		$largura = 50000000;
+		// Altura máxima em pixels
+		$altura = 50000000;
+		// Tamanho máximo do arquivo em bytes
+		$tamanho = 100000000000;
+
+		// Verifica se o arquivo é uma imagem
+		if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $ImagemLei["type"])){
+			$error[1] = "Isso não é uma imagem.";
+		}
+
+		// Pega as dimensões da imagem
+		$dimensoes = getimagesize($ImagemLei["tmp_name"]);
+
+		// Verifica se a largura da imagem é maior que a largura permitida
+		if($dimensoes[0] > $largura) {
+			$error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
+		}
+
+		// Verifica se a altura da imagem é maior que a altura permitida
+		if($dimensoes[1] > $altura) {
+			$error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+		}
+
+		// Verifica se o tamanho da imagem é maior que o tamanho permitido
+		if($ImagemLei["size"] > $tamanho) {
+			$error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
+		}
+		// Se não houver nenhum erro
+		if (count($error) == 0) {
+
+			// Pega extensão da imagem
+			preg_match("/.(gif|bmp|png|jpg|jpeg){1}$/i", $ImagemLei["name"], $ext);
+
+			// Gera um nome único para a imagem
+			$NomeImagemLei = md5(uniqid(time())) . "." . $ext[1];
+
+			// Caminho de onde ficará a imagem
+			$CaminhoImagemLei = "fotos/Imovel/" . $NomeImagemLei;
+
+			// Faz o upload da imagem para seu respectivo caminho
+			move_uploaded_file($ImagemLei["tmp_name"], $CaminhoImagemLei);
+
+		}
+
+		// Se houver mensagens de erro, exibe-as
+		if (count($error) != 0) {
+			foreach ($error as $erro) {
+				echo $erro . "";
+			}
+		}
+	}
+}else{
+	$NomeImagemLei = null;
+}
     
     /********************************************************************************************/
     /*			Verifica se os dados enviados pelo imovel-cadastro.html estão completos			*/
@@ -305,17 +380,30 @@ if (isset($_POST['IdImovelAux'])) {
 		  $AnoConstrucao  = $_POST['AnoConstrucao'];
 		  $UsoImovel  = $_POST['UsoImovel'];
 
-		  $Zona  = $_POST['Zona'];
-		  $CaBasico  = $_POST['CaBasico'];
-		  $Distrito  = $_POST['Distrito'];
-		  $SubPrefeitura  = $_POST['SubPrefeitura'];
-		  $CaMaximo  = $_POST['CaMaximo'];
-		  $Gabarito  = $_POST['Gabarito'];
-		  $ToImovel  = $_POST['ToImovel'];
-		  $TxPerm  = $_POST['TxPerm'];
-		  $LargVia  = $_POST['LargVia'];
-		  $ClassificacaoVia  = $_POST['ClassificacaoVia'];
-		  $PagGeomapas  = $_POST['PagGeomapas'];
+		  $ZonaLei13885  = $_POST['ZonaLei13885'];
+		  $CaBasicoLei13885  = $_POST['CaBasicoLei13885'];
+		  $DistritoLei13885  = $_POST['DistritoLei13885'];
+		  $SubPrefeituraLei13885  = $_POST['SubPrefeituraLei13885'];
+		  $CaMaximoLei13885  = $_POST['CaMaximoLei13885'];
+		  $GabaritoLei13885  = $_POST['GabaritoLei13885'];
+		  $ToImovelLei13885  = $_POST['ToImovelLei13885'];
+		  $TxPermLei13885  = $_POST['TxPermLei13885'];
+		  $LargViaLei13885  = $_POST['LargViaLei13885'];
+		  $ClassificacaoViaLei13885  = $_POST['ClassificacaoViaLei13885'];
+		  $PagGeomapasLei13885  = $_POST['PagGeomapasLei13885'];
+
+
+		  $ZonaLei16050  = $_POST['ZonaLei16050'];
+		  $CaBasicoLei16050  = $_POST['CaBasicoLei16050'];
+		  $DistritoLei16050  = $_POST['DistritoLei16050'];
+		  $SubPrefeituraLei16050  = $_POST['SubPrefeituraLei16050'];
+		  $CaMaximoLei16050  = $_POST['CaMaximoLei16050'];
+		  $GabaritoLei16050  = $_POST['GabaritoLei16050'];
+		  $ToImovelLei16050  = $_POST['ToImovelLei16050'];
+		  $TxPermLei16050  = $_POST['TxPermLei16050'];
+		  $LargViaLei16050  = $_POST['LargViaLei16050'];
+		  $ClassificacaoViaLei16050  = $_POST['ClassificacaoViaLei16050'];
+		  $PagGeomapasLei16050  = $_POST['PagGeomapasLei16050'];
 		  $ComentariosZoneamento  = $_POST['ComentariosZoneamento'];
 
 		  $SituacaoOperacaoUrbana  = $_POST['SituacaoOperacaoUrbana'];
@@ -342,7 +430,7 @@ if (isset($_POST['IdImovelAux'])) {
 
 
 		$caminho = "fotos/Imovel/";
-		$buscarFoto->set('sql',"SELECT QuadraFiscal,Geomapas,ImagemLocal,ImagemMapa,CodigoImovel 
+		$buscarFoto->set('sql',"SELECT QuadraFiscal,Geomapas,ImagemLocal,ImagemMapa,ImagemLei,CodigoImovel 
 								FROM CadastraImovel 
 								WHERE IdImovel = $IdImovel ");
          
@@ -356,6 +444,9 @@ if (isset($_POST['IdImovelAux'])) {
          	if (($retornoFoto->ImagemLocal != null) && ($NomeImagemLocal != null)) {
          		unlink($caminho.$retornoFoto->ImagemLocal);
          	}
+         	if (($retornoFoto->ImagemLei != null) && ($NomeImagemLei != null)) {
+         		unlink($caminho.$retornoFoto->ImagemLei);
+         	}
 		  
 		  }	
 
@@ -368,6 +459,9 @@ if (isset($_POST['IdImovelAux'])) {
             }
             if (($retornoFoto->ImagemLocal != null) && ($NomeImagemLocal ==null)) {
                 $NomeImagemLocal = $retornoFoto->ImagemLocal;
+            }
+            if (($retornoFoto->ImagemLei != null) && ($NomeImagemLei ==null)) {
+                $NomeImagemLei = $retornoFoto->ImagemLei;
             }
           }	
 
@@ -450,17 +544,28 @@ curl_close($ch);
 														  FracaoIdeal = '$FracaoIdeal',
 														  AnoConstrucao = '$AnoConstrucao',
 														  UsoImovel = '$UsoImovel',
-														  Zona = '$Zona',
-														  CaBasico = '$CaBasico',
-														  Distrito = '$Distrito',
-														  SubPrefeitura = '$SubPrefeitura',
-														  CaMaximo = '$CaMaximo',
-														  Gabarito = '$Gabarito',
-														  ToImovel = '$ToImovel',
-														  TxPerm = '$TxPerm',
-														  LargVia = '$LargVia',
-														  ClassificacaoVia = '$ClassificacaoVia',
-														  PagGeomapas = '$PagGeomapas',
+														  ZonaLei13885 = '$ZonaLei13885',
+														  CaBasicoLei13885 = '$CaBasicoLei13885',
+														  DistritoLei13885 = '$DistritoLei13885',
+														  SubPrefeituraLei13885 = '$SubPrefeituraLei13885',
+														  CaMaximoLei13885 = '$CaMaximoLei13885',
+														  GabaritoLei13885 = '$GabaritoLei13885',
+														  ToImovelLei13885 = '$ToImovelLei13885',
+														  TxPermLei13885 = '$TxPermLei13885',
+														  LargViaLei13885 = '$LargViaLei13885',
+														  ClassificacaoViaLei13885 = '$ClassificacaoViaLei13885',
+														  PagGeomapasLei13885 = '$PagGeomapasLei13885',
+														  ZonaLei16050 = '$ZonaLei16050',
+														  CaBasicoLei16050 = '$CaBasicoLei16050',
+														  DistritoLei16050 = '$DistritoLei16050',
+														  SubPrefeituraLei16050 = '$SubPrefeituraLei16050',
+														  CaMaximoLei16050 = '$CaMaximoLei16050',
+														  GabaritoLei16050 = '$GabaritoLei16050',
+														  ToImovelLei16050 = '$ToImovelLei16050',
+														  TxPermLei16050 = '$TxPermLei16050',
+														  LargViaLei16050 = '$LargViaLei16050',
+														  ClassificacaoViaLei16050 = '$ClassificacaoViaLei16050',
+														  PagGeomapasLei16050 = '$PagGeomapasLei16050',
 														  ComentariosZoneamento = '$ComentariosZoneamento',
 														  SituacaoOperacaoUrbana = '$SituacaoOperacaoUrbana',
 														  ComentariosOperacaoUrbana = '$ComentariosOperacaoUrbana',
@@ -474,6 +579,7 @@ curl_close($ch);
 														  Geomapas = '$NomeGeomapas',
 														  ImagemLocal = '$NomeImagemLocal',
 														  ImagemMapa = 'ImagemMapa".$CodigoImovel."-".$Cep.".jpg',
+														  ImagemLei =  '$NomeImagemLei',
 														  SituacaoImovel = '$SituacaoImovel'
 												 	WHERE IdImovel = '$IdImovel' ");  
   

@@ -33,31 +33,55 @@
     	  $IdOportunidade =	$_POST['IdOportunidadeAux']; 
 		  $IdOrcamentoB  = $_POST['IdOrcamentoBAux'];
 		  $motivo  = $_POST['motivo'];	
-		  if (isset($_POST['observacao'])) {
-		 	$observacao  = $_POST['observacao'];
-		 }else{
-		 	$observacao  = "";
-		 }	  
-		  
 
-		  //Atualiza status da oprtunidade
-		  $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Rejeitado', 
+
+		  if (isset($_POST['observacaoValor']) && $_POST['observacaoValor']!= "") {
+		 	$observacaoValor  = $_POST['observacaoValor'];
+		 	//Atualiza status da oprtunidade
+		    $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Rejeitado', 
 		  															 ComentariosSolicitacao = '$motivo',
-		  															 ValorQueClienteQueria = '$observacao'
+		  															 ValorQueClienteQueria = '$observacaoValor'
 		  														 WHERE IdOportunidade = '$IdOportunidade';");
+		 }elseif (isset($_POST['observacaoEspe'])&& $_POST['observacaoEspe']!= "") {
+		 	$observacaoEspe  = $_POST['observacaoEspe'];
+			//Atualiza status da oprtunidade
+		    $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Rejeitado', 
+		  															 ComentariosSolicitacao = '$motivo',
+		  															 ValorQueClienteQueria = '$observacaoEspe'
+		  														 WHERE IdOportunidade = '$IdOportunidade';");
+		 }elseif (isset($_POST['observacaoOutros'])&& $_POST['observacaoOutros']!= "") {
+		 	$observacaoOutros  = $_POST['observacaoOutros'];
+		 	//Atualiza status da oprtunidade
+		    $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Rejeitado', 
+		  															 ComentariosSolicitacao = '$motivo',
+		  															 ValorQueClienteQueria = '$observacaoOutros'
+		  														 WHERE IdOportunidade = '$IdOportunidade';");
+		 } 
+
+		  
   		  $atualizarOportunidade->executarQuery();
 
   		  //Insere na Tabela HistoricoOportunidade
 		  $data = date('d/m/Y');
 		  $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
 		                           	 				 	   VALUES ('$data','Alterado','Cliente Rejeitou','$IdOportunidade');");
-		 if ((isset($_POST['observacao'])) && ($_POST['observacao'] != "")) {
-		 	$observacaoEmail  = $_POST['observacao'];
-		 	enviarEmail("atendimento@mandprojetos.com.br","REJEITOU o orçamento, valor que tinha em mente: ".$observacaoEmail." ",$IdOportunidade,$IdOrcamentoB);
-		 }else{
-		 	enviarEmail("atendimento@mandprojetos.com.br","REJEITOU o orçamento",$IdOportunidade,$IdOrcamentoB);
-		 	//atendimento@mandprojetos.com.br trocar     -----     email
+		 
+
+		 if (isset($_POST['observacaoValor']) && $_POST['observacaoValor']!= "") {
+		 	$observacaoValor  = $_POST['observacaoValor'];
+		 	enviarEmail("atendimento@mandprojetos.com.br","REJEITOU o orçamento, Motivo: ".$motivo.",Observação: ".$observacaoValor." ",$IdOportunidade,$IdOrcamentoB);
+		 
+		 }elseif (isset($_POST['observacaoEspe']) && $_POST['observacaoEspe'] != "") {
+		 	$observacaoEspe  = $_POST['observacaoEspe'];
+		 	enviarEmail("atendimento@mandprojetos.com.br","REJEITOU o orçamento, Motivo: ".$motivo.",Observação: ".$observacaoEspe." ",$IdOportunidade,$IdOrcamentoB);
+		 
+		 }elseif (isset($_POST['observacaoOutros']) && $_POST['observacaoOutros'] != "") {
+		 	$observacaoOutros  = $_POST['observacaoOutros'];
+		 	enviarEmail("atendimento@mandprojetos.com.br","REJEITOU o orçamento, Motivo: ".$motivo.",Observação: ".$observacaoOutros." ",$IdOportunidade,$IdOrcamentoB);
 		 }
+
+
+		 //atendimento@mandprojetos.com.br trocar     -----     email
 
 		  if (($atualizarOportunidade->executarQuery()) && ($insereHistoricoOportunidade->executarQuery())){
 		  	echo("<script type='text/javascript' charset='utf-8'> location.href='http://mandprojetos.com.br'; alert('Obrigado Entraremos em contato'); </script>");

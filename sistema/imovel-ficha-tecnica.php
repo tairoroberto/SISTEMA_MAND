@@ -155,7 +155,10 @@ function encerraImovel(){
                       <label for='checkOutrosSql'>Outros SQL</label>
 
                       <input id='checkZoneamento' type='checkbox' value='1' checked='checked' onchange='escondeImovelFichaTecnica();'>
-                      <label for='checkZoneamento'>Zonemaneto</label>
+                      <label for='checkZoneamento'>Lei1 3885</label>
+
+                      <input id='checkZoneamento2' type='checkbox' value='1' checked='checked' onchange='escondeImovelFichaTecnica();'>
+                      <label for='checkZoneamento2'>Lei 16050</label>
 
                       <input id='checkOperacaoUrbana' type='checkbox' value='1' checked='checked' onchange='escondeImovelFichaTecnica();'>
                       <label for='checkOperacaoUrbana'>Operação Urbana</label>
@@ -542,73 +545,173 @@ function encerraImovel(){
         
           
         
-         <!-- BLOCO 2 -->
+       <!-- BLOCO 2 -->
         <div  class="row" id="DivZoneamento">
         <!-- TITULO -->
         <div class="tiles green added-margin   m-b-20">
           <div class="tiles-body">
-            <h4 class="text-white no-margin semi-bold">ZONEAMENTO</h4>
+            <h4 class="text-white no-margin semi-bold">LEI 13885<!-- ZONEAMENTO --></h4>
             <br>
           </div>
         
         <!-- TITULO -->
-        
-        
-        
-        
         
         <div class=" tiles white" >
           
       <div class="p-t-35 p-l-45">
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Zona</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->Zona; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ZonaLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">C.A. Básico</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->CaBasico; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->CaBasicoLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Distrito</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->Distrito; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->DistritoLei13885; ?></span></h4>
             </div>
             </div>
             
             <div class="p-t-35 p-l-45">
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Sub Prefeitura</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->SubPrefeitura; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->SubPrefeituraLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">C.A. Máximo</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->CaMaximo; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->CaMaximoLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Gabarito</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->Gabarito; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->GabaritoLei13885; ?></span></h4>
             </div>
             </div>
             
             <div class="p-t-35 p-l-45">
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">T.O.</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->ToImovel; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ToImovelLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Tx Perm.</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->TxPerm; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->TxPermLei13885; ?></span></h4>
             </div>
             <div class="col-md-4  no-padding">
               <h5 class="no-margin">Lag. da VIa</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->LargVia; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->LargViaLei13885; ?></span></h4>
             </div>
             </div>
             <div class="p-t-35 p-l-45">
              <div class="col-md-12  no-padding">
               <h5 class="no-margin">Classificação da Via</h5>
-              <h4><span class="semi-bold"><?php echo $retornoImovel->ClassificacaoVia; ?></span></h4>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ClassificacaoViaLei13885; ?></span></h4>
+            </div>            
+           
             </div>
             
+            <!-- <div class="p-t-35 p-l-45">
+            <div class="col-md-12  no-padding">
+              <h5 class="no-margin">Comentários</h5>
+              <h4><?php echo $retornoImovel->ComentariosZoneamento; ?></h4>
+            </div>                       
+           
+           </div>   -->          
+         <div class="clearfix"></div>        
+      </div>
+    </div>
+ </div>
+        <!-- BLOCO 2 -->
+
+
+                 <!-- BLOCO 2 -->
+        <div  class="row" id="DivGeomapas">
+        <!-- TITULO -->
+              <div class="tiles green added-margin   m-b-20">
+                <div class="tiles-body">
+                  <h4 class="text-white no-margin semi-bold">GEOMAPAS</h4>
+                  <br>
+                </div>
+              
+              <!-- TITULO -->       
+              
+              <div class=" tiles white" >                    
+                    <div class="col-md-12  no-padding">                  
+                       <?php if ($retornoImovel->Geomapas != null) {
+                            echo "<img src='includes/php/fotos/Imovel/".$retornoImovel->Geomapas."' width='100%' height='600'>";
+                          }else{
+                            echo "";
+                            }  ?>    
+                   </div>        
+                  <div class="clearfix"></div>     
+              </div>
+           </div>
+        </div>
+  <!-- BLOCO 2 -->
+  
+        
+  <!-- BLOCO 2 -->
+     <div  class="row" id="DivZoneamento2">
+        <!-- TITULO -->
+        <div class="tiles green added-margin   m-b-20">
+          <div class="tiles-body">
+            <h4 class="text-white no-margin semi-bold">LEI 16050<!-- ZONEAMENTO --></h4>
+            <br>
+          </div>
+        
+        <!-- TITULO -->
+        
+        <div class=" tiles white" >
+          
+      <div class="p-t-35 p-l-45">
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Zona</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ZonaLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">C.A. Básico</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->CaBasicoLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Distrito</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->DistritoLei16050; ?></span></h4>
+            </div>
+            </div>
+            
+            <div class="p-t-35 p-l-45">
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Sub Prefeitura</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->SubPrefeituraLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">C.A. Máximo</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->CaMaximoLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Gabarito</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->GabaritoLei16050; ?></span></h4>
+            </div>
+            </div>
+            
+            <div class="p-t-35 p-l-45">
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">T.O.</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ToImovelLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Tx Perm.</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->TxPermLei16050; ?></span></h4>
+            </div>
+            <div class="col-md-4  no-padding">
+              <h5 class="no-margin">Lag. da VIa</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->LargViaLei16050; ?></span></h4>
+            </div>
+            </div>
+            <div class="p-t-35 p-l-45">
+             <div class="col-md-12  no-padding">
+              <h5 class="no-margin">Classificação da Via</h5>
+              <h4><span class="semi-bold"><?php echo $retornoImovel->ClassificacaoViaLei16050; ?></span></h4>
+            </div>            
            
             </div>
             
@@ -616,26 +719,14 @@ function encerraImovel(){
             <div class="col-md-12  no-padding">
               <h5 class="no-margin">Comentários</h5>
               <h4><?php echo $retornoImovel->ComentariosZoneamento; ?></h4>
-            </div>
-            
-            
+            </div>                       
            
-            </div>
-            
-            
-            
-      <div class="clearfix"></div>
-            
-         
-          
-        
-        
-            </div>
-          </div>
-       </div>
+           </div>            
+         <div class="clearfix"></div>        
+      </div>
+    </div>
+ </div>
         <!-- BLOCO 2 -->
-        
-        
         
         
         
@@ -983,56 +1074,7 @@ function encerraImovel(){
         
         
         
-          
         
-        
-        
-        
-         <!-- BLOCO 2 -->
-        <div  class="row" id="DivGeomapas">
-        <!-- TITULO -->
-        <div class="tiles green added-margin   m-b-20">
-          <div class="tiles-body">
-            <h4 class="text-white no-margin semi-bold">GEOMAPAS</h4>
-            <br>
-          </div>
-        
-        <!-- TITULO -->
-        
-        
-        
-        
-        
-        <div class=" tiles white" >
-          
-      
-            
-           
-            <div class="col-md-12  no-padding">
-            
-           <?php if ($retornoImovel->Geomapas != null) {
-                echo "<img src='includes/php/fotos/Imovel/".$retornoImovel->Geomapas."' width='100%' height='600'>";
-              }else{
-                echo "";
-                }  ?>
-              
-            
-          </div>
-           
-            
-      <div class="clearfix"></div>
-            
-         
-          
-        
-        
-              </div>
-           </div>
-       </div>
-        <!-- BLOCO 2 -->
-        
-
-
 
          <!-- BLOCO 2 -->
         <div  class="row" id="DivImagemLocal">
@@ -1088,7 +1130,7 @@ function encerraImovel(){
  </div>
 
   <!--Insere o conteudo do buffer na variável  -->
-  <form id='formPdf' name='formPdf' method='POST' action='impressao/imovel.php'>
+  <form id='formPdf' name='formPdf' method='POST' action='impressao/imovel.php' target="_blank">
   <!--COMEÇO DO VALOR DO CONTENT-->
    <input type="hidden" id='imovelAux' name='imovelAux' value="<?php echo $IdImovel;?>">
    <!--FIM DO VALOR DO CONTENT-->  
@@ -1101,6 +1143,7 @@ function encerraImovel(){
             <input type="hidden" name="ckProcessos" id="ckProcessos" value="1">
             <input type="hidden" name="ckOutrosSql" id="ckOutrosSql" value="1">
             <input type="hidden" name="ckZoneamento" id="ckZoneamento" value="1">
+            <input type="hidden" name="ckZoneamento2" id="ckZoneamento2" value="1">
             <input type="hidden" name="ckOperacaoUrbana" id="ckOperacaoUrbana" value="1">
             <input type="hidden" name="ckRestricoes" id="ckRestricoes" value="1">
             <input type="hidden" name="ckDividas" id="ckDividas" value="1">

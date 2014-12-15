@@ -31,7 +31,7 @@ if (isset($_POST['IdImovelAux'])) {
 		  
 
       $caminho = "fotos/Imovel/";
-    $buscarFoto->set('sql',"SELECT QuadraFiscal,Geomapas,ImagemLocal,ImagemMapa  
+    $buscarFoto->set('sql',"SELECT QuadraFiscal,Geomapas,ImagemLocal,ImagemMapa,ImagemLei  
                             FROM CadastraImovel 
                             WHERE IdImovel = $IdImovel ");
                      
@@ -48,6 +48,9 @@ if (isset($_POST['IdImovelAux'])) {
 
           if ($retornoFoto->ImagemMapa != null) {
             unlink("fotos/Imovel/".$retornoFoto->ImagemMapa);
+          }
+          if ($retornoFoto->ImagemLei != null) {
+            unlink("fotos/Imovel/".$retornoFoto->ImagemLei);
           }
         }
       

@@ -30,6 +30,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CSS TEMPLATE -->
 
 <!-- Inclui o arquivos para validação de campos-->
+
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
 <script type="text/javascript" src="includes/js/CriarComponentes.js"></script>
 
@@ -84,9 +86,13 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
   <?php  $IdTarefa;
          $IdEtapaTarefa;
 
-         if (isset($_POST['IdTarefaAux'],$_POST['IdEtapaTarefaAux'])) {
-            $IdTarefa = $_POST['IdTarefaAux'];
+         if (isset($_POST['TarefaAux'], $_POST['IdEtapaTarefaAux'])) {
+
+            $IdTarefa = $_POST['TarefaAux'];
             $IdEtapaTarefa = $_POST['IdEtapaTarefaAux'];
+          }elseif (isset($_GET['TarefaAux'], $_GET['IdEtapaTarefaAux'])) {
+            $IdTarefa = $_GET['TarefaAux'];
+            $IdEtapaTarefa = $_GET['IdEtapaTarefaAux'];
           } 
 
              /********************************************************************************************/
@@ -103,7 +109,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                                              WHERE  CadastroHolding.IdEmpresa = CadastraTarefa.IdEmpresa AND
                                                     CadastroRequerente.IdRequerente = CadastraTarefa.IdRequerente AND
                                                     CadastraImovel.IdImovel = CadastraTarefa.IdImovel AND
-                                                    IdTarefa = '$IdTarefa'  
+                                                    CadastraTarefa.IdTarefa = '$IdTarefa'  
                                              GROUP BY CadastraTarefa.IdTarefa");
 
            $retornoTarefa = mysql_fetch_object($buscarTarefa->executarQuery()); ?>
@@ -292,7 +298,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK--> 
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 

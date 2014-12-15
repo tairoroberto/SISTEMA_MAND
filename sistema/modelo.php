@@ -27,6 +27,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <!-- END CSS TEMPLATE -->
 </head>
 <!-- END HEAD -->
@@ -73,43 +74,15 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 		<div class="page-title">	
 			<h3>Master Page</h3>		
 		</div>
-    </div>
-  </div>
- </div>
-<!-- END CONTAINER --> 
-<?php formBuscaSql(); ?>
-<!-- END CONTAINER -->
-
-<!-- BEGIN CORE JS FRAMEWORK--> 
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 
-<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
-<!-- END CORE JS FRAMEWORK --> 
-<!-- BEGIN PAGE LEVEL JS --> 	
-<script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script> 	
-<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
-<script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
-<script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS --> 	
-
-<!-- BEGIN CORE TEMPLATE JS --> 
-<script src="assets/js/core.js" type="text/javascript"></script> 
-<script src="assets/js/chat.js" type="text/javascript"></script> 
-<script src="assets/js/demo.js" type="text/javascript"></script> 
-<!-- END CORE TEMPLATE JS --> 
-</body>
-</html>
 
 
+    <!--Verifica as tarefas para poder finaliza-las-->
 
-  <?php 
+      <?php 
 
      /********************************************************************************************/
      /*      Variáveis para inserção no banco de dados, insere o Responsável e a empresa         */
-     /********************************************************************************************/
+     /********************************************************************************************
          
       $buscaImovel = new Conexao();
       $buscaImovel->conectar();
@@ -147,8 +120,38 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
             }                 
           }       
       }
-     
+     */
+      ?>
 
-      
 
-   ?>
+    </div>
+  </div>
+ </div>
+<!-- END CONTAINER --> 
+<?php formBuscaSql(); ?>
+<!-- END CONTAINER -->
+
+<!-- BEGIN CORE JS FRAMEWORK--> 
+<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 
+<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script> 
+<script src="assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
+<!-- END CORE JS FRAMEWORK --> 
+<!-- BEGIN PAGE LEVEL JS --> 	
+<script src="assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script> 	
+<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script> 
+<script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>  
+<script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS --> 	
+
+<!-- BEGIN CORE TEMPLATE JS --> 
+<script src="assets/js/core.js" type="text/javascript"></script> 
+<script src="assets/js/chat.js" type="text/javascript"></script> 
+<script src="assets/js/demo.js" type="text/javascript"></script> 
+<!-- END CORE TEMPLATE JS --> 
+</body>
+</html>
+
+
+

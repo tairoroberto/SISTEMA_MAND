@@ -139,6 +139,26 @@ html {
 	margin-left:50px;
 	padding-top:10px;
 }
+
+#dir-linha-dados-rejeitar {
+	width:690px;
+	height:65px;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#cccccc;
+	margin-left:50px;
+	padding-top:10px;
+}
+
+#dir-linha-dados-comentarios {
+	width:690px;
+	height:100%;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#cccccc;
+	margin-left:50px;
+	padding-top:10px;
+}
 	
 
 #dir-tit-serv {

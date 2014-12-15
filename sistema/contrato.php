@@ -80,7 +80,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
             <div class="clearfix"></div>
             <div class="content">
               <div class="page-title"> 
-                <h3>Cadastro - <span class="semi-bold">Holding</span></h3>
+                <h3>Alterar - <span class="semi-bold">Contrato</span></h3>
               </div>
               <!-- START FORM -->
               <div class="row">
@@ -91,7 +91,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     <form class="form-no-horizontal-spacing" id="formContrato" name="formContrato" method="post" action="includes/php/AlterarContrato.php">
                       
                         <div class="col-md-12">
-                          <h3>Alteração do contrato</h3>
                           <br><br><br>
                         </div>
 

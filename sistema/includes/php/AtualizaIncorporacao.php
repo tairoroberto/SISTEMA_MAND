@@ -485,9 +485,12 @@
              $_POST['MetragemIncorporacao'],
              $_POST['ValorVendaIncorporacao'],
              $_POST['AtividadeIncorporacao'],
-             $_POST['ZonemanetoIncorporacao'],
-             $_POST['CaBasicoIncorporacao'],
-             $_POST['CaMaximoIncorporacao'],
+             $_POST['ZonemanetoInc13885'],
+             $_POST['CaBasicoInc13885'],
+             $_POST['CaMaximoInc13885'],
+             $_POST['ZonemanetoInc16050'],
+             $_POST['CaBasicoInc16050'],
+             $_POST['CaMaximoInc16050'],
              $_POST['NomeProprietarioIncorporacao'],
              $_POST['TelProprietarioIncorporacao'],
              $_POST['EmailProprietarioIncorporacao'],
@@ -513,9 +516,12 @@
     $MetragemIncorporacao =    $_POST['MetragemIncorporacao'];
     $ValorVendaIncorporacao =    $_POST['ValorVendaIncorporacao'];
     $AtividadeIncorporacao =    $_POST['AtividadeIncorporacao'];         
-    $ZonemanetoIncorporacao =    $_POST['ZonemanetoIncorporacao'];
-    $CaBasicoIncorporacao =    $_POST['CaBasicoIncorporacao'];
-    $CaMaximoIncorporacao =    $_POST['CaMaximoIncorporacao'];         
+    $ZonemanetoInc13885 =    $_POST['ZonemanetoInc13885'];
+    $CaBasicoInc13885 =    $_POST['CaBasicoInc13885'];
+    $CaMaximoInc13885 =    $_POST['CaMaximoInc13885'];  
+    $ZonemanetoInc16050 =    $_POST['ZonemanetoInc16050'];
+    $CaBasicoInc16050 =    $_POST['CaBasicoInc16050'];
+    $CaMaximoInc16050 =    $_POST['CaMaximoInc16050'];       
     $NomeProprietarioIncorporacao =    $_POST['NomeProprietarioIncorporacao'];
     $TelProprietarioIncorporacao =    $_POST['TelProprietarioIncorporacao'];
     $EmailProprietarioIncorporacao =    $_POST['EmailProprietarioIncorporacao'];         
@@ -689,9 +695,12 @@ curl_close($ch);
                                                                           MetragemIncorporacao = '$MetragemIncorporacao',
                                                                           ValorVendaIncorporacao = '$ValorVendaIncorporacao',
                                                                           AtividadeIncorporacao = '$AtividadeIncorporacao',
-                                                                          ZonemanetoIncorporacao = '$ZonemanetoIncorporacao',
-                                                                          CaBasicoIncorporacao = '$CaBasicoIncorporacao',
-                                                                          CaMaximoIncorporacao = '$CaMaximoIncorporacao',
+                                                                          ZonemanetoInc13885 = '$ZonemanetoInc13885',
+                                                                          CaBasicoInc13885 = '$CaBasicoInc13885',
+                                                                          CaMaximoInc13885 = '$CaMaximoInc13885',
+                                                                          ZonemanetoInc16050 = '$ZonemanetoInc16050',
+                                                                          CaBasicoInc16050 = '$CaBasicoInc16050',
+                                                                          CaMaximoInc16050 = '$CaMaximoInc16050',
                                                                           NomeProprietarioIncorporacao = '$NomeProprietarioIncorporacao',
                                                                           TelProprietarioIncorporacao = '$TelProprietarioIncorporacao',
                                                                           EmailProprietarioIncorporacao = '$EmailProprietarioIncorporacao',

@@ -434,8 +434,11 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
                     <script type="text/javascript">
                     function insereSelect() {
-                     $('select[name="SelectUsuarioArray[]"]').children().remove();
-                     $('select[name="SelectUsuarioArray[]"]').append('<option value="Responsável">Responsável</option>');
+                      if ($('select[name="SelectUsuarioArray[]"]').val() == "Responsável") {
+                        $('select[name="SelectUsuarioArray[]"]').children().remove();
+                        $('select[name="SelectUsuarioArray[]"]').append('<option value="Responsável">Responsável</option>');
+                      }
+                     
                               <?php                                
                                 /********************************************************************************************/
                                 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */

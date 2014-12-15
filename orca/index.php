@@ -158,6 +158,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
   <div id="dir-dados-pessoais">
     	<div id="dir-linha-dados" class="open-20">DADOS DO CLIENTE</div>
         <div id="dir-linha-dados" class="open-15">Nome: <?php echo $retornoOportunidade->NomeContato;?></div>
+        <div id="dir-linha-dados" class="open-15">Razão social: <?php echo $retornoOportunidade->RazaoSocial;?></div>        
         <div id="dir-linha-dados" class="open-15">Telefone: <?php if (($retornoOportunidade->Telefone != "") && ($retornoOportunidade->Celular != "")) {
                                                                         echo $retornoOportunidade->Telefone." - ".$retornoOportunidade->Celular;
                                                                   }elseif ($retornoOportunidade->Telefone != "") {
@@ -166,8 +167,9 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
                                                                     echo $retornoOportunidade->Celular;
                                                                   }
                                                                 ?>
-        </div>
+        </div>        
         <div id="dir-linha-dados" class="open-15">E-mail: <?php echo $retornoOportunidade->Email;?></div>
+        <div id="dir-linha-dados" class="open-15">Endereço: <?php echo $retornoOportunidade->EnderecoArea;?></div>
     </div>
 
   <!--Busca os serviços co  a descrção-->
@@ -185,47 +187,43 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
     
 
       <div id="dir-dados-pessoais">
-    	<div id="dir-linha-dados" class="open-20">VALORES</div>
-        <div id="dir-linha-dados" class="open-15">Serviços R$ <?php echo $retornoOportunidade->TotalServicos;?></div>
-        <div id="dir-linha-dados" class="open-15">Taxas R$ <?php echo $retornoOportunidade->Taxas;?></div>
-        <div id="dir-linha-dados" class="open-15">TOTAL <strong>R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></strong></div>
-      
-    </div>
+      	<div id="dir-linha-dados" class="open-20">VALORES</div>
+          <div id="dir-linha-dados" class="open-15">Serviços R$ <?php echo $retornoOportunidade->TotalServicos;?></div>
+          <div id="dir-linha-dados" class="open-15">Taxas R$ <?php echo $retornoOportunidade->Taxas;?></div>
+          <div id="dir-linha-dados" class="open-15">TOTAL <strong>R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></strong></div>
+       </div>
     
       <div id="dir-dados-pessoais">
-    	<div id="dir-linha-dados" class="open-20">FORMA DE PAGAMENTO</div>
-        <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->FormaPagamento;?></div>
-        <div id="dir-linha-dados" class="open-20">PRAZO</div>
-        <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->Prazo;?></div>
-        <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->ComentariosOrcamento;?>- <strong>Data: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
-        
-
-
-  </div>
+      	<div id="dir-linha-dados" class="open-20">FORMA DE PAGAMENTO</div>
+          <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->FormaPagamento;?></div>
+          <div id="dir-linha-dados" class="open-20">PRAZO</div>
+          <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->Prazo;?></div>
+        <div id="dir-linha-dados-comentarios" class="open-15"><?php echo $retornoOportunidade->ComentariosOrcamento;?>- <strong>Data: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
+      </div>
     
- <div id="dir-btn" align="left">
-   <a href="#"><img src="imagens/btn-rejeitar.png" width="210" height="46" onclick="enviar('rejeitar')" /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <a href="#"><img src="imagens/btn-aceitar.png" width="210" height="46" onclick="enviar('aceitar')"  /></a>
-
-     
-
-     <!--Auxiliares para envio-->
-     <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade; ?>"> 
-     <input type="hidden" name="IdOrcamentoBAux" id="IdOrcamentoBAux" value="<?php echo $IdOrcamentoB; ?>">    
-     
-
-
-    <p class="open-13"> *Clique no botão acima se desejar fechar negócio e preencher o cadastro com seus dados. Após o cadastro um contrato será gerado automaticamente. Qualquer dúvida entre em contato conosco (11) 3578-0840</p>
- </div>
+    <br><br><br>
+     <div id="dir-btn" align="left">
+       <a href="#"><img src="imagens/btn-rejeitar.png" width="210" height="46" onclick="enviar('rejeitar')" ></a> 
+         <a href="#"><img src="imagens/btn-aceitar.png" width="210" height="46" onclick="enviar('aceitar')" align="right"></a>
+         <!--Auxiliares para envio-->
+         <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade; ?>"> 
+         <input type="hidden" name="IdOrcamentoBAux" id="IdOrcamentoBAux" value="<?php echo $IdOrcamentoB; ?>">    
+        <p class="open-13"> *Clique no botão acima se desejar fechar negócio e preencher o cadastro com seus dados. Após o cadastro um contrato será gerado automaticamente. Qualquer dúvida entre em contato conosco (11) 3578-0840</p>
+     </div>
  
+
+
 <img src="imagens/roda-pe.png" width="750" height="180" /> 
 </div>
 <!--DIREITA-->
 </form>
-<form id="formExportar" name="formExportar" method="post" action="pdfOrcamento.php">
+<form id="formExportar" name="formExportar" method="post" action="orcamento.php" target="_blank">
   <!--Auxiliares para envio-->
      <input type="hidden" name="IdOportunidadeAux2" id="IdOportunidadeAux2" value="<?php echo $IdOportunidade; ?>"> 
      <input type="hidden" name="IdOrcamentoBAux2" id="IdOrcamentoBAux2" value="<?php echo $IdOrcamentoB; ?>"> 
+
+     <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade; ?>"> 
+     <input type="hidden" name="IdOrcamentoBAux" id="IdOrcamentoBAux" value="<?php echo $IdOrcamentoB; ?>"> 
 </form>
 
 </body>

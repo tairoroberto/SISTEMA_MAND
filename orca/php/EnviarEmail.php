@@ -18,11 +18,8 @@
     $insereHistoricoOportunidade->conectar();
     $insereHistoricoOportunidade->selecionarDB();
 
-   	$buscaOportunidade->set('sql',"SELECT CadastraOrcamentoB.*, Oportunidade.* 
-                                   FROM Oportunidade
-                                   INNER JOIN CadastraOrcamentoB
-                                   ON CadastraOrcamentoB.IdOportunidade = $IdOportunidade AND 
-                                      CadastraOrcamentoB.IdOrcamentoB = $IdOrcamentoB ");
+   	$buscaOportunidade->set('sql',"SELECT * FROM Oportunidade
+                                   WHERE  IdOportunidade = '$IdOportunidade' ");
 
     $retornoOportunidade = mysql_fetch_object($buscaOportunidade->executarQuery()); 
 

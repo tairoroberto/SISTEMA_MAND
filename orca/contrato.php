@@ -4,9 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Mand Projetos - Orçamento</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+  
+function alertaCliente(){
+  alert("Em breve entraremos em contato para dar continuidade.");  
+}
+
+</script>
 </head>
 
-<body>
+<body onload="alertaCliente();">
 <form id="formContrato" name="formContrato" method="post" action="EnviaContrato">
 
 <!--ESQUERDA-->
@@ -137,7 +145,7 @@ include('php/EnviarEmail.php');
       <?php if (isset($_POST['IdOportunidadeAux'],$_POST['IdOrcamentoBAux'])) {
 
           enviarEmail("atendimento@mandprojetos.com.br"," ACEITOU o orçamento",$IdOportunidade,$IdOrcamentoB);
-
+          //atendimento@mandprojetos.com.br
         } ?>
      
 </div>

@@ -22,10 +22,18 @@
   }
 
 </script>
+
+ <script type="text/javascript">
+      function imprimir(){
+      // window.print();
+       // irPagina();
+     //  window.close();
+      }
+    </script>
 <!-- END CSS TEMPLATE -->
 </head>
 
-<body>
+<body onload="imprimir();">
 <form id="formIndex" name="formIndex" method="polst" action="aceitar">
 
 <!--ESQUERDA
@@ -33,9 +41,9 @@
 <div id="esq-logo" align="center"><img src="imagens/logo.png" width="169" height="169" /></div>
 
 -->
-<div id="col-esq">
+<!-- <div id="col-esq">
 
-    <div id="esq-logo" align="center"><a href="#" onclick="enviar('inicio');"><img src="imagens/logo.png" width="169" height="169" /></a></div>
+    <div id="esq-logo" align="center"><a href="#" onclick="enviar('inicio');"><img src="imagens/logo.png" width="169" height="169" /></a></div> -->
  <?php
     $IdOportunidade;
     $IdOrcamentoB;
@@ -93,17 +101,17 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       $query= $buscarServicosOrcamentoB->executarQuery();
       while($retornoServicosOrcamentoB = mysql_fetch_object($query)) {  ?>
 	
-    
-      <div id="esq-serv" align="left" class="ver-azu">
+  <!-- <div id="esq-serv" align="left" class="ver-azu">  
+      
         <span class="ver-bra"><?php echo $cont;?> </span> <?php echo $retornoServicosOrcamentoB->TituloServico;?><br />
         
         Valor: <span class="ver-bra">R$ <?php echo $retornoServicosOrcamentoB->Valor;?></span>
 
-     </div>
+     </div> -->
 
      <?php   $cont++;   } }?>
 
-     <div id="esq-serv" align="left" class="ver-azu">
+    <!--  <div id="esq-serv" align="left" class="ver-azu">
       VALOR SERVIÇOS  <br />
       <span class="ver-bra">R$ <?php echo $retornoOportunidade->TotalServicos;?></span>      
      </div>
@@ -117,7 +125,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
       VALOR TOTAL  <br />
       <span class="ver-bra">R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></span>
      </div>
-     
+      -->
     
     
 </div>
@@ -134,6 +142,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
   <div id="dir-dados-pessoais">
     	<div id="dir-linha-dados" class="open-20">DADOS DO CLIENTE</div>
         <div id="dir-linha-dados" class="open-15">Nome: <?php echo $retornoOportunidade->NomeContato;?></div>
+        <div id="dir-linha-dados" class="open-15">Razão social: <?php echo $retornoOportunidade->RazaoSocial;?></div>  
         <div id="dir-linha-dados" class="open-15">Telefone: <?php if (($retornoOportunidade->Telefone != "") && ($retornoOportunidade->Celular != "")) {
                                                                         echo $retornoOportunidade->Telefone." - ".$retornoOportunidade->Celular;
                                                                   }elseif ($retornoOportunidade->Telefone != "") {
@@ -144,6 +153,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
                                                                 ?>
         </div>
         <div id="dir-linha-dados" class="open-15">E-mail: <?php echo $retornoOportunidade->Email;?></div>
+        <div id="dir-linha-dados" class="open-15">Endereço: <?php echo $retornoOportunidade->EnderecoArea;?></div>
     
 
     </div>
@@ -155,8 +165,8 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
     $query= $buscarServicosOrcamentoB->executarQuery();
       while($retornoServicosOrcamentoB = mysql_fetch_object($query)) {  ?> 
     
-     <div id="dir-tit-serv" class="open-20-bra"><?php echo $cont;?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $retornoServicosOrcamentoB->TituloServico;?></div>
-     <div id="dir-linha-serv" class="open-15" align="justify"> <?php echo $retornoServicosOrcamentoB->ExplicacaoServico;?>  </div>
+     <div id="dir-tit-serv" class="open-20-bra" ><?php echo $cont;?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $retornoServicosOrcamentoB->TituloServico;?></div>
+     <div id="dir-linha-serv" class="open-15" > <?php echo $retornoServicosOrcamentoB->ExplicacaoServico;?>  </div>
 
      <?php $cont++; } ?>
 
@@ -169,33 +179,30 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
         <div id="dir-linha-dados" class="open-15">TOTAL <strong>R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></strong></div>
       
     </div>
-    
-      <div id="dir-dados-pessoais">
+     
+      <div id="dir-dados-pessoais-2">
     	<div id="dir-linha-dados" class="open-20">FORMA DE PAGAMENTO</div>
         <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->FormaPagamento;?></div>
         <div id="dir-linha-dados" class="open-20">PRAZO</div>
         <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->Prazo;?></div>
-        <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->ComentariosOrcamento;?>- <strong>Data: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
+        <div id="dir-linha-dados-comentario" class="open-15">
+           <?php echo $retornoOportunidade->ComentariosOrcamento;?>
+        </div>
+        <div id="dir-linha-dados" class="open-15"><strong>Data: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
         
 
 
 
- <div id="dir-btn" align="left">
-
-
-     <!--Auxiliares para envio-->
+   <!--Auxiliares para envio-->
      <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade; ?>"> 
      <input type="hidden" name="IdOrcamentoBAux" id="IdOrcamentoBAux" value="<?php echo $IdOrcamentoB; ?>">    
-     
-
-
-</div>
   </div>
     
-
+    
  
-<img src="imagens/roda-pe.png" width="750" height="180" /> 
+
 </div>
+<img src="imagens/roda-pe.png" width="750" height="180" /> 
 <!--DIREITA-->
 </form>
 <form id="formExportar" name="formExportar" method="post" action="pdfOrcamento.php">

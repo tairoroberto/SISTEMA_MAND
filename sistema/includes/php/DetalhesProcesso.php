@@ -33,6 +33,28 @@ if (isset($_POST['DataProcessoDetalhe'],
           $Data = $_POST['DataDomProcessoDetalhe'];
           $AcoesProcessoDetalhe = $_POST['SelectAcoesProcessoDetalhe'];
           $IdProcesso = $_POST['IdProcesso'];
+
+
+          if ($DomProcessoDetalhe == "checado") {
+            //se DOM estiver selecionado insere a data no calendario
+             
+            $data = explode("/", $Data);
+            $start = $data[2]."-".$data[1]."-".$data[0]." 00:00:00";
+            $end = $data[2]."-".$data[1]."-".$data[0]." 00:00:00";
+            $idusuario = $_POST['idusuario'];
+            // connection to the database
+            try {
+            $bdd = new PDO('mysql:host=localhost;dbname=mandproj_DB', 'mandproj_userDB', 'mand@231');
+            } catch(Exception $e) {
+            exit('Unable to connect to database.');
+            }
+
+            // insert the records
+            $sql = "INSERT INTO Eventos (title, start, end, idusuario) VALUES (:title, :start, :end, :idusuario)";
+            $q = $bdd->prepare($sql);
+            $q->execute(array(':title'=>"DOM, Unidade:".$UnidadeProcessoDetahe.", Desc:".$DescricaoProcessoDetahe.", Ação: ".$AcoesProcessoDetalhe, ':start'=>$start, ':end'=>$end,  ':idusuario'=>$idusuario));
+
+          }
         
           $insereDetalheProcesso->set('sql',"INSERT INTO DetalheProcesso(DataProcessoDetalhe,UnidadeProcessoDetahe,DescricaoProcessoDetahe,DomProcessoDetalhe,Data,AcaoProcessoDetalhe,IdProcesso) 
                                VALUES ('$DataProcessoDetalhe','$UnidadeProcessoDetahe','$DescricaoProcessoDetahe','$DomProcessoDetalhe','$Data','$AcoesProcessoDetalhe','$IdProcesso');");

@@ -39,7 +39,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CSS TEMPLATE -->
 
 <!-- Inclui o arquivos para validação de campos-->
-<script src="includes/Cep/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="includes/Cep/jquery.maskedinput-1.3.min.js" type="text/javascript"></script>
 <script src="includes/Cep/BuscaCep.js" type="text/javascript"></script>
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
@@ -156,13 +156,22 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       <label for="checkValorVenda">Valor Venda m²</label>
 
                       <input id="checkZonemaneto" type="checkbox" value="2" checked="checked">
-                      <label for="checkZonemaneto">Zonemaneto</label>
+                      <label for="checkZonemaneto">Zonemaneto Lei 13885</label>
 
                       <input id="checkCaBasico" type="checkbox" value="2" checked="checked">
-                      <label for="checkCaBasico">C.A. Básicos</label>
+                      <label for="checkCaBasico">C.A. Básicos Lei 13885</label>
 
                       <input id="checkCaMaximo" type="checkbox" value="2" checked="checked">
-                      <label for="checkCaMaximo">C.A. Máximo</label>
+                      <label for="checkCaMaximo">C.A. Máximo Lei 13885</label>
+
+                      <input id="checkZonemaneto2" type="checkbox" value="2" checked="checked">
+                      <label for="checkZonemaneto2">Zonemaneto Lei 16050</label>
+
+                      <input id="checkCaBasico2" type="checkbox" value="2" checked="checked">
+                      <label for="checkCaBasico2">C.A. Básicos Lei 16050</label>
+
+                      <input id="checkCaMaximo2" type="checkbox" value="2" checked="checked">
+                      <label for="checkCaMaximo2">C.A. Máximo Lei 16050</label>
 
                       <input id="checkAtividade" type="checkbox" value="2" checked="checked">
                       <label for="checkAtividade">Atividade</label>
@@ -282,24 +291,50 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
           <div class="p-t-35 p-l-45">
             <div id="DivZoneamento">   
               <div class="col-md-4  no-padding" >
-                <h5 class="no-margin">Zonemaneto</h5>
-                <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->ZonemanetoIncorporacao"; ?></span></h4>
+                <h5 class="no-margin">Zonemaneto Lei 13885</h5>
+                <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->ZonemanetoInc13885"; ?></span></h4>
               </div>
             </div>
              
 
           <div id="DivCaBasico"> 
             <div class="col-md-4  no-padding" >
-              <h5 class="no-margin">C.A. Básico</h5>
-              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaBasicoIncorporacao"; ?></span></h4>
+              <h5 class="no-margin">C.A. Básico Lei 13885</h5>
+              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaBasicoInc13885"; ?></span></h4>
             </div>
           </div>
 
 
           <div id="DivCaMaximo">
             <div class="col-md-4  no-padding" >
-              <h5 class="no-margin">C.A. Máximo</h5>
-              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaMaximoIncorporacao"; ?></span></h4>
+              <h5 class="no-margin">C.A. Máximo Lei 13885</h5>
+              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaMaximoInc13885"; ?></span></h4>
+            </div>
+            </div>
+          </div>  
+
+
+           <div class="p-t-35 p-l-45">
+            <div id="DivZoneamento2">   
+              <div class="col-md-4  no-padding" >
+                <h5 class="no-margin">Zonemaneto Lei 16050</h5>
+                <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->ZonemanetoInc16050"; ?></span></h4>
+              </div>
+            </div>
+             
+
+          <div id="DivCaBasico2"> 
+            <div class="col-md-4  no-padding" >
+              <h5 class="no-margin">C.A. Básico Lei 16050</h5>
+              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaBasicoInc16050"; ?></span></h4>
+            </div>
+          </div>
+
+
+          <div id="DivCaMaximo2">
+            <div class="col-md-4  no-padding" >
+              <h5 class="no-margin">C.A. Máximo Lei 16050</h5>
+              <h4><span class="semi-bold"><?php echo "$retornoIncorporacao->CaMaximoInc16050"; ?></span></h4>
             </div>
             </div>
           </div>  
@@ -657,7 +692,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
  </div>
 
   <!--Insere o conteudo do buffer na variável  -->
-  <form id='formPdf' name='formPdf' method='POST' action='impressao/incorporacao.php'>
+  <form id='formPdf' name='formPdf' method='POST' action='impressao/incorporacao.php' target="_blank">
   <!--COMEÇO DO VALOR DO CONTENT-->
    <input id='IdIncorporacaoAux' name='IdIncorporacaoAux' value="<?php echo $IdIncorporacao;?>">
    <!--FIM DO VALOR DO CONTENT-->
@@ -671,6 +706,9 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
       <input type="hidden" name="ckZonemaneto" id="ckZonemaneto" value="1">
       <input type="hidden" name="ckCaBasico" id="ckCaBasico" value="1">
       <input type="hidden" name="ckCaMaximo" id="ckCaMaximo" value="1">
+      <input type="hidden" name="ckZonemaneto2" id="ckZonemaneto2" value="1">
+      <input type="hidden" name="ckCaBasico2" id="ckCaBasico2" value="1">
+      <input type="hidden" name="ckCaMaximo2" id="ckCaMaximo2" value="1">
       <input type="hidden" name="ckAtividade" id="ckAtividade" value="1">
       <input type="hidden" name="ckRegiao" id="ckRegiao" value="1">
       <input type="hidden" name="ckMapa" id="ckMapa" value="1">
@@ -693,7 +731,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK-->
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/plugins/breakpoints.js" type="text/javascript"></script>

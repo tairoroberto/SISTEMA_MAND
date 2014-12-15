@@ -302,9 +302,12 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                           <!--INICIO CLONE -->
                            <script type="text/javascript">
                               function insereSelect() {
-                               $('select[name="SelectServicoArray[]"]').children().remove();
-                               $('select[name="SelectServicoArray[]"]').append('<option value="Selecionar...">Selecionar...</option>');
-                                        <?php                                
+
+                                if ($('select[name="SelectServicoArray[]"]').val() == "Selecionar...") {
+                                   $('select[name="SelectServicoArray[]"]').children().remove();
+                                   $('select[name="SelectServicoArray[]"]').append('<option value="Selecionar...">Selecionar...</option>');                                 
+                                }
+                                     <?php                                
                                           /********************************************************************************************/
                                           /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
                                           /********************************************************************************************/

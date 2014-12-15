@@ -45,8 +45,13 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 <script type="text/javascript">
   jQuery(function($){
-    $("#CpfRequerente").mask("999.999.999-99");
-   $("#RgRequerente").mask("999.999.999.9999");
+   
+    if ($('#inputCpf').is(':checked')) {
+      $("#CpfRequerente").mask("999.999.999-99");
+    }else{
+      $("#CpfRequerente").mask("99.999.999/9999-99")
+    }   
+   $("#RgRequerente").mask("999.999.999.999.999");
    $("#CepRequerente").mask("99.999-999");
 
    $("#TelefoneRequerente1").mask("(99) 9999-99999");
@@ -54,6 +59,16 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
    $("#CelularRequerente").mask("(99) 9999-99999");
   
 });
+
+  function changeMask(){
+    var checked = $('#inputCpf').val();
+     if ($('#inputCpf').is(':checked')) {
+      $("#CpfRequerente").mask("999.999.999-99");
+    }else{
+      $("#CpfRequerente").mask("99.999.999/9999-99")
+    } 
+    
+  }
 
 </script>
 
@@ -116,10 +131,20 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
  
                           <input name="NomeRequerente" id="NomeRequerente" type="text"  class="form-control" placeholder="Nome Completo">   
                       </div>
+                      <div class="col-md-1">
+                          <label>
+                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf" checked="true" onchange="changeMask()">
+                             Cpf
+                          </label>
+                           <label>
+                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="changeMask()">
+                              Cnpj
+                           </label>
+                      </div>
                       <div class="col-md-3">
                         <input name="CpfRequerente" id="CpfRequerente" type="text"  class="form-control" placeholder="CPF ">
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input name="RgRequerente" id="RgRequerente" type="text"  class="form-control" placeholder="RG ">
                       </div>
                     </div>

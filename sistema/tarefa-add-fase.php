@@ -254,153 +254,14 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     </div>
                     
                     
-                    
-                     <div class="row form-row">
-                    <div class="col-md-12">
-                     <h4>Etapa 2 </h4>
-                    </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                    <div class="col-md-2">
-                        <select id="SelectResponsavel2" name="SelectResponsavel2" style="width:100%">
-                   
-                    <option value="Responsável">Responsável</option>
-                           <?php                                
-                                /********************************************************************************************/
-                                /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
-                                /********************************************************************************************/
-                                 
-                                $buscarUsuario = new Conexao();
-                                $buscarUsuario->conectar();
-                                $buscarUsuario->selecionarDB();                      
-
-                                $buscarUsuario->set('sql',"SELECT `IdUsuario`,`NomeExibicao` FROM `Usuarios` ");
-                                $query= $buscarUsuario->executarQuery();
-                                while($retornorUsuario=mysql_fetch_array($query)) { 
-                                ?> 
-                                <option value="<?php echo $retornorUsuario['IdUsuario'] ?>"> <?php echo $retornorUsuario['NomeExibicao'] ?>
-                                </option>
-             
-                              <?php } ?> 
-
-                  
-                  </select>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <input name="TituloTarefa2" id="TituloTarefa2" type="text"  class="form-control" placeholder="Titulo ">
-                      </div>
-                      <div class="col-md-6">
-                        <input name="DescricaoTarefa2" id="DescricaoTarefa2" type="text"  class="form-control" placeholder="Descrição ">
-                      </div>
-                      <div class="col-md-2">
-                        <input name="DataEntregaTarefa2" id="DataEntregaTarefa2" type="text"  class="form-control" placeholder="Data entrega ">
-                      </div>
-                      
-                    </div>
-                    
-
-
-                     <div class="row form-row">
-                    <div class="col-md-12">
-                     <h4>Etapa 3 </h4>
-                    </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                    <div class="col-md-2">
-                        <select id="SelectResponsavel3" name="SelectResponsavel3" style="width:100%">
-                   
-                    <option value="Responsável">Responsável</option>
-                           <?php                                
-                                /********************************************************************************************/
-                                /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
-                                /********************************************************************************************/
-                                 
-                                $buscarUsuario = new Conexao();
-                                $buscarUsuario->conectar();
-                                $buscarUsuario->selecionarDB();                      
-
-                                $buscarUsuario->set('sql',"SELECT `IdUsuario`,`NomeExibicao` FROM `Usuarios` ");
-                                $query= $buscarUsuario->executarQuery();
-                                while($retornorUsuario=mysql_fetch_array($query)) { 
-                                ?> 
-                                <option value="<?php echo $retornorUsuario['IdUsuario'] ?>"> <?php echo $retornorUsuario['NomeExibicao'] ?>
-                                </option>
-             
-                              <?php } ?> 
-
-                  
-                  </select>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <input name="TituloTarefa3" id="TituloTarefa3" type="text"  class="form-control" placeholder="Titulo ">
-                      </div>
-                      <div class="col-md-6">
-                        <input name="DescricaoTarefa3" id="DescricaoTarefa3" type="text"  class="form-control" placeholder="Descrição ">
-                      </div>
-                      <div class="col-md-2">
-                        <input name="DataEntregaTarefa3" id="DataEntregaTarefa3" type="text"  class="form-control" placeholder="Data entrega ">
-                      </div>
-                      
-                    </div>
-
-
-
-                     <div class="row form-row">
-                    <div class="col-md-12">
-                     <h4>Etapa 4 </h4>
-                    </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                    <div class="col-md-2">
-                        <select id="SelectResponsavel4" name="SelectResponsavel4" style="width:100%">
-                   
-                    <option value="Responsável">Responsável</option>
-                           <?php                                
-                                /********************************************************************************************/
-                                /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
-                                /********************************************************************************************/
-                                 
-                                $buscarUsuario = new Conexao();
-                                $buscarUsuario->conectar();
-                                $buscarUsuario->selecionarDB();                      
-
-                                $buscarUsuario->set('sql',"SELECT `IdUsuario`,`NomeExibicao` FROM `Usuarios` ");
-                                $query= $buscarUsuario->executarQuery();
-                                while($retornorUsuario=mysql_fetch_array($query)) { 
-                                ?> 
-                                <option value="<?php echo $retornorUsuario['IdUsuario'] ?>"> <?php echo $retornorUsuario['NomeExibicao'] ?>
-                                </option>
-             
-                              <?php } ?> 
-
-                  
-                  </select>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <input name="TituloTarefa4" id="TituloTarefa4" type="text"  class="form-control" placeholder="Titulo ">
-                      </div>
-                      <div class="col-md-6">
-                        <input name="DescricaoTarefa4" id="DescricaoTarefa4" type="text"  class="form-control" placeholder="Descrição ">
-                      </div>
-                      <div class="col-md-2">
-                        <input name="DataEntregaTarefa4" id="DataEntregaTarefa4" type="text"  class="form-control" placeholder="Data entrega ">
-                      </div>
-                      
-                    </div>
-
                     <!--INICIO DO CLONE DE TAREFAS-->
 
                     <script type="text/javascript">
                     function insereSelect() {
-                     $('select[name="SelectUsuarioArray[]"]').children().remove();
-                     $('select[name="SelectUsuarioArray[]"]').append('<option value="Responsável">Responsável</option>');
-                              <?php                                
+                      if ($('select[name="SelectUsuarioArray[]"]').val() == "Responsável") {
+                        $('select[name="SelectUsuarioArray[]"]').children().remove();
+                        $('select[name="SelectUsuarioArray[]"]').append('<option value="Responsável">Responsável</option>');
+                      }       <?php                                
                                 /********************************************************************************************/
                                 /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
                                 /********************************************************************************************/
@@ -454,7 +315,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     <div class="col-md-10">
                     </div>
                     <div class="col-md-2">
-                     <button class="btn btn-primary btn-cons" id="btnAdicionar" type="button" onclick="criarCampoTarefa();insereSelect();">Adicionar Etapa </button>
+                     <button class="btn btn-primary btn-cons" id="btnAdicionar" type="button" onclick="criarCampoTarefaEtapa();insereSelect();">Adicionar Etapa </button>
                     </div>
                     </div>
                     

@@ -61,17 +61,27 @@ $(document).ready(function() {
                             
                             
  
- function enviaFormCategoria(acao,idetapa,idtarefa){
+ function enviaFormCategoria(acao,idetapa,idtarefa,IdEmpresa,IdRequerente,IdImovel){
     var status;
 
      if (acao == 'Editar Fase'){   
          document.formTarefaDetalhe.IdTarefaAux.value = idtarefa;
-         document.formTarefaDetalhe.IdEtapaTarefaAux.value = idetapa;                             
+         document.formTarefaDetalhe.IdEtapaTarefaAux.value = idetapa; 
+
+         document.formTarefaDetalhe.HoldingAux.value = IdEmpresa;  
+         document.formTarefaDetalhe.RequerenteAux.value = IdRequerente;  
+         document.formTarefaDetalhe.SqlAux.value = IdImovel;  
+
          document.formTarefaDetalhe.action = "editar-etapa-tarefa";
          document.formTarefaDetalhe.submit();      
      } else if (acao == 'Transferir'){
          document.formTarefaDetalhe.IdTarefaAux.value = idtarefa;
-         document.formTarefaDetalhe.IdEtapaTarefaAux.value = idetapa;  
+         document.formTarefaDetalhe.IdEtapaTarefaAux.value = idetapa; 
+
+         document.formTarefaDetalhe.HoldingAux.value = IdEmpresa;  
+         document.formTarefaDetalhe.RequerenteAux.value = IdRequerente;  
+         document.formTarefaDetalhe.SqlAux.value = IdImovel;
+
          document.formTarefaDetalhe.action = "transferir-etapa-tarefa";
          document.formTarefaDetalhe.submit();
      }else if (acao == 'Ficha Tecnica'){
@@ -460,8 +470,8 @@ $(document).ready(function() {
                    <!--INICIO DA AÇÂO-->
                        <div class=" col-md-4 btn-group"> <a class="btn btn-white dropdown-toggle btn-demo-space" data-toggle="dropdown" href="#"> Ações<span class="caret"></span> </a>
                           <ul class="dropdown-menu">
-                            <li onclick="enviaFormCategoria('Editar Fase',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>);"><a>Editar Fase</a></li> 
-                            <li onclick="enviaFormCategoria('Transferir',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>);"><a>Transferir</a></li> 
+                            <li onclick="enviaFormCategoria('Editar Fase',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>,<?php echo $retornoTarefa2->IdEmpresa; ?>,<?php echo $retornoTarefa2->IdRequerente; ?>,<?php echo $retornoTarefa2->IdImovel; ?>);"><a>Editar Fase</a></li> 
+                            <li onclick="enviaFormCategoria('Transferir',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>,<?php echo $retornoTarefa2->IdEmpresa; ?>,<?php echo $retornoTarefa2->IdRequerente; ?>,<?php echo $retornoTarefa2->IdImovel; ?>);"><a>Transferir</a></li> 
                             <li onclick="enviaFormCategoria('Ficha Tecnica',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>);"><a>Ficha Tecnica</a></li> 
                             <li onclick="enviaFormCategoria('Processos',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>);"><a>Processos</a></li> 
                             <li onclick="enviaFormCategoria('Finalizar',<?php echo $retornoEtapaTarefa2->IdEtapaTarefa;?>,<?php echo $retornoEtapaTarefa2->IdTarefa ?>);"><a>Finalizar</a></li> 
@@ -694,9 +704,9 @@ $(document).ready(function() {
                             <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="<?php echo $IdOportunidade ?>">
 
                             <!--Auxiliares para retornar para essa página quendo retornar dp formulario php -->
-                            <input type="hidden" name="TarefaEnvia" id="TarefaEnvia" value="<?php echo $tarefaAux?>" > 
-                            <input type="hidden" name="HoldingEnvia" id="HoldingEnvia" value="<?php echo $HoldingAux?>" >
-                            <input type="hidden" name="RequerenteEnvia" id="RequerenteEnvia" value="<?php echo $RequerenteAux?>" >
+                            <input type="hidden" name="TarefaEnvia" id="TarefaEnvia" value="<?php echo $tarefaAux ?>" > 
+                            <input type="hidden" name="HoldingEnvia" id="HoldingEnvia" value="<?php echo $HoldingAux ?>" >
+                            <input type="hidden" name="RequerenteEnvia" id="RequerenteEnvia" value="<?php echo $RequerenteAux ?>" >
                             <input type="hidden" name="SqlEnvia" id="SqlEnvia" value="<?php echo $SqlAux?>" >  
 
                             <!--Auxiliares para retornar para essa página quendo retornar dp formulario php -->

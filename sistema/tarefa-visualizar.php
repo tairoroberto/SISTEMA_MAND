@@ -78,6 +78,97 @@ $(document).ready(function() {
   <!-- END SIDEBAR --> 
   <!-- BEGIN PAGE CONTAINER-->
   <div class="page-content">
+
+
+  <?php 
+
+      //Verifica as tarefas que estão finalizadas para tirar da lista de tarefas para visualizar
+
+        $buscarTarefa1 = new Conexao();
+        $buscarTarefa1->conectar();
+        $buscarTarefa1->selecionarDB(); 
+
+        $editaTarefa1 = new Conexao();
+        $editaTarefa1->conectar();
+        $editaTarefa1->selecionarDB(); 
+
+        $t = 0; 
+
+        $IdUsuario = $_SESSION ['usuarioID'];
+        $UsuarioTipo = $_SESSION ['usuarioTipo'];                   
+
+       $buscarTarefa1->set('sql',"SELECT CadastraTarefa.*, RazaoSocial,Nome, CadastraImovel.* 
+                                 FROM CadastroHolding, CadastroRequerente, CadastraImovel 
+                                 INNER JOIN `CadastraTarefa`
+                                 WHERE  CadastroHolding.IdEmpresa = CadastraTarefa.IdEmpresa AND
+                                        CadastroRequerente.IdRequerente = CadastraTarefa.IdRequerente AND
+                                        CadastraImovel.IdImovel = CadastraTarefa.IdImovel 
+                                  GROUP BY CadastraTarefa.IdTarefa");
+       
+        $query1 = $buscarTarefa1->executarQuery();
+       while($retornoTarefa=mysql_fetch_object($query1)) { 
+
+     /********************************************************************************************/
+    /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
+    /********************************************************************************************/
+     
+        $buscarEtapaTarefa1 = new Conexao();
+        $buscarEtapaTarefa1->conectar();
+        $buscarEtapaTarefa1->selecionarDB(); 
+
+        $buscarPorcetagemEtapaTarefa1 = new Conexao();
+        $buscarPorcetagemEtapaTarefa1->conectar();
+        $buscarPorcetagemEtapaTarefa1->selecionarDB(); 
+
+        $buscarQuantidadeEtapaTarefa1 = new Conexao();
+        $buscarQuantidadeEtapaTarefa1->conectar();
+        $buscarQuantidadeEtapaTarefa1->selecionarDB(); 
+
+        $IdUsuario = $_SESSION ['usuarioID'];
+        $UsuarioTipo = $_SESSION ['usuarioTipo'];    
+
+        //Muda a query para buscar as etapas da tarefa
+        //Se for o Admin irá ver todas as etapas
+        //senão verá somentes as etapas a que o usuario for responsável 
+        
+         $buscarEtapaTarefa1->set('sql',"SELECT EtapaTarefa.*, NomeExibicao FROM Usuarios
+                                         INNER JOIN EtapaTarefa
+                                         WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
+                                                EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa AND
+                                                EtapaTarefa.IdUsuario = '$IdUsuario'
+                                         GROUP BY EtapaTarefa.IdEtapaTarefa" );
+
+          //Busca As etapas que estão finalizadas
+          $buscarPorcetagemEtapaTarefa1->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas1
+                                                   FROM EtapaTarefa
+                                                   WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND 
+                                                          SituacaoEtapaTarefa = 'Finalizar' ");
+          $retornoQuantFinalizadaEtapaTarefa1=mysql_fetch_object($buscarPorcetagemEtapaTarefa1->executarQuery());
+
+          //Busca a quantidade de etapas 
+          $buscarQuantidadeEtapaTarefa1->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa1
+                                                   FROM EtapaTarefa
+                                                   WHERE  IdTarefa = '$retornoTarefa->IdTarefa' ");
+          $retornoQuantEtapaTarefa1=mysql_fetch_object($buscarQuantidadeEtapaTarefa1->executarQuery());
+
+       $porcetagem = $retornoQuantFinalizadaEtapaTarefa1->QuantEtapaFinalizadas1 * 100 / $retornoQuantEtapaTarefa1->QuantEtapaTarefa1;
+                  
+      //Se a porcentagem for >= 100 muda o status da tarefa para finalizada
+      if (number_format($porcetagem, 0, ',', '.')."% Completo" == "100% Completo") {                                 
+           $editaTarefa1->set('sql',"UPDATE CadastraTarefa SET  SituacaoTarefa = 'Finalizada' 
+                                                          WHERE  IdTarefa = '$retornoTarefa->IdTarefa' ");
+           $editaTarefa1->executarQuery();
+      } 
+
+      $t++; 
+
+    } 
+
+?>
+
+
+
+
      
       
           
@@ -110,6 +201,11 @@ $(document).ready(function() {
                         $buscarTarefa = new Conexao();
                         $buscarTarefa->conectar();
                         $buscarTarefa->selecionarDB(); 
+
+                        $editaTarefa = new Conexao();
+                        $editaTarefa->conectar();
+                        $editaTarefa->selecionarDB();  
+
                         $i = 0; 
 
                         $IdUsuario = $_SESSION ['usuarioID'];
@@ -185,23 +281,27 @@ $(document).ready(function() {
                           <div class="row form-row">
                             <div class="col-md-12">
                               <p><strong>Holding:</strong> <?php echo "$retornoTarefa->RazaoSocial"; ?></p>
+
+                              <!--Auxiliares para envio-->
                               <input type="hidden" name="HoldingAux" value="<?php echo "$retornoTarefa->IdEmpresa"; ?>"> 
                               <input type="hidden" name="IdTarefa" value="<?php echo "$retornoTarefa->IdTarefa"; ?>"> 
                               <input type="hidden" name="NomeProjeto" value="<?php echo "$retornoTarefa->NomeProjeto"; ?>"> 
 
                               <input type="hidden" name="IdOportunidadeAux" id="IdOportunidadeAux" value="0"> 
+                              <input type="hidden" name="RequerenteAux" value="<?php echo "$retornoTarefa->IdRequerente"; ?>">
+                              <input type="hidden" name="SqlAux" value="<?php echo "$retornoTarefa->IdImovel"; ?>">
+
+
                             </div>
                           </div>
                           <div class="row form-row">
                             <div class="col-md-12">
-                              <p><strong>Requerente:</strong> <?php echo "$retornoTarefa->Nome"; ?></p>
-                              <input type="hidden" name="RequerenteAux" value="<?php echo "$retornoTarefa->IdRequerente"; ?>">
+                              <p><strong>Requerente:</strong> <?php echo "$retornoTarefa->Nome"; ?></p>                              
                             </div>
                           </div>
                           <div class="row form-row">
                           <div class="col-md-4">
-                              <p><strong>SQL:</strong> <?php echo "$retornoTarefa->NumeroContribuinte"; ?></p>
-                              <input type="hidden" name="SqlAux" value="<?php echo "$retornoTarefa->IdImovel"; ?>">
+                              <p><strong>SQL:</strong> <?php echo "$retornoTarefa->NumeroContribuinte"; ?></p>                              
                             </div>
                             <div class="col-md-8">
                               <p><strong>Endereço:</strong> <?php echo "$retornoTarefa->LocalImovel"; ?></p>
@@ -302,6 +402,7 @@ $(document).ready(function() {
                         <div class="col-md-6">
                            <div class="row form-row">
                                <div class="col-md-12">
+                               <?php $porcetagem = 0; ?>
                                <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
                                   echo "0% Completo";
                                   echo "<div class='col-md-12'>
@@ -326,6 +427,8 @@ $(document).ready(function() {
                                            </div>                        
                                         </div>";
                                 } ?>
+
+                         
                                 </div>                                
                             </div>
                           <br>
@@ -336,46 +439,45 @@ $(document).ready(function() {
 
 
                           <div class="col-md-12" align="right">Previsão de entrega: <?php echo "$retornoEtapaTarefa->DataEntregaEtapa"; ?> </div>
-                          <div class="row form-row">
-                            <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $i; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">
-                            <a href="#">
-                              <p> <strong><i class="<?php 
-                               if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                    echo "fa fa-check";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
-                                    echo "fa fa-user";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
-                                    echo "fa fa-pause";
-                               }?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
-                               </p>
-                             </a>  
-                              <!--Auxiliares para envio de dados para formulário PHP-->
-                              <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">
-                            <div class="progress progress-small">
-                              <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                echo "100";
-                              }else{
-                                  echo "25";
-                                }?>" class="progress-bar progress-bar-danger"></div>
-                            </div>
-                            </div>
-                          </div>
-                      
-                      <?php } ?>
+                            <div class="row form-row">
+                              <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $i; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">
+                              <a href="#">
+                                <p> <strong><i class="<?php 
+                                 if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
+                                      echo "fa fa-check";
+                                 }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                      echo "fa fa-user";
+                                 }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                      echo "fa fa-pause";
+                                 }?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
+                                 </p>
+                               </a>  
+                                <!--Auxiliares para envio de dados para formulário PHP-->
+                                <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">
+                              <div class="progress progress-small">
+                                <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
+                                  echo "100";
+                                }else{
+                                    echo "25";
+                                  }?>" class="progress-bar progress-bar-danger"></div>
+                              </div>
+                              </div>
+                            </div>                          
+                        <?php } ?>
 
 
-                      </div>
-                      </div>
-                       <!--Auxiliar para enviar de formulario-->
-                      <input type="hidden" name="IdTarefaAux" id="IdTarefaAux">
-                      <input type="hidden" name="IdEtapaTarefaAux" id="IdEtapaTarefaAux">
-                    </form>
-                  </div>
-                </div>
+                       </div>
+                     </div>
+                   <!--Auxiliar para enviar de formulario-->
+                    <input type="hidden" name="IdTarefaAux" id="IdTarefaAux">
+                    <input type="hidden" name="IdEtapaTarefaAux" id="IdEtapaTarefaAux">
+                </form>
               </div>
             </div>
-            
-            <?php $i++; } ?>
+          </div>
+        </div>
+        
+      <?php $i++; } ?>
 
 
 
@@ -473,7 +575,7 @@ $(document).ready(function() {
                           
                           <div class="row form-row">
                             <div class="col-md-12">
-                              <p><strong>Holding:</strong> <?php echo "$retornoTarefa->RazaoSocial"; ?></p>
+                              <p><strong>Razão social:</strong> <?php echo "$retornoTarefa->RazaoSocial"; ?></p>
                               <input type="hidden" name="HoldingAux" value="<?php echo "$retornoTarefa->IdEmpresa"; ?>"> 
                               <input type="hidden" name="IdTarefa" value="<?php echo "$retornoTarefa->IdTarefa"; ?>"> 
                               <input type="hidden" name="NomeProjeto" value="<?php echo "$retornoTarefa->NomeProjeto"; ?>"> 
@@ -483,7 +585,7 @@ $(document).ready(function() {
                           </div>
                           <div class="row form-row">
                             <div class="col-md-12">
-                              <p><strong>Requerente:</strong> <?php echo "$retornoTarefa->NomeContato"; ?></p>
+                              <p><strong>Nome:</strong> <?php echo "$retornoTarefa->NomeContato"; ?></p>
                               <input type="hidden" name="RequerenteAux" value="<?php echo "$retornoTarefa->IdRequerente"; ?>">
                             </div>
                           </div>
@@ -497,13 +599,21 @@ $(document).ready(function() {
                             </div>
                           </div>
                           <div class="row form-row">
-                            <div class="col-md-12">
+                            <div class="col-md-5">
                               <p><strong>Inicio:</strong> <?php echo "$retornoTarefa->DataInicio"; ?></p>
+                            </div>
+                            <div class="col-md-7">
+                              <p><strong>IPTU:</strong> <?php echo "$retornoTarefa->ContribuinteIptu"; ?></p>
                             </div>
                           </div>
                           <div class="row form-row">
                             <div class="col-md-12">
                               <p><strong>Entrega:</strong> <?php echo "$retornoTarefa->DataEntrega"; ?> </p>
+                            </div>
+                          </div>
+                          <div class="row form-row">
+                            <div class="col-md-12">
+                              <p><strong>Comentários:</strong> <?php echo "$retornoTarefa->ComentariosSolicitacao"; ?> </p>
                             </div>
                           </div>
                           
@@ -757,3 +867,4 @@ $(document).ready(function() {
 <!-- END CORE TEMPLATE JS --> 
 </body>
 </html>
+

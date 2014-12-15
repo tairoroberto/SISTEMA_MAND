@@ -20,24 +20,15 @@
     
     
 
-    if (isset($_POST['IdTarefa'],
-              $_POST['HoldingAux'],
-              $_POST['RequerenteAux'],
-              $_POST['SqlAux'])){
+    if (isset($_POST['IdTarefa'])){
 
     	$IdTarefa = $_POST['IdTarefa'];
-    	$HoldingAux = $_POST['HoldingAux'];
-        $RequerenteAux = $_POST['RequerenteAux'];
-        $SqlAux = $_POST['SqlAux'];
         $SituacaoTarefa = "Finalizada";
 
     	 	$AtualizaSituacaoTarefa->set('sql',"UPDATE CadastraTarefa SET                                    
 				                          SituacaoTarefa = '$SituacaoTarefa'
 				                          WHERE 
-				                          IdTarefa = '$IdTarefa' AND
-                                          IdEmpresa = '$HoldingAux' AND
-                                          IdRequerente = '$RequerenteAux' AND
-                                          IdImovel = '$SqlAux'");  
+				                          IdTarefa = '$IdTarefa' ");  
        
 
         $AtualizaEtapaTarefa->set('sql',"UPDATE EtapaTarefa SET SituacaoEtapaTarefa = 'Finalizar'

@@ -121,7 +121,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                        
                         $retornoProcesso = mysql_fetch_object($buscarProcesso->executarQuery()); ?> 
                         
-                         <h4><span class="semi-bold"><?php echo "$retornoProcesso->NumeroContribuinte "."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $retornoProcesso->SubPrefeitura"; ?></span></h4>
+                         <h4><span class="semi-bold"><?php echo "$retornoProcesso->NumeroContribuinte "."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $retornoProcesso->SubPrefeituraLei13885"; ?></span></h4>
                          <h4><?php echo $retornoProcesso->LocalImovel.", ".$retornoProcesso->CodLog; ?></h4>
                          <h4><?php echo "$retornoProcesso->NomeFantasia"; ?></h4>                                   
                                                 
@@ -222,6 +222,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
             <div class="col-lg-2">
                <input type="text" placeholder="Data" class="form-control" id="DataDomProcessoDetalhe" name="DataDomProcessoDetalhe">
                <input type="hidden" id="IdProcesso" name="IdProcesso" value="<?php echo "$IdProcesso";?>">
+               <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION ['usuarioID'];?>">
           </div>
        
           <div class="col-lg-2">

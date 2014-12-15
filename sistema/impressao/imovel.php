@@ -12,7 +12,8 @@
     <script type="text/javascript">
       function imprimir(){
         window.print();
-        irPagina();
+       // irPagina();
+       window.close();
       }
     </script>
 </head>
@@ -240,7 +241,7 @@
 <?php if ($_POST['ckZoneamento'] == 1) { ?>
 <table width="670" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td colspan="3" class="titulo"><h3><strong>ZONEAMENTO</strong></h3></td>
+    <td colspan="3" class="titulo"><h3><strong>LEI 13885</strong></h3></td>
   </tr>
   <tr>
     <td width="33%"><h5>Zona</h5></td>
@@ -248,9 +249,9 @@
     <td width="33%"><h5>Distrito</h5></td>
   </tr>
   <tr>
-    <td width="33%"><h4><?php echo $retornoImovel->Zona; ?></h4></td>
-    <td width="33%"><h4><?php echo $retornoImovel->CaBasico; ?></h4></td>
-    <td width="33%"><h4><?php echo $retornoImovel->Distrito; ?></h4></td>
+    <td width="33%"><h4><?php echo $retornoImovel->ZonaLei13885; ?></h4></td>
+    <td width="33%"><h4><?php echo $retornoImovel->CaBasicoLei13885; ?></h4></td>
+    <td width="33%"><h4><?php echo $retornoImovel->DistritoLei13885; ?></h4></td>
   </tr>
   <tr>
     <td><h5>Sub Prefeitura</h5></td>
@@ -258,9 +259,9 @@
     <td><h5>Gabarito</h5></td>
   </tr>
   <tr>
-    <td><h4><?php echo $retornoImovel->SubPrefeitura; ?></h4></td>
-    <td><h4><?php echo $retornoImovel->CaMaximo; ?></h4></td>
-    <td><h4><?php echo $retornoImovel->Gabarito; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->SubPrefeituraLei13885; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->CaMaximoLei13885; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->GabaritoLei13885; ?></h4></td>
   </tr>
   <tr>
     <td><h5>T.O.</h5></td>
@@ -268,9 +269,9 @@
     <td><h5>Lag. da Via</h5></td>
   </tr>
   <tr>
-    <td><h4><?php echo $retornoImovel->ToImovel; ?></h4></td>
-    <td><h4><?php echo $retornoImovel->TxPerm; ?>%</h4></td>
-    <td><h4><?php echo $retornoImovel->LargVia; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->ToImovelLei13885; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->TxPermLei13885; ?>%</h4></td>
+    <td><h4><?php echo $retornoImovel->LargViaLei13885; ?></h4></td>
   </tr>
   <tr>
   <tr>
@@ -279,7 +280,83 @@
     <td><h5>&nbsp;</h5></td>
   </tr>
   <tr>
-    <td><h4><?php echo $retornoImovel->ClassificacaoVia; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->ClassificacaoViaLei13885; ?></h4></td>
+    <td><h4>&nbsp;</h4></td>
+    <td><h4>&nbsp;</h4></td>
+  </tr>
+<!--   <tr>
+    <td colspan="3"><h5>Comentários</h5></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h5><?php echo $retornoImovel->ComentariosZoneamento; ?></h5></td>
+  </tr> -->
+  
+</table>
+
+<?php } ?>
+
+
+
+<?php if ($_POST['ckGeomapas'] == 1) { ?>
+<table width="670" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="3" class="titulo"><h3><strong>GEOMAPAS</strong></h3></td>
+  </tr> 
+  <tr>  
+    <td colspan="3"><?php if ($retornoImovel->Geomapas != null) {
+                echo "<img src='../includes/php/fotos/Imovel/".$retornoImovel->Geomapas."' width='670' height='235' />";
+              }else{
+                echo "";
+                }  ?>
+    </td>
+  </tr>
+</table>
+<?php }  ?>
+
+
+<?php if ($_POST['ckZoneamento2'] == 1) { ?>
+<table width="670" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="3" class="titulo"><h3><strong>LEI 16050</strong></h3></td>
+  </tr>
+  <tr>
+    <td width="33%"><h5>Zona</h5></td>
+    <td width="33%"><h5>C.A. Básico</h5></td>
+    <td width="33%"><h5>Distrito</h5></td>
+  </tr>
+  <tr>
+    <td width="33%"><h4><?php echo $retornoImovel->ZonaLei16050; ?></h4></td>
+    <td width="33%"><h4><?php echo $retornoImovel->CaBasicoLei16050; ?></h4></td>
+    <td width="33%"><h4><?php echo $retornoImovel->DistritoLei16050; ?></h4></td>
+  </tr>
+  <tr>
+    <td><h5>Sub Prefeitura</h5></td>
+    <td><h5>C.A. Máximo</h5></td>
+    <td><h5>Gabarito</h5></td>
+  </tr>
+  <tr>
+    <td><h4><?php echo $retornoImovel->SubPrefeituraLei16050; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->CaMaximoLei16050; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->GabaritoLei16050; ?></h4></td>
+  </tr>
+  <tr>
+    <td><h5>T.O.</h5></td>
+    <td><h5>Tx Perm.</h5></td>
+    <td><h5>Lag. da Via</h5></td>
+  </tr>
+  <tr>
+    <td><h4><?php echo $retornoImovel->ToImovelLei16050; ?></h4></td>
+    <td><h4><?php echo $retornoImovel->TxPermLei16050; ?>%</h4></td>
+    <td><h4><?php echo $retornoImovel->LargViaLei16050; ?></h4></td>
+  </tr>
+  <tr>
+  <tr>
+    <td><h5>Classificação da Via</h5></td>
+    <td><h5>&nbsp;</h5></td>
+    <td><h5>&nbsp;</h5></td>
+  </tr>
+  <tr>
+    <td><h4><?php echo $retornoImovel->ClassificacaoViaLei16050; ?></h4></td>
     <td><h4>&nbsp;</h4></td>
     <td><h4>&nbsp;</h4></td>
   </tr>
@@ -293,6 +370,8 @@
 </table>
 
 <?php } ?>
+
+
 
 
 
@@ -464,27 +543,6 @@
 <?php } ?>
  
  
-
-
-<?php if ($_POST['ckGeomapas'] == 1) { ?>
-<table width="670" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td colspan="3" class="titulo"><h3><strong>GEOMAPAS</strong></h3></td>
-  </tr> 
-  <tr>  
-    <td colspan="3"><?php if ($retornoImovel->Geomapas != null) {
-                echo "<img src='../includes/php/fotos/Imovel/".$retornoImovel->Geomapas."' width='670' height='235' />";
-              }else{
-                echo "";
-                }  ?>
-    </td>
-  </tr>
-</table>
-<?php }  ?>
-
-
-
-
 
 <?php if ($_POST['ckImagemLocal'] == 1) { ?>  
 

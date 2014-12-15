@@ -4,7 +4,8 @@
  $idusuario = $_GET['idusuario'];
 
  // Query that retrieves events
- $requete = "SELECT * FROM Eventos WHERE idusuario = $idusuario  ORDER BY id";
+ //$requete = "SELECT * FROM Eventos WHERE idusuario = $idusuario  ORDER BY id";
+$requete = "SELECT * FROM Eventos ORDER BY id";
 
  // connection to the database
  try {

@@ -188,17 +188,31 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                               <input name="AtividadeIncorporacao" id="AtividadeIncorporacao" type="text"  class="form-control" placeholder="Atividade">
                             </div>
                           </div>
+
                           <div class="row form-row">
                             <div class="col-md-4">
-                              <input name="ZonemanetoIncorporacao" id="ZonemanetoIncorporacao" type="text"  class="form-control" placeholder="Zonemaneto">
+                              <input name="ZonemanetoInc13885" id="ZonemanetoInc13885" type="text"  class="form-control" placeholder="Zonemaneto I Lei 13885">
                             </div>
                             <div class="col-md-4">
-                              <input name="CaBasicoIncorporacao" id="CaBasicoIncorporacao" type="text"  class="form-control" placeholder="CA Básico">
+                              <input name="CaBasicoInc13885" id="CaBasicoInc13885" type="text"  class="form-control" placeholder="CA Básico I Lei 13885">
                             </div>
                             <div class="col-md-4">
-                              <input name="CaMaximoIncorporacao" id="CaMaximoIncorporacao" type="text"  class="form-control" placeholder="CA Máximo">
+                              <input name="CaMaximoInc13885" id="CaMaximoInc13885" type="text"  class="form-control" placeholder="CA Máximo I Lei 13885">
                             </div>
                           </div>
+
+                          <div class="row form-row">
+                            <div class="col-md-4">
+                              <input name="ZonemanetoInc16050" id="ZonemanetoInc16050" type="text"  class="form-control" placeholder="Zonemaneto Lei 16050 ">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="CaBasicoInc16050" id="CaBasicoInc16050" type="text"  class="form-control" placeholder="CA Básico Lei 16050 ">
+                            </div>
+                            <div class="col-md-4">
+                              <input name="CaMaximoInc16050" id="CaMaximoInc16050" type="text"  class="form-control" placeholder="CA Máximo Lei 16050 ">
+                            </div>
+                          </div>
+
                            <div class="row form-row">
                             <div class="col-md-4">
                               <input name="NomeProprietarioIncorporacao" id="NomeProprietarioIncorporacao" type="text"  class="form-control" placeholder="Nome Proprietário">

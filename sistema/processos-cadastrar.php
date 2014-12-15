@@ -31,6 +31,48 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 <!-- Inclui o arquivos para validação de campos-->
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
+<script type="text/javascript">
+  /*
+var req;
+
+function loadSelect(){
+    req = null;
+    var url = 'buscar_sql_processos_cadastrar.php';
+    var id_holding = document.getElementById('SelectHolding').value;
+    var id_requerente = document.getElementById('SelectRequerente').value;
+    // Procura por um objeto nativo (Mozilla/Safari)
+    if (window.XMLHttpRequest) {
+        req = new XMLHttpRequest();
+        req.onreadystatechange = processReqChange;
+        req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
+        req.send(null);
+    // Procura por uma versao ActiveX (IE)
+    } else if (window.ActiveXObject) {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+        if (req) {
+            req.onreadystatechange = processReqChange;
+            req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
+            req.send();
+        }
+    }
+}
+
+function processReqChange(){
+    // apenas quando o estado for "completado"
+    if (req.readyState == 4) {
+        // apenas se o servidor retornar "OK"
+        if (req.status == 200) {
+            // procura pela div id="atualiza" e insere o conteudo
+            // retornado nela, como texto HTML
+            document.getElementById('SelectSql').innerHTML = req.responseText;
+        } else {
+            alert("Houve um problema ao obter os dados:\n" + req.statusText);
+        }
+    }
+}
+*/
+
+</script>
 
 </head>
 <!-- END HEAD -->
@@ -38,6 +80,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- BEGIN BODY -->
 <body class="">
 <!-- BEGIN HEADER -->
+
+
 
 	 <!-- END TOP NAVIGATION MENU -->
 
@@ -84,95 +128,88 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                     <form class="form-no-horizontal-spacing" id="formProcesso" name="formProcesso" method="POST" 
                             action="includes/php/CadastraProcesso.php">
                       <div class="row column-seperation">
-                        <div class="col-md-12">
-                          
-                         
+                        <div class="col-md-12">      
                           <div class="row form-row">
-                            <div class="col-md-4">
-                              <select id="SelectHolding" name="SelectHolding" style="width:100%">
-                   
-                    <option value="Holding">Holding</option>
-                    <?php 
-                     
-                    /********************************************************************************************/
-                    /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
-                    /********************************************************************************************/
-                     
-                        $buscar = new Conexao();
-                        $buscar->conectar();
-                        $buscar->selecionarDB();                      
 
-                       $buscar->set('sql',"SELECT `IdEmpresa`,`NomeFantasia` FROM `CadastroHolding` ");
-                       
-                        $query= $buscar->executarQuery();
-                       while($retorno=mysql_fetch_array($query)) { 
-                      ?> 
-                        <option value="<?php echo $retorno['IdEmpresa'] ?>"> <?php echo $retorno['NomeFantasia'] ?>
-                        </option>
- 
-                      <?php } ?>
-                  
-                  </select>
+                            <div class="col-md-4">
+                              <select id="SelectHolding" name="SelectHolding" style="width:100%" >                   
+                                  <option value="Holding">Holding</option>
+                                  <?php
+                                   
+                                  /********************************************************************************************/
+                                  /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
+                                  /********************************************************************************************/
+                                   
+                                      $buscar = new Conexao();
+                                      $buscar->conectar();
+                                      $buscar->selecionarDB();                      
+
+                                     $buscar->set('sql',"SELECT `IdEmpresa`,`NomeFantasia` FROM `CadastroHolding` ");
+                                     
+                                      $query= $buscar->executarQuery();
+                                     while($retorno=mysql_fetch_array($query)) { 
+                                    ?> 
+                                      <option value="<?php echo $retorno['IdEmpresa'] ?>"> <?php echo $retorno['NomeFantasia'] ?>
+                                      </option>               
+                                    <?php } ?>                                
+                                </select>
+                            </div>                            
+                            
+                            <div class="col-md-4">
+                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%" >                   
+                                   <option value="Requerente">Requerente</option>
+                                  <?php 
+
+                                  /********************************************************************************************/
+                                  /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
+                                  /********************************************************************************************/
+                                   
+                                      $buscar = new Conexao();
+                                      $buscar->conectar();
+                                      $buscar->selecionarDB();                      
+
+                                     $buscar->set('sql',"SELECT `IdRequerente`,`Nome` FROM `CadastroRequerente` ");
+                                     
+                                      $query= $buscar->executarQuery();
+                                     while($retorno=mysql_fetch_array($query)) { 
+                                    ?> 
+                                      <option value="<?php echo $retorno['IdRequerente'] ?>"> <?php echo $retorno['Nome'] ?>
+                                      </option>               
+                                    <?php } ?>                                
+                                </select>
                             </div>
                             
                             
-                            <div class="col-md-4">
-                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%">
-                   
-                     <option value="Requerente">Requerente</option>
-                    <?php 
+                            <div class="col-md-4"  id="div_sql_processo">
+                              <select  id="SelectSql" name="SelectSql" style="width:100%" >                   
+                                  <option value="SQL">SQL</option>
+                                  <?php 
 
-                    /********************************************************************************************/
-                    /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
-                    /********************************************************************************************/
-                     
-                        $buscar = new Conexao();
-                        $buscar->conectar();
-                        $buscar->selecionarDB();                      
+                                  /********************************************************************************************/
+                                  /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
+                                  /*******************************************************************************************/
+                                   
+                                      $buscar = new Conexao();
+                                      $buscar->conectar();
+                                      $buscar->selecionarDB();                      
 
-                       $buscar->set('sql',"SELECT `IdRequerente`,`Nome` FROM `CadastroRequerente` ");
-                       
-                        $query= $buscar->executarQuery();
-                       while($retorno=mysql_fetch_array($query)) { 
-                      ?> 
-                        <option value="<?php echo $retorno['IdRequerente'] ?>"> <?php echo $retorno['Nome'] ?>
-                        </option>
- 
-                      <?php } ?>
-                  
-                  </select>
-                            </div>
-                            
-                            
-                            <div class="col-md-4">
-                              <select  id="SelectSql" name="SelectSql" style="width:100%">
-                   
-                    <option value="SQL">SQL</option>
-                    <?php 
-
-                    /********************************************************************************************/
-                    /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
-                    /********************************************************************************************/
-                     
-                        $buscar = new Conexao();
-                        $buscar->conectar();
-                        $buscar->selecionarDB();                      
-
-                       $buscar->set('sql',"SELECT `IdImovel`,`NumeroContribuinte` FROM `CadastraImovel` ");
-                       
-                        $query= $buscar->executarQuery();
-                       while($retorno=mysql_fetch_array($query)) { 
-                      ?> 
-                        <option value="<?php echo $retorno['IdImovel'] ?>"> <?php echo $retorno['NumeroContribuinte'] ?>
-                        </option>
- 
-                      <?php } ?>
-
-                  
-                  </select>
+                                     $buscar->set('sql',"SELECT `IdImovel`,`NumeroContribuinte` FROM `CadastraImovel` ");
+                                     
+                                      $query= $buscar->executarQuery();
+                                     while($retorno=mysql_fetch_array($query)) { 
+                                    ?> 
+                                     <option value="<?php echo $retorno['IdImovel'] ?>"> <?php echo $retorno['NumeroContribuinte'] ?>
+                                      </option>             
+                                    <?php }  ?>                                
+                                </select>
                             </div>
                            
-                          </div>
+                        </div>
+
+
+
+
+
                         <div class="row form-row">
                             <div class="col-md-4">
                             <input name="NumeroProcesso" id="NumeroProcesso" type="text"  class="form-control" placeholder="Numero do processo">

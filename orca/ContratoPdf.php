@@ -10,10 +10,10 @@
 <form id="formContrato" name="formContrato" method="post" action="EnviaContrato">
 
 <!--ESQUERDA-->
-<div id="col-esq">
+<!-- <div id="col-esq">
 	
     <div id="esq-logo" align="center"><a href="#" onclick="enviar('inicio');"><img src="imagens/logo.png" width="169" height="169" /></a></div>
-    
+     -->
 <?php
     if (($_GET['IdOportunidadeAux2']) && ($_GET['IdOrcamentoBAux2'])) {
 
@@ -62,7 +62,7 @@ include('php/EnviarEmail.php');
       $query= $buscarServicosOrcamentoB->executarQuery();
       while($retornoServicosOrcamentoB = mysql_fetch_object($query)) {  ?>
 
-
+<!-- 
      <div id="esq-serv" align="left" class="ver-azu">
         <span class="ver-bra"><?php echo $cont;?> </span> <?php echo $retornoServicosOrcamentoB->TituloServico;?><br />
         <?php 
@@ -124,7 +124,7 @@ include('php/EnviarEmail.php');
      
 
   
-</div>
+</div> -->
 <!--ESQUERDA-->
 
 

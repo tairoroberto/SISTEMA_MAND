@@ -13,15 +13,9 @@
     $DeletaSituacaoTarefa->conectar();
     $DeletaSituacaoTarefa->selecionarDB();
 
-    if (isset($_POST['IdTarefa'],
-              $_POST['HoldingAux'],
-              $_POST['RequerenteAux'],
-              $_POST['SqlAux'])){
+    if (isset($_POST['IdTarefa'])){
 
         $IdTarefa = $_POST['IdTarefa'];
-        $HoldingAux = $_POST['HoldingAux'];
-        $RequerenteAux = $_POST['RequerenteAux'];
-        $SqlAux = $_POST['SqlAux'];
 
             $DeletaSituacaoTarefa->set('sql',"DELETE  FROM EtapaTarefa WHERE IdTarefa = '$IdTarefa' "); 
             $DeletaSituacaoTarefa->executarQuery();

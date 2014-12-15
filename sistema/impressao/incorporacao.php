@@ -12,7 +12,8 @@
    <script type="text/javascript">
         function imprimir(){
           window.print();
-          irPagina();          
+         // irPagina();          
+         window.close();
         }
     </script>
 
@@ -78,77 +79,98 @@
     <td width="33%"><h4><?php echo "$retornoIncorporacao->situacao"; ?></h4></td>
    <?php } ?> 
   </tr>
+
   <tr>
+    <?php if ($_POST['ckMetragem'] == 1) { ?> 
+        <td><h5>Metragem</h5></td>
+    <?php } ?> 
 
-<?php if ($_POST['ckMetragem'] == 1) { ?> 
-    <td><h5>Metragem</h5></td>
-<?php } ?> 
-
-<?php if ($_POST['ckValorVenda'] == 1) { ?> 
-    <td><h5>Valor Venda m²</h5></td>
-<?php } ?> 
-
-<?php if ($_POST['ckZonemaneto'] == 1) { ?> 
-    <td><h5>Zonemaneto</h5></td>
-<?php } ?> 
-
+    <?php if ($_POST['ckValorVenda'] == 1) { ?> 
+        <td><h5>Valor Venda m²</h5></td>
+    <?php } ?> 
   </tr>
+
   <tr>
+    <?php if ($_POST['ckMetragem'] == 1) { ?> 
+        <td><h4><?php echo "$retornoIncorporacao->MetragemIncorporacao"; ?>m²</h4></td>
+    <?php } ?> 
 
-<?php if ($_POST['ckMetragem'] == 1) { ?> 
-    <td><h4><?php echo "$retornoIncorporacao->MetragemIncorporacao"; ?>m²</h4></td>
-<?php } ?> 
-
-<?php if ($_POST['ckValorVenda'] == 1) { ?> 
-    <td><h4>R$ <?php echo "$retornoIncorporacao->ValorVendaIncorporacao"; ?></h4></td>
-<?php } ?> 
-
-<?php if ($_POST['ckZonemaneto'] == 1) { ?> 
-    <td><h4><?php echo "$retornoIncorporacao->ZonemanetoIncorporacao"; ?></h4></td>
-<?php } ?> 
-
+    <?php if ($_POST['ckValorVenda'] == 1) { ?> 
+        <td><h4>R$ <?php echo "$retornoIncorporacao->ValorVendaIncorporacao"; ?></h4></td>
+    <?php } ?> 
   </tr>
+
+
   <tr>
-<?php if ($_POST['ckCaBasico'] == 1) { ?> 
-    <td><h5>C.A. Básico</h5></td>
-<?php } ?> 
+    <?php if ($_POST['ckZonemaneto'] == 1) { ?> 
+      <td><h5>Zonemaneto Lei 13885</h5></td>
+    <?php } ?> 
+    <?php if ($_POST['ckCaBasico'] == 1) { ?> 
+        <td><h5>C.A. Básico Lei 13885</h5></td>
+    <?php } ?> 
 
-<?php if ($_POST['ckCaMaximo'] == 1) { ?> 
-    <td><h5>C.A. Máximo</h5></td>
-<?php } ?> 
-
-<?php if ($_POST['ckAtividade'] == 1) { ?> 
-    <td><h5>Atividade</h5></td>
-<?php } ?> 
+    <?php if ($_POST['ckCaMaximo'] == 1) { ?> 
+        <td><h5>C.A. Máximo Lei 13885</h5></td>
+    <?php } ?>     
   </tr>
+
   <tr>
+    <?php if ($_POST['ckZonemaneto'] == 1) { ?> 
+      <td><h4><?php echo "$retornoIncorporacao->ZonemanetoInc13885"; ?></h4></td>
+    <?php } ?> 
+    <?php if ($_POST['ckCaBasico'] == 1) { ?> 
+        <td><h4><?php echo "$retornoIncorporacao->CaBasicoInc13885"; ?></h4></td>
+    <?php } ?> 
 
-<?php if ($_POST['ckCaBasico'] == 1) { ?> 
-    <td><h4><?php echo "$retornoIncorporacao->CaBasicoIncorporacao"; ?></h4></td>
-<?php } ?> 
-
-<?php if ($_POST['ckCaMaximo'] == 1) { ?> 
-    <td><h4>R$ <?php echo "$retornoIncorporacao->CaMaximoIncorporacao"; ?></h4></td>
-<?php } ?> 
-
-<?php if ($_POST['ckAtividade'] == 1) { ?> 
-    <td><h4><?php echo "$retornoIncorporacao->AtividadeIncorporacao"; ?></h4></td>
-<?php } ?> 
+    <?php if ($_POST['ckCaMaximo'] == 1) { ?> 
+        <td><h4>R$ <?php echo "$retornoIncorporacao->CaMaximoInc13885"; ?></h4></td>
+    <?php } ?> 
   </tr>
+
+    <tr>
+    <?php if ($_POST['ckZonemaneto2'] == 1) { ?> 
+      <td><h5>Zonemaneto Lei 16050</h5></td>
+    <?php } ?> 
+    <?php if ($_POST['ckCaBasico2'] == 1) { ?> 
+        <td><h5>C.A. Básico Lei 16050</h5></td>
+    <?php } ?> 
+
+    <?php if ($_POST['ckCaMaximo2'] == 1) { ?> 
+        <td><h5>C.A. Máximo Lei 16050</h5></td>
+    <?php } ?>     
+  </tr>
+
   <tr>
+    <?php if ($_POST['ckZonemaneto2'] == 1) { ?> 
+      <td><h4><?php echo "$retornoIncorporacao->ZonemanetoInc16050"; ?></h4></td>
+    <?php } ?> 
+    <?php if ($_POST['ckCaBasico2'] == 1) { ?> 
+        <td><h4><?php echo "$retornoIncorporacao->CaBasicoInc16050"; ?></h4></td>
+    <?php } ?> 
 
-<?php if ($_POST['ckRegiao'] == 1) { ?> 
-    <td width="33%"><h5>Região</h5></td>
-<?php } ?> 
-
-    <td width="33%">&nbsp;</td>
+    <?php if ($_POST['ckCaMaximo2'] == 1) { ?> 
+        <td><h4>R$ <?php echo "$retornoIncorporacao->CaMaximoInc16050"; ?></h4></td>
+    <?php } ?> 
   </tr>
+
+
+  <tr>
+    <?php if ($_POST['ckRegiao'] == 1) { ?> 
+        <td width="33%"><h5>Região</h5></td>
+    <?php } ?> 
+
+    <?php if ($_POST['ckAtividade'] == 1) { ?> 
+      <td><h5>Atividade</h5></td>
+    <?php } ?> 
+      </tr>
   <tr>
 
   <?php if ($_POST['ckRegiao'] == 1) { ?> 
     <td width="33%"><h4><?php echo "$retornoIncorporacao->BairroIncorporacao"; ?></h4></td>
   <?php } ?> 
-    <td width="33%">&nbsp;</td>
+  <?php if ($_POST['ckAtividade'] == 1) { ?> 
+    <td><h4><?php echo "$retornoIncorporacao->AtividadeIncorporacao"; ?></h4></td>
+  <?php } ?> 
   </tr>
 
 <?php if ($_POST['ckMapa'] == 1) { ?> 
