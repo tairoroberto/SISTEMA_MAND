@@ -532,7 +532,7 @@
                       <?php echo $retornoUsuarioTranferiu->NomeExibicao; ?> - Transferencia
                     </div>
                     <div class="description">
-                      Tranferiu - <?php echo $retornoEtapaTrasnferida->TituloEtapa; ?> para você.
+                      Tranferiu - <?php echo $retornoEtapaTrasnferida->TituloEtapa; ?> - para você.
                     </div>
                     <div class="date pull-left">
                     <?php echo $retornoTranferencia->DataTranferencia; ?> 

@@ -44,7 +44,7 @@ if (isset($_POST['HoldingAux'],
           /********************************************************************************************/
 
         if ($insereDocumentosTarefa->executarQuery()) {
-      	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe?tarefaAux=".$TarefaAux."&HoldingAux=".$HoldingAux."&RequerenteAux=".$RequerenteAux."&SqlAux=".$SqlAux."&IdOportunidadeAux=".$IdOportunidade."'; alert('Documentos Solicitados com sucesso'); </script>");
+    	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe?tarefaAux=".$TarefaAux."&HoldingAux=".$HoldingAux."&RequerenteAux=".$RequerenteAux."&SqlAux=".$SqlAux."&IdOportunidadeAux=".$IdOportunidade."'; alert('Documentos Solicitados com sucesso'); </script>");
       	 }else{
       	 	echo("<script type='text/javascript'> location.href='../../tarefa-detalhe?tarefaAux=".$TarefaAux."&HoldingAux=".$HoldingAux."&RequerenteAux=".$RequerenteAux."&SqlAux=".$SqlAux."&IdOportunidadeAux=".$IdOportunidade."'; alert('Documentos não Solicitados'); </script>");
       	 }

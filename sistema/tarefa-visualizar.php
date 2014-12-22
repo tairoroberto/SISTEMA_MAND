@@ -383,6 +383,7 @@ $(document).ready(function() {
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
                                                                 EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa AND
                                                                 EtapaTarefa.IdUsuario = '$IdUsuario'
+                                                         ORDER BY EtapaTarefa.DataEntregaEtapa asc
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa" );
                             
                           //Busca As etapas que estão finalizadas
@@ -779,7 +780,8 @@ $(document).ready(function() {
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
                                                                 EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa AND
                                                                 EtapaTarefa.IdUsuario = '$IdUsuario'
-                                                         GROUP BY EtapaTarefa.IdEtapaTarefa" );
+                                                         ORDER BY EtapaTarefa.DataEntregaEtapa
+                                                         GROUP BY EtapaTarefa.IdEtapaTarefa");
                             
                           //Busca As etapas que estão finalizadas
                           $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
