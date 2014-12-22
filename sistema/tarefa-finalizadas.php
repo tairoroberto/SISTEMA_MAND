@@ -98,6 +98,11 @@ function buscarTarefa(){
   <!-- BEGIN PAGE CONTAINER-->
   <div class="page-content">
 
+<?php //Função para conversão de datas
+     function converteData($data){
+       return (preg_match('/\//',$data)) ? implode('-', array_reverse(explode('/', $data))) : implode('/', array_reverse(explode('-', $data)));
+     } 
+ ?>
 
 
             <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
@@ -397,7 +402,7 @@ function buscarTarefa(){
 
                         <div class="col-md-6">
                            <div class="row form-row">
-                               <div class="col-md-12">
+                             <!--   <div class="col-md-12">
                                <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
                                   echo "0% Completo";
                                   echo "<div class='col-md-12'>
@@ -422,38 +427,136 @@ function buscarTarefa(){
                                            </div>                        
                                         </div>";
                                 } ?>
-                                </div>                                
+                                </div>   -->
+
+                                    <!-- Aqui começa os teste com o progressbar -->
+                                        <?php 
+                                          
+                                          $result1 = converteData($retornoTarefa->DataInicio);    
+                                          $result2 = converteData($retornoTarefa->DataEntrega);                      
+
+                                          $DataInicio = strtotime("$result1");
+                                          $DataEntrega = strtotime("$result2");
+                                          $dataHoje =  strtotime(date('Y/m/d'));
+
+                                          $firerencaInicioHoje = $dataHoje - $DataInicio; 
+                                          $firerencaInicioFim = $DataEntrega - $DataInicio; 
+
+               
+
+                                          $segundos = 86400;
+                                          $porcentagem = 0;
+                                          $tipoProgressBar;
+
+                                          if ($firerencaInicioFim == 0) {
+                                             $firerencaInicioFim = 1;
+                                            }
+
+                                          $porcentagem = $firerencaInicioHoje * 100 / $firerencaInicioFim;                                          
+
+                                          $porcentagem = number_format($porcentagem, 0, ',', '.');
+                                        
+                                         //verifica a porcentagem e seta o tipo da progressbar
+                                            if ($porcentagem <= 60) {
+                                                $tipoProgressBar = "progress-bar-success";
+                                            }elseif ($porcentagem > 60 && $porcentagem <= 100 ) {
+                                                $tipoProgressBar = "progress-bar-warning";
+                                            }else{
+                                                $tipoProgressBar = "progress-bar-danger";
+                                            } 
+                                       ?>
+
+                                          <div class='col-md-12'>
+                                            <div class='progress progress-striped active progress-large'>
+                                              <div  aria-valuemin='0' aria-valuenow='<?php echo $porcentagem; ?>'  class="progress-bar <?php echo $tipoProgressBar; ?>"></div>
+                                             </div>                        
+                                          </div>
+                                        <!-- Aqui termina os teste com o progressbar -->
+
+
                             </div>
                           <br>
                     <?php 
                        $query2= $buscarEtapaTarefa->executarQuery();
                        while($retornoEtapaTarefa=mysql_fetch_object($query2)) { 
-                      ?>
+                         //Aqui começa os teste com o progressbar                                       
+                                          
+                      $resultEtapa1 = converteData($retornoTarefa->DataInicio);    
+                      $resultEtapa2 = converteData($retornoEtapaTarefa->DataEntregaEtapa);                      
 
+                      $DataInicioEtapa = strtotime("$resultEtapa1");
+                      $DataEntregaEtapa = strtotime("$resultEtapa2");
+                      $dataHoje =  strtotime(date('Y/m/d'));
+
+                      $firerencaInicioHojeEtapa = $dataHoje - $DataInicioEtapa; 
+                      $firerencaInicioFimEtapa = $DataEntregaEtapa - $DataInicioEtapa; 
+
+
+
+                      $segundosEtapa = 86400;
+                      $porcentagemEtapa = 0;
+                      $tipoProgressBarEtapa;
+                      $icone;
+
+                      if ($firerencaInicioFimEtapa == 0) {
+                       $firerencaInicioFimEtapa = 1;
+                      }
+                      $porcentagemEtapa = $firerencaInicioHojeEtapa * 100 / $firerencaInicioFimEtapa;                                          
+
+                      $porcentagemEtapa = number_format($porcentagemEtapa, 0, ',', '.');
+                    
+                     //verifica a porcentagemEtapa e seta o tipo da progressbar
+                        if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar" && $porcentagemEtapa < 100) {
+                            $icone = "fa fa-check";
+                            $tipoProgressBarEtapa = "progress-bar-success";
+                        }
+
+                        if ($porcentagemEtapa <= 60) {
+                            $tipoProgressBarEtapa = "progress-bar-success";
+
+                             if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-clock-o";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-pause";
+                             }                            
+
+                        }
+
+                        if ($porcentagemEtapa > 60 && $porcentagemEtapa <= 100) {
+                            $tipoProgressBarEtapa = "progress-bar-warning";
+                            if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-clock-o";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-pause";
+                             } 
+                        }
+
+                        if ($porcentagemEtapa > 100) {
+                            $tipoProgressBarEtapa = "progress-bar-danger";
+                            if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-warning";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-warning";
+                             } 
+                        }
+                   ?>
 
                           <div class="col-md-12" align="right">Previsão de entrega: <?php echo "$retornoEtapaTarefa->DataEntregaEtapa"; ?> </div>
                           <div class="row form-row">
                             <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $i; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">
                             <a href="#">
-                              <p> <strong><i class="<?php 
-                               if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                    echo "fa fa-check";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
-                                    echo "fa fa-user";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
-                                    echo "fa fa-pause";
-                               }?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
+                              <p> <strong><i class="<?php echo $icone;?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
                                </p>
                              </a>  
                               <!--Auxiliares para envio de dados para formulário PHP-->
                               <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">
-                            <div class="progress progress-small">
-                              <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                echo "100";
-                              }else{
-                                  echo "25";
-                                }?>" class="progress-bar progress-bar-danger"></div>
-                            </div>
+                                 <div class="progress progress-small">
+                                  <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
+                                    echo "100";
+                                  }else{
+                                      echo $porcentagemEtapa;
+                                    }?>" class="progress-bar <?php echo $tipoProgressBarEtapa; ?>"></div>
+                                </div>
                             </div>
                           </div>
                       
@@ -691,7 +794,7 @@ function buscarTarefa(){
 
                         <div class="col-md-6">
                            <div class="row form-row">
-                               <div class="col-md-12">
+                               <!-- <div class="col-md-12">
                                <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
                                   echo "0% Completo";
                                   echo "<div class='col-md-12'>
@@ -716,15 +819,121 @@ function buscarTarefa(){
                                            </div>                        
                                         </div>";
                                 } ?>
-                                </div>                                
+                                </div>   -->
+
+                                <!-- Aqui começa os teste com o progressbar -->
+                                        <?php 
+                                          
+                                          $result1 = converteData($retornoTarefa->DataInicio);    
+                                          $result2 = converteData($retornoTarefa->DataEntrega);                      
+
+                                          $DataInicio = strtotime("$result1");
+                                          $DataEntrega = strtotime("$result2");
+                                          $dataHoje =  strtotime(date('Y/m/d'));
+
+                                          $firerencaInicioHoje = $dataHoje - $DataInicio; 
+                                          $firerencaInicioFim = $DataEntrega - $DataInicio; 
+
+               
+
+                                          $segundos = 86400;
+                                          $porcentagem = 0;
+                                          $tipoProgressBar;
+
+                                          if ($firerencaInicioFim == 0) {
+                                           $firerencaInicioFim = 1;
+                                          }
+
+                                          $porcentagem = $firerencaInicioHoje * 100 / $firerencaInicioFim;                                          
+
+                                          $porcentagem = number_format($porcentagem, 0, ',', '.');
+                                        
+                                         //verifica a porcentagem e seta o tipo da progressbar
+                                            if ($porcentagem <= 60 ) {
+                                                $porcentagem = 100;
+                                                $tipoProgressBar = "progress-bar-success";
+                                            }elseif ($porcentagem > 60 && $porcentagem <= 100 ) {
+                                                $porcentagem = 100;
+                                                $tipoProgressBar = "progress-bar-warning";
+                                            }else{
+                                                $tipoProgressBar = "progress-bar-danger";
+                                            } 
+                                       ?>
+
+                                          <div class='col-md-12'>
+                                            <div class='progress progress-striped active progress-large'>
+                                              <div  aria-valuemin='0' aria-valuenow='<?php echo $porcentagem; ?>'  class="progress-bar <?php echo $tipoProgressBar; ?>"></div>
+                                             </div>                        
+                                          </div>
+                                        <!-- Aqui termina os teste com o progressbar -->
+
+
                             </div>
                           <br>
                     <?php 
                        $query2= $buscarEtapaTarefa->executarQuery();
                        while($retornoEtapaTarefa=mysql_fetch_object($query2)) { 
-                      ?>
+
+                      // Aqui começa os teste com o progressbar                                         
+                                          
+                      $resultEtapa1 = converteData($retornoTarefa->DataInicio);    
+                      $resultEtapa2 = converteData($retornoEtapaTarefa->DataEntregaEtapa);                      
+
+                      $DataInicioEtapa = strtotime("$resultEtapa1");
+                      $DataEntregaEtapa = strtotime("$resultEtapa2");
+                      $dataHoje =  strtotime(date('Y/m/d'));
+
+                      $firerencaInicioHojeEtapa = $dataHoje - $DataInicioEtapa; 
+                      $firerencaInicioFimEtapa = $DataEntregaEtapa - $DataInicioEtapa; 
 
 
+
+                      $segundosEtapa = 86400;
+                      $porcentagemEtapa = 0;
+                      $tipoProgressBarEtapa;
+
+                      if ($firerencaInicioFimEtapa == 0) {
+                       $firerencaInicioFimEtapa = 1;
+                      }
+                      $porcentagemEtapa = $firerencaInicioHojeEtapa * 100 / $firerencaInicioFimEtapa;                                          
+
+                      $porcentagemEtapa = number_format($porcentagemEtapa, 0, ',', '.');
+                    
+                      //verifica a porcentagemEtapa e seta o tipo da progressbar
+                          if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar" && $porcentagemEtapa < 100) {
+                              $icone = "fa fa-check";
+                              $tipoProgressBarEtapa = "progress-bar-success";
+                          }
+
+                         /* if ($porcentagemEtapa <= 60) {
+                              $tipoProgressBarEtapa = "progress-bar-success";
+
+                               if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                  $icone = "fa fa-clock-o";                                      
+                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                  $icone = "fa fa-pause";
+                               }                            
+
+                          }
+
+                          if ($porcentagemEtapa > 60 && $porcentagemEtapa <= 100) {
+                              $tipoProgressBarEtapa = "progress-bar-warning";
+                              if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                  $icone = "fa fa-clock-o";                                      
+                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                  $icone = "fa fa-pause";
+                               } 
+                          }
+
+                          if ($porcentagemEtapa > 100) {
+                              $tipoProgressBarEtapa = "progress-bar-danger";
+                              if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                  $icone = "fa fa-warning";                                      
+                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                  $icone = "fa fa-warning";
+                               } 
+                          }*/ 
+                    ?>
                           <div class="col-md-12" align="right">Previsão de entrega: <?php echo "$retornoEtapaTarefa->DataEntregaEtapa"; ?> </div>
                           <div class="row form-row">
                             <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $j; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">

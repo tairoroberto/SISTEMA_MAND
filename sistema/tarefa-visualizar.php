@@ -82,6 +82,11 @@ $(document).ready(function() {
 
   <?php 
 
+    //Função para conversão de datas
+     function converteData($data){
+       return (preg_match('/\//',$data)) ? implode('-', array_reverse(explode('/', $data))) : implode('/', array_reverse(explode('-', $data)));
+     } 
+
       //Verifica as tarefas que estão finalizadas para tirar da lista de tarefas para visualizar
 
         $buscarTarefa1 = new Conexao();
@@ -116,9 +121,9 @@ $(document).ready(function() {
         $buscarEtapaTarefa1->conectar();
         $buscarEtapaTarefa1->selecionarDB(); 
 
-        $buscarPorcetagemEtapaTarefa1 = new Conexao();
-        $buscarPorcetagemEtapaTarefa1->conectar();
-        $buscarPorcetagemEtapaTarefa1->selecionarDB(); 
+        $buscarporcentagemEtapaTarefa1 = new Conexao();
+        $buscarporcentagemEtapaTarefa1->conectar();
+        $buscarporcentagemEtapaTarefa1->selecionarDB(); 
 
         $buscarQuantidadeEtapaTarefa1 = new Conexao();
         $buscarQuantidadeEtapaTarefa1->conectar();
@@ -139,11 +144,11 @@ $(document).ready(function() {
                                          GROUP BY EtapaTarefa.IdEtapaTarefa" );
 
           //Busca As etapas que estão finalizadas
-          $buscarPorcetagemEtapaTarefa1->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas1
+          $buscarporcentagemEtapaTarefa1->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas1
                                                    FROM EtapaTarefa
                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND 
                                                           SituacaoEtapaTarefa = 'Finalizar' ");
-          $retornoQuantFinalizadaEtapaTarefa1=mysql_fetch_object($buscarPorcetagemEtapaTarefa1->executarQuery());
+          $retornoQuantFinalizadaEtapaTarefa1=mysql_fetch_object($buscarporcentagemEtapaTarefa1->executarQuery());
 
           //Busca a quantidade de etapas 
           $buscarQuantidadeEtapaTarefa1->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa1
@@ -151,10 +156,10 @@ $(document).ready(function() {
                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' ");
           $retornoQuantEtapaTarefa1=mysql_fetch_object($buscarQuantidadeEtapaTarefa1->executarQuery());
 
-       $porcetagem = $retornoQuantFinalizadaEtapaTarefa1->QuantEtapaFinalizadas1 * 100 / $retornoQuantEtapaTarefa1->QuantEtapaTarefa1;
+       $porcentagem = $retornoQuantFinalizadaEtapaTarefa1->QuantEtapaFinalizadas1 * 100 / $retornoQuantEtapaTarefa1->QuantEtapaTarefa1;
                   
       //Se a porcentagem for >= 100 muda o status da tarefa para finalizada
-      if (number_format($porcetagem, 0, ',', '.')."% Completo" == "100% Completo") {                                 
+      if (number_format($porcentagem, 0, ',', '.')."% Completo" == "100% Completo") {                                 
            $editaTarefa1->set('sql',"UPDATE CadastraTarefa SET  SituacaoTarefa = 'Finalizada' 
                                                           WHERE  IdTarefa = '$retornoTarefa->IdTarefa' ");
            $editaTarefa1->executarQuery();
@@ -335,9 +340,9 @@ $(document).ready(function() {
                         $buscarEtapaTarefa->conectar();
                         $buscarEtapaTarefa->selecionarDB(); 
 
-                        $buscarPorcetagemEtapaTarefa = new Conexao();
-                        $buscarPorcetagemEtapaTarefa->conectar();
-                        $buscarPorcetagemEtapaTarefa->selecionarDB(); 
+                        $buscarporcentagemEtapaTarefa = new Conexao();
+                        $buscarporcentagemEtapaTarefa->conectar();
+                        $buscarporcentagemEtapaTarefa->selecionarDB(); 
 
                         $buscarQuantidadeEtapaTarefa = new Conexao();
                         $buscarQuantidadeEtapaTarefa->conectar();
@@ -359,11 +364,11 @@ $(document).ready(function() {
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa");
 
                           //Busca As etapas que estão finalizadas
-                          $buscarPorcetagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
+                          $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
                                                                    FROM EtapaTarefa
                                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND 
                                                                           SituacaoEtapaTarefa = 'Finalizar' ");
-                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarPorcetagemEtapaTarefa->executarQuery());
+                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarporcentagemEtapaTarefa->executarQuery());
 
                           //Busca a quantidade de etapas 
                           $buscarQuantidadeEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa
@@ -381,12 +386,12 @@ $(document).ready(function() {
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa" );
                             
                           //Busca As etapas que estão finalizadas
-                          $buscarPorcetagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
+                          $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
                                                                    FROM EtapaTarefa
                                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND
                                                                           IdUsuario = '$IdUsuario' AND  
                                                                           SituacaoEtapaTarefa = 'Finalizar' ");
-                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarPorcetagemEtapaTarefa->executarQuery());
+                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarporcentagemEtapaTarefa->executarQuery());
 
                           //Busca a quantidade de etapas 
                           $buscarQuantidadeEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa
@@ -402,7 +407,9 @@ $(document).ready(function() {
                         <div class="col-md-6">
                            <div class="row form-row">
                                <div class="col-md-12">
-                                    <!--  <?php $porcetagem = 0; ?>
+
+
+                                    <!--  <?php $porcentagem = 0; ?>
                                      <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
                                         echo "0% Completo";
                                         echo "<div class='col-md-12'>
@@ -418,21 +425,56 @@ $(document).ready(function() {
                                                  </div>                        
                                               </div>";
                                      }else{
-                                        $porcetagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
+                                        $porcentagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
                                         
-                                        echo "".number_format($porcetagem, 0, ',', '.')."% Completo";
+                                        echo "".number_format($porcentagem, 0, ',', '.')."% Completo";
                                         echo "<div class='col-md-12'>
                                                 <div class='progress progress-striped active progress-large'>
-                                                  <div  aria-valuemin='0' aria-valuenow='".$porcetagem."'  class='progress-bar progress-bar-success'></div>
+                                                  <div  aria-valuemin='0' aria-valuenow='".$porcentagem."'  class='progress-bar progress-bar-success'></div>
                                                  </div>                        
                                               </div>";
                                       } ?> -->
 
+
+
+
+
                                         <!-- Aqui começa os teste com o progressbar -->
+                                        <?php 
+                                          
+                                          $result1 = converteData($retornoTarefa->DataInicio);    
+                                          $result2 = converteData($retornoTarefa->DataEntrega);                      
+
+                                          $DataInicio = strtotime("$result1");
+                                          $DataEntrega = strtotime("$result2");
+                                          $dataHoje =  strtotime(date('Y/m/d'));
+
+                                          $firerencaInicioHoje = $dataHoje - $DataInicio; 
+                                          $firerencaInicioFim = $DataEntrega - $DataInicio; 
+
+               
+
+                                          $segundos = 86400;
+                                          $porcentagem = 0;
+                                          $tipoProgressBar;
+
+                                          $porcentagem = $firerencaInicioHoje * 100 / $firerencaInicioFim;                                          
+
+                                          $porcentagem = number_format($porcentagem, 0, ',', '.');
+                                        
+                                         //verifica a porcentagem e seta o tipo da progressbar
+                                            if ($porcentagem <= 60) {
+                                                $tipoProgressBar = "progress-bar-success";
+                                            }elseif ($porcentagem > 60 && $porcentagem <= 100 ) {
+                                                $tipoProgressBar = "progress-bar-warning";
+                                            }else{
+                                                $tipoProgressBar = "progress-bar-danger";
+                                            } 
+                                       ?>
 
                                           <div class='col-md-12'>
                                             <div class='progress progress-striped active progress-large'>
-                                              <div  aria-valuemin='0' aria-valuenow='100'  class='progress-bar progress-bar-success'></div>
+                                              <div  aria-valuemin='0' aria-valuenow='<?php echo $porcentagem; ?>'  class="progress-bar <?php echo $tipoProgressBar; ?>"></div>
                                              </div>                        
                                           </div>
                                         <!-- Aqui termina os teste com o progressbar -->
@@ -442,32 +484,85 @@ $(document).ready(function() {
                     <?php 
                        $query2= $buscarEtapaTarefa->executarQuery();
                        while($retornoEtapaTarefa=mysql_fetch_object($query2)) { 
-                      ?>
+
+                      //Aqui começa os teste com o progressbar                                       
+                                          
+                      $resultEtapa1 = converteData($retornoTarefa->DataInicio);    
+                      $resultEtapa2 = converteData($retornoEtapaTarefa->DataEntregaEtapa);                      
+
+                      $DataInicioEtapa = strtotime("$resultEtapa1");
+                      $DataEntregaEtapa = strtotime("$resultEtapa2");
+                      $dataHoje =  strtotime(date('Y/m/d'));
+
+                      $firerencaInicioHojeEtapa = $dataHoje - $DataInicioEtapa; 
+                      $firerencaInicioFimEtapa = $DataEntregaEtapa - $DataInicioEtapa; 
+
+
+
+                      $segundosEtapa = 86400;
+                      $porcentagemEtapa = 0;
+                      $tipoProgressBarEtapa;
+                      $icone;
+
+                      $porcentagemEtapa = $firerencaInicioHojeEtapa * 100 / $firerencaInicioFimEtapa;                                          
+
+                      $porcentagemEtapa = number_format($porcentagemEtapa, 0, ',', '.');
+                    
+                     //verifica a porcentagemEtapa e seta o tipo da progressbar
+                        if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar" && $porcentagemEtapa < 100) {
+                            $icone = "fa fa-check";
+                            $tipoProgressBarEtapa = "progress-bar-success";
+                        }
+
+                        if ($porcentagemEtapa <= 60) {
+                            $tipoProgressBarEtapa = "progress-bar-success";
+
+                             if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-clock-o";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-pause";
+                             }                            
+
+                        }
+
+                        if ($porcentagemEtapa > 60 && $porcentagemEtapa <= 100) {
+                            $tipoProgressBarEtapa = "progress-bar-warning";
+                            if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-clock-o";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-pause";
+                             } 
+                        }
+
+                        if ($porcentagemEtapa > 100) {
+                            $tipoProgressBarEtapa = "progress-bar-danger";
+                            if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                $icone = "fa fa-warning";                                      
+                             }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                $icone = "fa fa-warning";
+                             } 
+                        }
+                   ?>
 
 
                           <div class="col-md-12" align="right">Previsão de entrega: <?php echo "$retornoEtapaTarefa->DataEntregaEtapa"; ?> </div>
                             <div class="row form-row">
                               <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $i; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">
                               <a href="#">
-                                <p> <strong><i class="<?php 
-                                 if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                      echo "fa fa-check";
-                                 }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
-                                      echo "fa fa-user";
-                                 }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
-                                      echo "fa fa-pause";
-                                 }?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
+                                <p> <strong><i class="<?php echo $icone;?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
                                  </p>
                                </a>  
                                 <!--Auxiliares para envio de dados para formulário PHP-->
-                                <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">
-                              <div class="progress progress-small">
-                                <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                  echo "100";
-                                }else{
-                                    echo "25";
-                                  }?>" class="progress-bar progress-bar-danger"></div>
-                              </div>
+                                <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">                                
+
+                                    <div class="progress progress-small">
+                                      <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
+                                        echo "100";
+                                      }else{
+                                          echo $porcentagemEtapa;
+                                        }?>" class="progress-bar <?php echo $tipoProgressBarEtapa; ?>"></div>
+                                    </div>
+
                               </div>
                             </div>                          
                         <?php } ?>
@@ -641,9 +736,9 @@ $(document).ready(function() {
                         $buscarEtapaTarefa->conectar();
                         $buscarEtapaTarefa->selecionarDB(); 
 
-                        $buscarPorcetagemEtapaTarefa = new Conexao();
-                        $buscarPorcetagemEtapaTarefa->conectar();
-                        $buscarPorcetagemEtapaTarefa->selecionarDB(); 
+                        $buscarporcentagemEtapaTarefa = new Conexao();
+                        $buscarporcentagemEtapaTarefa->conectar();
+                        $buscarporcentagemEtapaTarefa->selecionarDB(); 
 
                         $buscarQuantidadeEtapaTarefa = new Conexao();
                         $buscarQuantidadeEtapaTarefa->conectar();
@@ -665,11 +760,11 @@ $(document).ready(function() {
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa");
 
                           //Busca As etapas que estão finalizadas
-                          $buscarPorcetagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
+                          $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
                                                                    FROM EtapaTarefa
                                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND 
                                                                           SituacaoEtapaTarefa = 'Finalizar' ");
-                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarPorcetagemEtapaTarefa->executarQuery());
+                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarporcentagemEtapaTarefa->executarQuery());
 
                           //Busca a quantidade de etapas 
                           $buscarQuantidadeEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa
@@ -687,12 +782,12 @@ $(document).ready(function() {
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa" );
                             
                           //Busca As etapas que estão finalizadas
-                          $buscarPorcetagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
+                          $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas
                                                                    FROM EtapaTarefa
                                                                    WHERE  IdTarefa = '$retornoTarefa->IdTarefa' AND
                                                                           IdUsuario = '$IdUsuario' AND  
                                                                           SituacaoEtapaTarefa = 'Finalizar' ");
-                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarPorcetagemEtapaTarefa->executarQuery());
+                          $retornoQuantFinalizadaEtapaTarefa=mysql_fetch_object($buscarporcentagemEtapaTarefa->executarQuery());
 
                           //Busca a quantidade de etapas 
                           $buscarQuantidadeEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaTarefa
@@ -708,7 +803,7 @@ $(document).ready(function() {
                         <div class="col-md-6">
                            <div class="row form-row">
                                <div class="col-md-12">
-                               <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
+                             <!--   <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
                                   echo "0% Completo";
                                   echo "<div class='col-md-12'>
                                           <div class='progress progress-striped active progress-large'>
@@ -723,15 +818,61 @@ $(document).ready(function() {
                                            </div>                        
                                         </div>";
                                }else{
-                                  $porcetagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
+                                  $porcentagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
                                   
-                                  echo "".number_format($porcetagem, 0, ',', '.')."% Completo";
+                                  echo "".number_format($porcentagem, 0, ',', '.')."% Completo";
                                   echo "<div class='col-md-12'>
                                           <div class='progress progress-striped active progress-large'>
-                                            <div  aria-valuemin='0' aria-valuenow='".$porcetagem."'  class='progress-bar progress-bar-success'></div>
+                                            <div  aria-valuemin='0' aria-valuenow='".$porcentagem."'  class='progress-bar progress-bar-success'></div>
                                            </div>                        
                                         </div>";
-                                } ?>
+                                } ?> -->
+
+
+
+
+                                 <!-- Aqui começa os teste com o progressbar -->
+                                        <?php 
+                                          
+                                          $result1 = converteData($retornoTarefa->DataInicio);    
+                                          $result2 = converteData($retornoTarefa->DataEntrega);                      
+
+                                          $DataInicio = strtotime("$result1");
+                                          $DataEntrega = strtotime("$result2");
+                                          $dataHoje =  strtotime(date('Y/m/d'));
+
+                                          $firerencaInicioHoje = $dataHoje - $DataInicio; 
+                                          $firerencaInicioFim = $DataEntrega - $DataInicio; 
+
+               
+
+                                          $segundos = 86400;
+                                          $porcentagem = 0;
+                                          $tipoProgressBar;
+
+                                          $porcentagem = $firerencaInicioHoje * 100 / $firerencaInicioFim;                                          
+
+                                          $porcentagem = number_format($porcentagem, 0, ',', '.');
+                                        
+                                         //verifica a porcentagem e seta o tipo da progressbar
+                                            if ($porcentagem <= 60) {
+                                                $tipoProgressBar = "progress-bar-success";
+                                            }elseif ($porcentagem > 60 && $porcentagem <= 100 ) {
+                                                $tipoProgressBar = "progress-bar-warning";
+                                            }else{
+                                                $tipoProgressBar = "progress-bar-danger";
+                                            } 
+                                       ?>
+
+                                          <div class='col-md-12'>
+                                            <div class='progress progress-striped active progress-large'>
+                                              <div  aria-valuemin='0' aria-valuenow='<?php echo $porcentagem; ?>'  class="progress-bar <?php echo $tipoProgressBar; ?>"></div>
+                                             </div>                        
+                                          </div>
+                                        <!-- Aqui termina os teste com o progressbar -->
+
+
+
                                 </div>                                
                             </div>
                           <br>
@@ -739,32 +880,79 @@ $(document).ready(function() {
                        $query2= $buscarEtapaTarefa->executarQuery();
                        while($retornoEtapaTarefa=mysql_fetch_object($query2)) { 
                       ?>
+                      <!-- Aqui começa os teste com o progressbar -->
+                                        <?php 
+                                          
+                                          $resultEtapa1 = converteData($retornoTarefa->DataInicio);    
+                                          $resultEtapa2 = converteData($retornoEtapaTarefa->DataEntregaEtapa);                      
 
+                                          $DataInicioEtapa = strtotime("$resultEtapa1");
+                                          $DataEntregaEtapa = strtotime("$resultEtapa2");
+                                          $dataHoje =  strtotime(date('Y/m/d'));
+
+                                          $firerencaInicioHojeEtapa = $dataHoje - $DataInicioEtapa; 
+                                          $firerencaInicioFimEtapa = $DataEntregaEtapa - $DataInicioEtapa; 
+
+               
+
+                                          $segundosEtapa = 86400;
+                                          $porcentagemEtapa = 0;
+                                          $tipoProgressBarEtapa;
+
+                                          $porcentagemEtapa = $firerencaInicioHojeEtapa * 100 / $firerencaInicioFimEtapa;                                          
+
+                                          $porcentagemEtapa = number_format($porcentagemEtapa, 0, ',', '.');
+                                        
+                                          //verifica a porcentagemEtapa e seta o tipo da progressbar
+                                              if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar" && $porcentagemEtapa < 100) {
+                                                  $icone = "fa fa-check";
+                                                  $tipoProgressBarEtapa = "progress-bar-success";
+                                              }
+
+                                              if ($porcentagemEtapa <= 60) {
+                                                  $tipoProgressBarEtapa = "progress-bar-success";
+
+                                                   if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                                      $icone = "fa fa-clock-o";                                      
+                                                   }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                                      $icone = "fa fa-pause";
+                                                   }                            
+
+                                              }
+
+                                              if ($porcentagemEtapa > 60 && $porcentagemEtapa <= 100) {
+                                                  $tipoProgressBarEtapa = "progress-bar-warning";
+                                                  if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                                      $icone = "fa fa-clock-o";                                      
+                                                   }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                                      $icone = "fa fa-pause";
+                                                   } 
+                                              }
+
+                                              if ($porcentagemEtapa > 100) {
+                                                  $tipoProgressBarEtapa = "progress-bar-danger";
+                                                  if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
+                                                      $icone = "fa fa-warning";                                      
+                                                   }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
+                                                      $icone = "fa fa-warning";
+                                                   } 
+                                              } 
+                                       ?>
 
                           <div class="col-md-12" align="right">Previsão de entrega: <?php echo "$retornoEtapaTarefa->DataEntregaEtapa"; ?> </div>
                           <div class="row form-row">
                             <div class="col-md-12"  onclick="selecionaEtapa('<?php echo $j; ?>','<?php echo $retornoEtapaTarefa->IdEtapaTarefa; ?>');">
                             <a href="#">
-                              <p> <strong><i class="<?php 
-                               if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                    echo "fa fa-check";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Trabalhando") {
-                                    echo "fa fa-user";
-                               }elseif ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Pausado") {
-                                    echo "fa fa-pause";
-                               }?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
+                              <p> <strong><i class="<?php echo $icone;?>"></i> <?php echo "$retornoEtapaTarefa->TituloEtapa"; ?></strong> - <?php echo "$retornoEtapaTarefa->NomeExibicao"; ?>
                                </p>
                              </a>  
                               <!--Auxiliares para envio de dados para formulário PHP-->
                               <input type="hidden" name="tarefaAux" value="<?php echo "$retornoTarefa->IdTarefa"; ?>">
-                            <div class="progress progress-small">
-                              <div aria-valuemin='0' aria-valuenow="<?php if ($retornoEtapaTarefa->SituacaoEtapaTarefa == "Finalizar") {
-                                echo "100";
-                              }else{
-                                  echo "25";
-                                }?>" class="progress-bar progress-bar-danger"></div>
-                            </div>
-                            </div>
+
+                              <div class="progress progress-small">
+                                <div aria-valuemin='0' aria-valuenow="<?php echo $porcentagemEtapa;?>" class="progress-bar <?php echo $tipoProgressBarEtapa; ?>"></div>
+                              </div>
+
                           </div>
                       
                       <?php } ?>
