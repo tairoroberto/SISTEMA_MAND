@@ -101,19 +101,36 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
              /********************************************************************************************/
             /*       Variáveis para inserção no banco de dados, insere a OPORTUNIDADE e a empresa        */
            /********************************************************************************************/
-                     
-              $buscarTarefa = new Conexao();
-              $buscarTarefa->conectar();
-              $buscarTarefa->selecionarDB();                      
+        $buscarTarefa = new Conexao();
+        $buscarTarefa->conectar();
+        $buscarTarefa->selecionarDB();  
 
-              $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, RazaoSocial,Nome, CadastraImovel.* 
+         if ((isset($_POST['IdTarefaAux'])) &&
+              ($_POST['HoldingAux'] != 0) && ($_POST['RequerenteAux'] != 0) && ($_POST['SqlAux'] != 0)) {
+
+          
+
+            $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, RazaoSocial,Nome, CadastraImovel.* 
                                              FROM CadastroHolding, CadastroRequerente, CadastraImovel 
                                              INNER JOIN `CadastraTarefa`
                                              WHERE  CadastroHolding.IdEmpresa = CadastraTarefa.IdEmpresa AND
                                                     CadastroRequerente.IdRequerente = CadastraTarefa.IdRequerente AND
                                                     CadastraImovel.IdImovel = CadastraTarefa.IdImovel AND
-                                                    IdTarefa = '$IdTarefa'  
+                                                    CadastraTarefa.IdTarefa = '$IdTarefa'  
                                              GROUP BY CadastraTarefa.IdTarefa");
+
+          }else if ((isset($_POST['IdTarefaAux'])) &&
+              ($_POST['HoldingAux'] == 0) && ($_POST['RequerenteAux'] == 0) && ($_POST['SqlAux'] == 0)) {
+            
+            $IdOportunidade = $_POST['IdOportunidadeAux'];
+            $buscarTarefa->set('sql',"SELECT CadastraTarefa.*, Oportunidade.* 
+                                      FROM Oportunidade 
+                                      INNER JOIN `CadastraTarefa`
+                                      WHERE Oportunidade.IdOportunidade ='$IdOportunidade' AND 
+                                            CadastraTarefa.IdTarefa = '$IdTarefa' 
+                                      GROUP BY CadastraTarefa.IdTarefa");
+          } 
+
 
            $retornoTarefa = mysql_fetch_object($buscarTarefa->executarQuery()); ?>
      
@@ -135,26 +152,37 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
    
                        <div class="row form-row">
                        <br>
+
                             <div class="col-md-3">
                               <select id="SelectHolding" name="SelectHolding" style="width:100%" >
-                   
-                    <option value="<?php echo $retornoTarefa->IdEmpresa; ?>"><?php echo $retornoTarefa->RazaoSocial; ?></option>                  
-                  </select>
+                               <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                    <option value="0"><?php echo $retornoTarefa->RazaoSocial; ?></option>
+                                <?php }else{ ?>
+                                      <option value="<?php echo $retornoTarefa->IdEmpresa; ?>"><?php echo $retornoTarefa->RazaoSocial; ?></option> 
+                                <?php } ?>             
+                              </select>
                             </div>
+
                             <div class="col-md-3">
-                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%">
-                   
-                           <option value="<?php echo $retornoTarefa->IdRequerente; ?>"><?php echo $retornoTarefa->Nome; ?></option>
-                                              
-                  </select>
+                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%">                   
+                                <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                    <option value="0"><?php echo $retornoTarefa->NomeContato; ?></option>
+                                <?php }else{ ?>
+                                    <option value="<?php echo $retornoTarefa->IdRequerente; ?>"><?php echo $retornoTarefa->Nome; ?></option>                                              
+                                <?php } ?>
+                              </select>
                             </div>
+
                             <div class="col-md-2">
-                              <select id="SelectSql" name="SelectSql" style="width:100%">
-                   
-                  <option value="<?php echo $retornoTarefa->IdImovel; ?>"><?php echo $retornoTarefa->NumeroContribuinte; ?></option>
-                                             
-                  </select>
+                              <select id="SelectSql" name="SelectSql" style="width:100%">                   
+                                <?php if ($_POST['HoldingAux'] == 0) { ?>
+                                      <option value="0"><?php echo $retornoTarefa->CnpjCpf; ?></option>
+                                <?php }else{ ?>
+                                    <option value="<?php echo $retornoTarefa->IdImovel; ?>"><?php echo $retornoTarefa->NumeroContribuinte; ?></option>
+                                <?php } ?>                    
+                                </select>
                             </div>
+
                             <div class="col-md-2">
                              <input name="DataInicio" id="DataInicio" type="text"  class="form-control" placeholder="Data de Inicio " 
                                       value="<?php echo $retornoTarefa->DataInicio; ?>" readonly="true">
@@ -162,8 +190,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                             </div>
                             <div class="col-md-2">
                              <input name="DataEntrega" id="DataEntrega" type="text"  class="form-control" placeholder="Data de Entrega " 
-                                      value="<?php echo $retornoTarefa->DataEntrega; ?>" readonly="true">
-                              
+                                      value="<?php echo $retornoTarefa->DataEntrega; ?>" readonly="true">                              
                             </div>
                    </div>
                     

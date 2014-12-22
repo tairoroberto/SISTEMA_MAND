@@ -402,33 +402,40 @@ $(document).ready(function() {
                         <div class="col-md-6">
                            <div class="row form-row">
                                <div class="col-md-12">
-                               <?php $porcetagem = 0; ?>
-                               <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
-                                  echo "0% Completo";
-                                  echo "<div class='col-md-12'>
-                                          <div class='progress progress-striped active progress-large'>
-                                            <div aria-valuemin='0' aria-valuenow='0'  class='progress-bar progress-bar-success'></div>
-                                           </div>                        
-                                        </div>";
-                               } elseif ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == $retornoQuantEtapaTarefa->QuantEtapaTarefa) {
-                                 echo "100% Completo";
-                                 echo "<div class='col-md-12'>
-                                          <div class='progress progress-striped active progress-large'>
-                                            <div aria-valuemin='0' aria-valuenow='100' class='progress-bar progress-bar-success'></div>
-                                           </div>                        
-                                        </div>";
-                               }else{
-                                  $porcetagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
-                                  
-                                  echo "".number_format($porcetagem, 0, ',', '.')."% Completo";
-                                  echo "<div class='col-md-12'>
-                                          <div class='progress progress-striped active progress-large'>
-                                            <div  aria-valuemin='0' aria-valuenow='".$porcetagem."'  class='progress-bar progress-bar-success'></div>
-                                           </div>                        
-                                        </div>";
-                                } ?>
+                                    <!--  <?php $porcetagem = 0; ?>
+                                     <?php if ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == 0) {
+                                        echo "0% Completo";
+                                        echo "<div class='col-md-12'>
+                                                <div class='progress progress-striped active progress-large'>
+                                                  <div aria-valuemin='0' aria-valuenow='0'  class='progress-bar progress-bar-success'></div>
+                                                 </div>                        
+                                              </div>";
+                                     } elseif ($retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas == $retornoQuantEtapaTarefa->QuantEtapaTarefa) {
+                                       echo "100% Completo";
+                                       echo "<div class='col-md-12'>
+                                                <div class='progress progress-striped active progress-large'>
+                                                  <div aria-valuemin='0' aria-valuenow='100' class='progress-bar progress-bar-success'></div>
+                                                 </div>                        
+                                              </div>";
+                                     }else{
+                                        $porcetagem = $retornoQuantFinalizadaEtapaTarefa->QuantEtapaFinalizadas * 100 / $retornoQuantEtapaTarefa->QuantEtapaTarefa;
+                                        
+                                        echo "".number_format($porcetagem, 0, ',', '.')."% Completo";
+                                        echo "<div class='col-md-12'>
+                                                <div class='progress progress-striped active progress-large'>
+                                                  <div  aria-valuemin='0' aria-valuenow='".$porcetagem."'  class='progress-bar progress-bar-success'></div>
+                                                 </div>                        
+                                              </div>";
+                                      } ?> -->
 
-                         
+                                        <!-- Aqui começa os teste com o progressbar -->
+
+                                          <div class='col-md-12'>
+                                            <div class='progress progress-striped active progress-large'>
+                                              <div  aria-valuemin='0' aria-valuenow='100'  class='progress-bar progress-bar-success'></div>
+                                             </div>                        
+                                          </div>
+                                        <!-- Aqui termina os teste com o progressbar -->
                                 </div>                                
                             </div>
                           <br>
