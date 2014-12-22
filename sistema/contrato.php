@@ -120,65 +120,9 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 
                          <div class="row form-row">
-                            <label>DO OBJETO DO CONTRATO</label>
+                            <label>DADOS DO CONTRATO</label>
                             <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="DoObjetoDoContrato" id="DoObjetoDoContrato"  rows="3" class="col-lg-12"><?php echo $retornoContrato->DoObjetoDoContrato; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>OBRIGAÇÕES DO CONTRATANTE</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="ObrigacoesContratante" id="ObrigacoesContratante"  rows="3" class="col-lg-12"><?php echo $retornoContrato->ObrigacoesContratante; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>OBRIGAÇÕES DO CONTRATADO</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="ObrigacoesContratado" id="ObrigacoesContratado"  rows="3" class="col-lg-12"><?php echo $retornoContrato->ObrigacoesContratado; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="PrecoCondicoesPagamento" id="PrecoCondicoesPagamento"  rows="3" class="col-lg-12"><?php echo $retornoContrato->PrecoCondicoesPagamento; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DO INADIMPLEMENTO, DO DESCUMPRIMENTO E DA MULTA</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="InadiplenciaDescumplimentoMulta" id="InadiplenciaDescumplimentoMulta"  rows="3" class="col-lg-12"><?php echo $retornoContrato->InadDescumpMulta; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DA RESCISÃO IMOTIVADA</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="RecisaoIMotivada" id="RecisaoIMotivada"  rows="3" class="col-lg-12"><?php echo $retornoContrato->RecisaoIMotivada; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DO PRAZO</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="Doprazo" id="Doprazo"  rows="3" class="col-lg-12"><?php echo $retornoContrato->Doprazo; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DAS CONDIÇÕES GERAIS</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="CondicoesGerais" id="CondicoesGerais"  rows="3" class="col-lg-12"><?php echo $retornoContrato->CondicoesGerais; ?></textarea>                              
-                            </div>
-                          </div><br>
-
-                          <div class="row form-row">
-                            <label>DO FORO</label>
-                            <div class="col-md-10">
-                              <textarea class="textarea" style="width: 100%; height: 200px" name="DoForo" id="DoForo"  rows="3" class="col-lg-12"><?php echo $retornoContrato->DoForo; ?></textarea>                              
+                              <textarea class="textarea" style="width: 100%; height: 600px" name="DadosContrato" id="DadosContrato"  rows="3" class="col-lg-12"><?php echo $retornoContrato->DadosContrato; ?></textarea>                              
                             </div>
                           </div><br>
                         
