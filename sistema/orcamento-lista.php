@@ -30,6 +30,9 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+
+
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <!-- END CSS TEMPLATE -->
 <script type="text/javascript">
 
@@ -37,7 +40,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
         formOrcamentoLista.IdOportunidadeAux.value = num;
 
-        if ((status == "Viável") || (status == "Enviar outro orçamento") || (status == "Negociar")) {
+        if ((status == "Viável") || (status == "Enviar outro orçamento")) {
             formOrcamentoLista.action = "orcamentoA-cadastro";
             formOrcamentoLista.submit();
         }else if (status == "Pronto para enviar") {
@@ -45,6 +48,9 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
             formOrcamentoLista.submit();
         }else if (status == "Enviado") {
             formOrcamentoLista.action = "orcamento-acoes-B";
+            formOrcamentoLista.submit();
+        }else if (status == "Negociar") {
+            formOrcamentoLista.action = "orcamentoB-atualizar";
             formOrcamentoLista.submit();
         }else if ((status == "Fechado") || (status == "Perdido") || (status == "Rejeitado") || (status = "Prorrogar")) {
             formOrcamentoLista.action = "orcamento-acoes-B";
@@ -224,7 +230,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK--> 
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <!-- BEGIN CORE JS FRAMEWORK-->
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>

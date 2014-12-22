@@ -77,7 +77,7 @@
 		  	$atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Negociar' WHERE IdOportunidade = '$IdOportunidade';");
   			$atualizarOportunidade->executarQuery();
 
-  			//Deleta o orçamento enviado anteriormente
+  /*  //Deleta o orçamento enviado anteriormente
   			$deletarOrcamentoB->set('sql',"DELETE FROM  CadastraOrcamentoA WHERE IdOportunidade = '$IdOportunidade';");  			
   			$deletarOrcamentoB->executarQuery();	
 
@@ -95,12 +95,12 @@
 
   			//Deleta o Serviço enviado anteriormente
   			$deletarOrcamentoB->set('sql',"DELETE FROM  OrcamentoBServicos WHERE IdOportunidade = '$IdOportunidade';");  			
-  			$deletarOrcamentoB->executarQuery();	
+  			$deletarOrcamentoB->executarQuery();	*/
 
   			//Insere na Tabela HistoricoOportunidade
 		  	 $data = date('d/m/Y');
 			 $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
-			                            	 				 	   VALUES ('$data','Alterado','Negociar outro orçamento com cliente','$IdOportunidade');");
+			                            	 				 	   VALUES ('$data','Alterado','Negociar orçamento com cliente','$IdOportunidade');");
 			 $insereHistoricoOportunidade->executarQuery();
 
 			 echo("<script type='text/javascript' charset='utf-8'> location.href='../../orcamento-lista.php'; alert('Dados Alterados'); </script>");	

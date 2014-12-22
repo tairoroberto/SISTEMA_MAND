@@ -1,25 +1,25 @@
  <?php
 
-	/********************************************************************************************/
-	/* 					Inclui a classe de conexão com o banco 									*/
-	/********************************************************************************************/
+  /********************************************************************************************/
+  /*          Inclui a classe de conexão com o banco                  */
+  /********************************************************************************************/
     include('conexao/Conexao.class.php');
  
      /********************************************************************************************/
-    /*			Variáveis para inserção no banco de dados, insere o Responsável e a empresa		*/
+    /*      Variáveis para inserção no banco de dados, insere o Responsável e a empresa   */
     /********************************************************************************************/
  
-    $insereOrcamentoB = new Conexao();
-    $insereOrcamentoB->conectar();
-    $insereOrcamentoB->selecionarDB();
+    $atualizaOrcamentoB = new Conexao();
+    $atualizaOrcamentoB->conectar();
+    $atualizaOrcamentoB->selecionarDB();
 
-	  $atualizarOportunidade = new Conexao();
+    $atualizarOportunidade = new Conexao();
     $atualizarOportunidade->conectar();
     $atualizarOportunidade->selecionarDB();
 
-    $insereServicoOrcamentoB = new Conexao();
-    $insereServicoOrcamentoB->conectar();
-    $insereServicoOrcamentoB->selecionarDB();
+    $atualizaServicoOrcamentoB = new Conexao();
+    $atualizaServicoOrcamentoB->conectar();
+    $atualizaServicoOrcamentoB->selecionarDB();
     
     $insereLinkOrcamentoB = new Conexao();
     $insereLinkOrcamentoB->conectar();
@@ -43,92 +43,101 @@
 
 
     /********************************************************************************************/
-    /*			Verifica se os dados enviados pelo cadastro-holding.html estão completos		*/
+    /*      Verifica se os dados enviados pelo cadastro-holding.html estão completos    */
     /********************************************************************************************/
 if(isset($_POST['RazaoSocialOrcamentoB'], 
-		  $_POST['NomeContatoOrcamantoB'],
-		  $_POST['Taxas'],
-		  $_POST['FormaPagamentoOrcamnetoB'],
-		  $_POST['PrazoOrcamantoB'],
-		  $_POST['ConmentariosOrcamentoB'],
-		  $_POST['TotalOrcamentoB'],
-		  $_POST['TotalServicos'],
-		  $_POST['DataOrcamentoB'],
-		  $_POST['IdOrcamentoAAux'],
-		  $_POST['IdOportunidadeAux'])){
+         $_POST['NomeContatoOrcamantoB'],
+         $_POST['Taxas'],
+         $_POST['FormaPagamentoOrcamnetoB'],
+         $_POST['PrazoOrcamantoB'],
+         $_POST['ConmentariosOrcamentoB'],
+         $_POST['TotalOrcamentoB'],
+         $_POST['TotalServicos'],
+         $_POST['DataOrcamentoB'],
+         $_POST['IdOrcamentoBAux'],
+         $_POST['IdOportunidadeAux'])){
 
 
-	 /********************************************************************************************/
-    /*					Atribui os dados vindos do formulário às variáveis do php				*/
+   /********************************************************************************************/
+    /*          Atribui os dados vindos do formulário às variáveis do php       */
     /********************************************************************************************/
 
-    	$RazaoSocialOrcamentoB =	$_POST['RazaoSocialOrcamentoB']; 
-		  $NomeContatoOrcamantoB  = $_POST['NomeContatoOrcamantoB'];		  
-		  $Taxas  = $_POST['Taxas'];
-		  $FormaPagamentoOrcamnetoB  = $_POST['FormaPagamentoOrcamnetoB'];
-		  $PrazoOrcamantoB  = $_POST['PrazoOrcamantoB'];
-		  $ConmentariosOrcamentoB  = $_POST['ConmentariosOrcamentoB'];
-		  $TotalOrcamentoB  = $_POST['TotalOrcamentoB']; 
-		  $TotalServicos  = $_POST['TotalServicos']; 
-		  $DataOrcamentoB  = $_POST['DataOrcamentoB']; 
-		  $IdOrcamentoA  = $_POST['IdOrcamentoAAux']; 
-		  $IdOportunidade  = $_POST['IdOportunidadeAux']; 
-		  
+      $RazaoSocialOrcamentoB =  $_POST['RazaoSocialOrcamentoB']; 
+      $NomeContatoOrcamantoB  = $_POST['NomeContatoOrcamantoB'];      
+      $Taxas  = $_POST['Taxas'];
+      $FormaPagamentoOrcamnetoB  = $_POST['FormaPagamentoOrcamnetoB'];
+      $PrazoOrcamantoB  = $_POST['PrazoOrcamantoB'];
+      $ConmentariosOrcamentoB  = $_POST['ConmentariosOrcamentoB'];
+      $TotalOrcamentoB  = $_POST['TotalOrcamentoB']; 
+      $TotalServicos  = $_POST['TotalServicos']; 
+      $DataOrcamentoB  = $_POST['DataOrcamentoB']; 
+      $IdOrcamentoB  = $_POST['IdOrcamentoBAux']; 
+      $IdOportunidade  = $_POST['IdOportunidadeAux']; 
+      
 
 
 
      /********************************************************************************************/
-    /*		Insere ta tabela CadatraOrcamentoB os valores vindo do formulario					*/
+    /*    Insere ta tabela CadatraOrcamentoB os valores vindo do formulario         */
     /********************************************************************************************/
- 		   
-	 $insereOrcamentoB->set('sql',"INSERT INTO CadastraOrcamentoB(RazaoSocial, NomeContato, Taxas, FormaPagamento, Prazo, ComentariosOrcamento, TotalOrcamentoB,TotalServicos,DataOrcamentoB,IdOrcamentoA,IdOportunidade) 
-	 					  VALUES ('$RazaoSocialOrcamentoB','$NomeContatoOrcamantoB','$Taxas','$FormaPagamentoOrcamnetoB','$PrazoOrcamantoB','$ConmentariosOrcamentoB','$TotalOrcamentoB','$TotalServicos','$DataOrcamentoB','$IdOrcamentoA','$IdOportunidade');");  
+       
+   $atualizaOrcamentoB->set('sql',"UPDATE CadastraOrcamentoB SET Taxas = '$Taxas', 
+                                                               FormaPagamento = '$FormaPagamentoOrcamnetoB', 
+                                                               Prazo = '$PrazoOrcamantoB', 
+                                                               ComentariosOrcamento = '$ConmentariosOrcamentoB', 
+                                                               TotalOrcamentoB = '$TotalOrcamentoB',
+                                                               TotalServicos = '$TotalServicos',
+                                                               DataOrcamentoB = '$DataOrcamentoB'
+                                                         WHERE IdOrcamentoB = '$IdOrcamentoB' AND
+                                                               IdOportunidade = '$IdOportunidade' ");  
    
-  	 $insereOrcamentoB->executarQuery();
-
-  	 //Busca o IdOrcamnetoB inserido no banco para poder usa-lo
-  	 $insereOrcamentoB->set('sql',"SELECT `IdOrcamentoB` FROM `CadastraOrcamentoB` WHERE  `IdOportunidade` = '$IdOportunidade' ;");
-	 $retornoServico = mysql_fetch_object($insereOrcamentoB->executarQuery()); 
+   $atualizaOrcamentoB->executarQuery();
 
 
-	/********************************************************************************************/
-    /*	Pega os valores dos arrays de serviços enviadospelo formulario e insere no banco		*/
+  /********************************************************************************************/
+    /*  Pega os valores dos arrays de serviços enviadospelo formulario e insere no banco    */
     /********************************************************************************************/
 
-  	 if(isset($_POST["ServicoArray"],$_POST["ValorArray"])){
+     if(isset($_POST["ServicoArray"],$_POST["ValorArray"])){
         // Faz loop pelo array dos campos:
-		$ServicoArray = $_POST["ServicoArray"];
-		$ValorArray = $_POST["ValorArray"];
-		$i = 0;
-		$j = 0;
+        $IdServicoArray = $_POST["IdServicoArray"];
+        $ServicoArray = $_POST["ServicoArray"];
+        $ValorArray = $_POST["ValorArray"];
+        $i = 0;
+        $j = 0;
+        $k = 0;
 
-	while($i < count($ServicoArray) && $j < count($ValorArray)){
-		if ($ServicoArray[$i] != "") {		    
+      while($i < count($ServicoArray) && $j < count($ValorArray)){
+        if ($ServicoArray[$i] != "") {        
 
-	            $insereServicoOrcamentoB->set('sql',"INSERT INTO OrcamentoBServicos(IdServico, Valor, IdOrcamentoB, IdOportunidade) 
-	                                 VALUES ('$ServicoArray[$i]','$ValorArray[$j]','$retornoServico->IdOrcamentoB','$IdOportunidade');");
-	            $insereServicoOrcamentoB->executarQuery();            	
-				$i++;
-				$j++;			
+                  $atualizaServicoOrcamentoB->set('sql',"UPDATE OrcamentoBServicos SET IdServico = '$ServicoArray[$i]', 
+                                                                                       Valor = '$ValorArray[$j]', 
+                                                                                       IdOrcamentoB = '$IdOrcamentoB', 
+                                                                                       IdOportunidade = '$IdOportunidade'
+                                                                                 WHERE IdOrcamentoBServico = '$IdServicoArray[$k]' ");
+                  $atualizaServicoOrcamentoB->executarQuery();              
+            $i++;
+            $j++; 
+            $k++;    
 
-			}
-		}   
-	}
-	
-	$DataEnvio = date('d/m/Y');
-	//Cria um link de acesso para ser enviado ao cliente
-	$Endereco = "orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$retornoServico->IdOrcamentoB;
+          }
+        }   
+      }
+  
+  $DataEnvio = date('d/m/Y');
+  //Cria um link de acesso para ser enviado ao cliente
+  $Endereco = "orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB;
 
-	$insereLinkOrcamentoB->set('sql',"INSERT INTO LinkOrcamentoB(Endereco,DataEnvio, IdOportunidade, IdOrcamentoB) 
-		 					  VALUES ('$Endereco','$DataEnvio','$IdOportunidade','$retornoServico->IdOrcamentoB');");  	   
-	$insereLinkOrcamentoB->executarQuery();
+  $insereLinkOrcamentoB->set('sql',"INSERT INTO LinkOrcamentoB(Endereco,DataEnvio, IdOportunidade, IdOrcamentoB) 
+                VALUES ('$Endereco','$DataEnvio','$IdOportunidade','$IdOrcamentoB');");      
+  $insereLinkOrcamentoB->executarQuery();
 
 
 
-	// Busca o email da oprtunidade para enviar o endereço de acesso ao orçamento para o cliente 
-	$buscaEmailOportunidade->set('sql',"SELECT Email, RazaoSocial FROM Oportunidade
-										WHERE IdOportunidade = '$IdOportunidade' ");
-	$retornoEmailOportunidade = mysql_fetch_object($buscaEmailOportunidade->executarQuery()); 
+  // Busca o email da oprtunidade para enviar o endereço de acesso ao orçamento para o cliente 
+  $buscaEmailOportunidade->set('sql',"SELECT Email, RazaoSocial FROM Oportunidade
+                    WHERE IdOportunidade = '$IdOportunidade' ");
+  $retornoEmailOportunidade = mysql_fetch_object($buscaEmailOportunidade->executarQuery()); 
 
 
 require("conexao/PHPMailer-master/class.phpmailer.php");
@@ -153,7 +162,7 @@ $mail->FromName = "Mand Projetos"; // Seu nome
 
 // Define os destinatário(s)
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-$mail->AddAddress($retornoEmailOportunidade->Email);
+$mail->AddAddress($retornoEmailOportunidade->Email); 
 //$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
 //$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
 
@@ -168,7 +177,7 @@ $mail->Subject  = "Mand | Link de acesso ao orçamento"; // Assunto da mensagem
 //retiraq os .. do endereço completando con o endereço corrrento 
 //
 ////"Segue o endereço de acesso ao orçamento <br> \r\n 
-		//<a href='http://www.mandprojetos.com.br/sistema_mand/".$Endereco."' target = '_blank'> \r\n Link de acesso ao orçamento Mand Projetos.</a>";
+    //<a href='http://www.mandprojetos.com.br/sistema_mand/".$Endereco."' target = '_blank'> \r\n Link de acesso ao orçamento Mand Projetos.</a>";
 $mail->Body = 
 "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
@@ -178,7 +187,7 @@ $mail->Body =
 <title>Mand Gestão de Projetos</title>
 <style type='text/css'>
 html {
-	width:100%
+  width:100%
 }
 ::-moz-selection {
 background:#63bcd4;
@@ -189,35 +198,35 @@ background:#63bcd4;
 color:#fff
 }
 body {
-	background-color:#ecf0f1;
-	margin:0;
-	padding:0
+  background-color:#ecf0f1;
+  margin:0;
+  padding:0
 }
 .ReadMsgBody {
-	width:100%;
-	background-color:#fff
+  width:100%;
+  background-color:#fff
 }
 .ExternalClass {
-	width:100%;
-	background-color:#fff
+  width:100%;
+  background-color:#fff
 }
 a {
-	color:#63bcd4;
-	text-decoration:none;
-	font-weight:400;
-	font-style:normal
+  color:#63bcd4;
+  text-decoration:none;
+  font-weight:400;
+  font-style:normal
 }
 a:hover {
-	color:#262626;
-	text-decoration:none;
-	font-weight:400;
-	font-style:normal
+  color:#262626;
+  text-decoration:none;
+  font-weight:400;
+  font-style:normal
 }
 p, div {
-	margin:0!important
+  margin:0!important
 }
 table {
-	border-collapse:collapse
+  border-collapse:collapse
 }
 @media only screen and (max-width:640px) {
 body {
@@ -642,42 +651,42 @@ $mail->ClearAllRecipients();
 $mail->ClearAttachments();
 
 
-	// Exibe uma mensagem de resultado
-	if ($enviado) { 
+  // Exibe uma mensagem de resultado
+  if ($enviado) { 
 
-	/********************************************************************************************/
-    /*					Atualiza a tabela Oprtunidade com o Status de Enviado					*/
+  /********************************************************************************************/
+    /*          Atualiza a tabela Oprtunidade com o Status de Enviado         */
     /********************************************************************************************/
-  	 $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Enviado'
+     $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Enviado'
                                                             WHERE IdOportunidade = '$IdOportunidade';");
-  	 $atualizarOportunidade->executarQuery();
+     $atualizarOportunidade->executarQuery();
 
-  	 //Insere na Tabela HistoricoOportunidade
-  	 $data = date('d/m/Y');
-	 $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
-	                            	 				 	   VALUES ('$data','Alterado','Enviado para cliente','$IdOportunidade');");
-	 $insereHistoricoOportunidade->executarQuery();
+     //Insere na Tabela HistoricoOportunidade
+     $data = date('d/m/Y');
+   $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
+                                             VALUES ('$data','Alterado','Enviado para cliente','$IdOportunidade');");
+   $insereHistoricoOportunidade->executarQuery();
 
-		echo("<script type='text/javascript' charset='utf-8'> location.href='../../orcamento-lista.php'; alert('Dados Enviados ao cliente'); </script>");
-	
-	}else{
+    echo("<script type='text/javascript' charset='utf-8'> location.href='../../orcamento-lista.php'; alert('Dados Enviados ao cliente'); </script>");
+  
+  }else{
 
-	/********************************************************************************************/
-    /*					Atualiza a tabela Oprtunidade com o Status de Pronto para enviar		*/
+  /********************************************************************************************/
+    /*          Atualiza a tabela Oprtunidade com o Status de Pronto para enviar    */
     /********************************************************************************************/
-  	 $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Pronto para enviar'
+     $atualizarOportunidade->set('sql',"UPDATE Oportunidade SET Status = 'Pronto para enviar'
                                                             WHERE IdOportunidade = '$IdOportunidade';");
-  	 $atualizarOportunidade->executarQuery();
+     $atualizarOportunidade->executarQuery();
 
-  	 //Insere na Tabela HistoricoOportunidade
-  	 $data = date('d/m/Y');
-	 $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
-	                            	 				 	   VALUES ('$data','Alterado','Pronto para enviar','$IdOportunidade');");
-	 $insereHistoricoOportunidade->executarQuery();
+     //Insere na Tabela HistoricoOportunidade
+     $data = date('d/m/Y');
+   $insereHistoricoOportunidade->set('sql',"INSERT INTO HistoricoOportunidade(DataHistoricoOportunidade, TipoHistoricoOportunidade, Status, IdOportunidade) 
+                                             VALUES ('$data','Alterado','Pronto para enviar','$IdOportunidade');");
+   $insereHistoricoOportunidade->executarQuery();
 
-	 echo("<script type='text/javascript' charset='utf-8'> location.href='../../orcamento-lista.php'; alert('Dados não Enviados ao cliente ".$mail->ErrorInfo."'); </script>");
-	
-	}
+   echo("<script type='text/javascript' charset='utf-8'> location.href='../../orcamento-lista.php'; alert('Dados não Enviados ao cliente ".$mail->ErrorInfo."'); </script>");
+  
+  }
 
 } 
 ?>
