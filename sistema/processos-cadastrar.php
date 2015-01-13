@@ -29,48 +29,85 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
 <!-- END CSS TEMPLATE -->
 
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
+
 <!-- Inclui o arquivos para validação de campos-->
 <script type="text/javascript" src="includes/js/ValidaCampos.js"></script>
 <script type="text/javascript">
-  /*
-var req;
+  
+// var req;
 
-function loadSelect(){
-    req = null;
-    var url = 'buscar_sql_processos_cadastrar.php';
+// function loadSelect(){
+//     req = null;
+//     var url = 'buscar_sql_processos_cadastrar.php';
+//     var id_holding = document.getElementById('SelectHolding').value;
+//     var id_requerente = document.getElementById('SelectRequerente').value;
+//     // Procura por um objeto nativo (Mozilla/Safari)
+//     if (window.XMLHttpRequest) {
+//         req = new XMLHttpRequest();
+//         req.onreadystatechange = processReqChange;
+//         req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
+//         req.send(null);
+//     // Procura por uma versao ActiveX (IE)
+//     } else if (window.ActiveXObject) {
+//         req = new ActiveXObject("Microsoft.XMLHTTP");
+//         if (req) {
+//             req.onreadystatechange = processReqChange;
+//             req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
+//             req.send();
+//         }
+//     }
+// }
+
+// function processReqChange(){
+//     // apenas quando o estado for "completado"
+//     if (req.readyState == 4) {
+//         // apenas se o servidor retornar "OK"
+//         if (req.status == 200) {
+//             // procura pela div id="atualiza" e insere o conteudo
+//             // retornado nela, como texto HTML
+//             if (req.responseText != "") {
+//               document.getElementById('SelectSql').innerHTML = req.responseText;
+//               alert(req.responseText);
+//             }
+            
+//         } else {
+//             alert("Houve um problema ao obter os dados:\n" + req.statusText);
+//         }
+//     }
+// }
+
+//Buscar Requerente
+function buscarRequerente(){
+    var id_holding = document.getElementById('SelectHolding').value;
+     $.ajax({
+           url: 'buscar_requerente_processos_cadastrar.php',
+           data: 'id_holding='+ id_holding,
+           type: "POST",
+           success: function(json) {
+               if (json != null) {
+                    document.getElementById('SelectRequerente').innerHTML = "<option value='Requerente'>Requerente</option>" + json; 
+                    document.getElementById('SelectSql').innerHTML = ""; 
+                }                                          
+           }
+      });
+}
+
+//Buscar Requerente
+function buscarSql(){
     var id_holding = document.getElementById('SelectHolding').value;
     var id_requerente = document.getElementById('SelectRequerente').value;
-    // Procura por um objeto nativo (Mozilla/Safari)
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest();
-        req.onreadystatechange = processReqChange;
-        req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
-        req.send(null);
-    // Procura por uma versao ActiveX (IE)
-    } else if (window.ActiveXObject) {
-        req = new ActiveXObject("Microsoft.XMLHTTP");
-        if (req) {
-            req.onreadystatechange = processReqChange;
-            req.open("GET", url+'?id_holding='+id_holding+'&id_requerente='+id_requerente, true);
-            req.send();
-        }
-    }
+     $.ajax({
+           url: 'buscar_sql_processos_cadastrar.php',
+           data: 'id_holding='+ id_holding+'&id_requerente='+id_requerente,
+           type: "POST",
+           success: function(json) {
+              if (json != null) {
+                  document.getElementById('SelectSql').innerHTML = json;  
+              }
+           }
+      });
 }
-
-function processReqChange(){
-    // apenas quando o estado for "completado"
-    if (req.readyState == 4) {
-        // apenas se o servidor retornar "OK"
-        if (req.status == 200) {
-            // procura pela div id="atualiza" e insere o conteudo
-            // retornado nela, como texto HTML
-            document.getElementById('SelectSql').innerHTML = req.responseText;
-        } else {
-            alert("Houve um problema ao obter os dados:\n" + req.statusText);
-        }
-    }
-}
-*/
 
 </script>
 
@@ -132,7 +169,7 @@ function processReqChange(){
                           <div class="row form-row">
 
                             <div class="col-md-4">
-                              <select id="SelectHolding" name="SelectHolding" style="width:100%" >                   
+                              <select id="SelectHolding" name="SelectHolding" style="width:100%" >
                                   <option value="Holding">Holding</option>
                                   <?php
                                    
@@ -144,19 +181,19 @@ function processReqChange(){
                                       $buscar->conectar();
                                       $buscar->selecionarDB();                      
 
-                                     $buscar->set('sql',"SELECT `IdEmpresa`,`NomeFantasia` FROM `CadastroHolding` ");
+                                     $buscar->set('sql',"SELECT `IdEmpresa`,`RazaoSocial` FROM `CadastroHolding` ");
                                      
                                       $query= $buscar->executarQuery();
                                      while($retorno=mysql_fetch_array($query)) { 
                                     ?> 
-                                      <option value="<?php echo $retorno['IdEmpresa'] ?>"> <?php echo $retorno['NomeFantasia'] ?>
+                                      <option value="<?php echo $retorno['IdEmpresa'] ?>"> <?php echo $retorno['RazaoSocial'] ?>
                                       </option>               
                                     <?php } ?>                                
                                 </select>
                             </div>                            
                             
                             <div class="col-md-4">
-                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%" >                   
+                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%" >
                                    <option value="Requerente">Requerente</option>
                                   <?php 
 
@@ -248,7 +285,6 @@ function processReqChange(){
 <!-- END CONTAINER -->
 
 <!-- BEGIN CORE JS FRAMEWORK--> 
-<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/breakpoints.js" type="text/javascript"></script> 
