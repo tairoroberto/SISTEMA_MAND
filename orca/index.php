@@ -217,7 +217,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 </div>
 <!--DIREITA-->
 </form>
-<form id="formExportar" name="formExportar" method="post" action="orcamento.php" target="_blank">
+<form id="formExportar" name="formExportar" method="post" action="pdfOrcamento.php" >
   <!--Auxiliares para envio-->
      <input type="hidden" name="IdOportunidadeAux2" id="IdOportunidadeAux2" value="<?php echo $IdOportunidade; ?>"> 
      <input type="hidden" name="IdOrcamentoBAux2" id="IdOrcamentoBAux2" value="<?php echo $IdOrcamentoB; ?>"> 

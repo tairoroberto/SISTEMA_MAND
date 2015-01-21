@@ -541,6 +541,12 @@ $(document).ready(function() {
 
                               $porcetagem = number_format($porcetagem, 0, ',', '.');
 
+                              if ($porcetagem > 100 ) {
+                                $porcetagem = 100;
+                              }
+
+                              
+
                           ?>
 
                        <p class="light"><strong>Duração Prevista:</strong> <?php echo $duracao / $segundos; ?> dias</p>

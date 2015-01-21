@@ -82,31 +82,63 @@ function buscarRequerente(){
     var id_holding = document.getElementById('SelectHolding').value;
      $.ajax({
            url: 'buscar_requerente_processos_cadastrar.php',
-           data: 'id_holding='+ id_holding,
+           data: 'id_holding='+ id_holding + "&tipo=0",
            type: "POST",
            success: function(json) {
-               if (json != null) {
+               if (json.length > 0) {                    
                     document.getElementById('SelectRequerente').innerHTML = "<option value='Requerente'>Requerente</option>" + json; 
-                    document.getElementById('SelectSql').innerHTML = ""; 
+                }                                         
+           }
+      });
+}
+
+function buscarRequerenteAux(){
+    var id_holding = document.getElementById('SelectHolding').value;
+     $.ajax({
+           url: 'buscar_requerente_processos_cadastrar.php',
+           data: 'id_holding='+ id_holding + "&tipo=1",
+           type: "POST",
+           success: function(json) {
+               if (json.length > 0) {
+                    document.getElementById('SelectRequerente').innerHTML = "<option value='Requerente'>Requerente</option>" + json; 
+                    //document.getElementById('SelectSql').innerHTML = ""; 
                 }                                          
            }
       });
 }
 
+
+
+
 //Buscar Requerente
 function buscarSql(){
-    var id_holding = document.getElementById('SelectHolding').value;
-    var id_requerente = document.getElementById('SelectRequerente').value;
-     $.ajax({
-           url: 'buscar_sql_processos_cadastrar.php',
-           data: 'id_holding='+ id_holding+'&id_requerente='+id_requerente,
-           type: "POST",
-           success: function(json) {
-              if (json != null) {
-                  document.getElementById('SelectSql').innerHTML = json;  
-              }
-           }
-      });
+  var id_holding = document.getElementById('SelectHolding').value;
+  var id_requerente = document.getElementById('SelectRequerente').value;
+   $.ajax({
+         url: 'buscar_sql_processos_cadastrar.php',
+         data: 'id_holding='+ id_holding+'&id_requerente='+id_requerente + "&tipo=0",
+         type: "POST",
+         success: function(json) {
+            if (json.length > 0) {
+                document.getElementById('SelectSql').innerHTML = "<option value='SQL'>SQL</option>" + json; ;  
+            }else{
+              buscarSqlAux();
+            }
+         }
+    });
+}
+
+function buscarSqlAux(){
+  var id_holding = document.getElementById('SelectHolding').value;
+  var id_requerente = document.getElementById('SelectRequerente').value;
+   $.ajax({
+         url: 'buscar_sql_processos_cadastrar.php',
+         data: 'id_holding='+ id_holding+'&id_requerente='+id_requerente + "&tipo=1",
+         type: "POST",
+         success: function(json) {
+                document.getElementById('SelectSql').innerHTML = "<option value='SQL'>SQL</option>" + json; ;  
+         }
+    });
 }
 
 </script>
@@ -169,7 +201,7 @@ function buscarSql(){
                           <div class="row form-row">
 
                             <div class="col-md-4">
-                              <select id="SelectHolding" name="SelectHolding" style="width:100%" >
+                              <select id="SelectHolding" name="SelectHolding" style="width:100%" onchange="buscarRequerente();">
                                   <option value="Holding">Holding</option>
                                   <?php
                                    
@@ -193,7 +225,7 @@ function buscarSql(){
                             </div>                            
                             
                             <div class="col-md-4">
-                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%" >
+                              <select id="SelectRequerente" name="SelectRequerente" style="width:100%" onchange="buscarSql();">
                                    <option value="Requerente">Requerente</option>
                                   <?php 
 

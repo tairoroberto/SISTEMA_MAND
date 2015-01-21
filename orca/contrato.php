@@ -5,17 +5,21 @@
 <title>Mand Projetos - Orçamento</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-  
-function alertaCliente(){
-  alert("Em breve entraremos em contato para dar continuidade.");  
-}
 
-</script>
 </head>
 
 <body onload="alertaCliente();">
 <form id="formContrato" name="formContrato" method="post" action="EnviaContrato">
+
+<?php 
+ //verifica se IdOportunidadeAux é post ou get
+//se fot enviado via metodo get não mostra a mensagem
+if (isset($_POST['IdOportunidadeAux'])) {
+    echo "<script type='text/javascript'>
+            alert('Em breve entraremos em contato para dar continuidade.');  
+          </script>";
+  }
+ ?>
 
 <!--ESQUERDA-->
 <div id="col-esq">

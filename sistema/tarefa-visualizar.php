@@ -360,7 +360,7 @@ $(document).ready(function() {
                                                          FROM Usuarios
                                                          INNER JOIN EtapaTarefa
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
-                                                                EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa
+                                                                EtapaTarefa.IdTarefa = '$retornoTarefa->IdTarefa'
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa");
 
                           //Busca As etapas que estão finalizadas
@@ -378,12 +378,12 @@ $(document).ready(function() {
 
                         }else{
 
-                          $buscarEtapaTarefa->set('sql',"SELECT EtapaTarefa.*, NomeExibicao FROM Usuarios
+                          $buscarEtapaTarefa->set('sql',"SELECT EtapaTarefa.*, NomeExibicao 
+                                                         FROM Usuarios
                                                          INNER JOIN EtapaTarefa
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
-                                                                EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa AND
+                                                                EtapaTarefa.IdTarefa = '$retornoTarefa->IdTarefa' AND
                                                                 EtapaTarefa.IdUsuario = '$IdUsuario'
-                                                         ORDER BY EtapaTarefa.DataEntregaEtapa asc
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa" );
                             
                           //Busca As etapas que estão finalizadas
@@ -757,7 +757,7 @@ $(document).ready(function() {
                                                          FROM Usuarios
                                                          INNER JOIN EtapaTarefa
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
-                                                                EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa
+                                                                EtapaTarefa.IdTarefa = '$retornoTarefa->IdTarefa'
                                                          GROUP BY EtapaTarefa.IdEtapaTarefa");
 
                           //Busca As etapas que estão finalizadas
@@ -775,13 +775,13 @@ $(document).ready(function() {
 
                         }else{
 
-                          $buscarEtapaTarefa->set('sql',"SELECT EtapaTarefa.*, NomeExibicao FROM Usuarios
+                          $buscarEtapaTarefa->set('sql',"SELECT EtapaTarefa.*, NomeExibicao 
+                                                         FROM Usuarios
                                                          INNER JOIN EtapaTarefa
                                                          WHERE  Usuarios.IdUsuario = EtapaTarefa.IdUsuario AND
-                                                                EtapaTarefa.IdTarefa = $retornoTarefa->IdTarefa AND
+                                                                EtapaTarefa.IdTarefa = '$retornoTarefa->IdTarefa' AND
                                                                 EtapaTarefa.IdUsuario = '$IdUsuario'
-                                                         ORDER BY EtapaTarefa.DataEntregaEtapa
-                                                         GROUP BY EtapaTarefa.IdEtapaTarefa");
+                                                         GROUP BY EtapaTarefa.IdEtapaTarefa ");
                             
                           //Busca As etapas que estão finalizadas
                           $buscarporcentagemEtapaTarefa->set('sql',"SELECT count(IdEtapaTarefa) as QuantEtapaFinalizadas

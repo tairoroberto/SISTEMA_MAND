@@ -203,3 +203,23 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 </form>
 </body>
 </html>
+<?php 
+    //Deleta os Pdf antigos
+       $NomeArquivo = "Orçamento-Mand-".date('d-m-Y').".pdf";
+     
+          foreach (glob("*.pdf") as $filename) {
+            if ($filename == $NomeArquivo) {
+              unlink($filename);
+            } 
+         }  
+
+   //Deleta os Pdf antigos
+     $NomeArquivo = "Contrato-Mand-".date('d-m-Y').".pdf";
+   
+        foreach (glob("*.pdf") as $filename) {
+          if ($filename == $NomeArquivo) {
+            unlink($filename);
+          } 
+       }  
+
+ ?>

@@ -140,7 +140,7 @@ include('php/EnviarEmail.php');
 <br />
 
 
-  <?php
+<?php
       /********************************************************************************************/
       /*       Variáveis para inserção no banco de dados, insere o Responsável e a empresa        */
      /********************************************************************************************/
@@ -160,41 +160,18 @@ include('php/EnviarEmail.php');
 <?php echo $retornoContrato->DadosMand; ?> e de outro lado <strong><?php echo $retornoOportunidade->RazaoSocial;?></strong>, CNPJ/CPF <?php echo $retornoOportunidade->CnpjCpf;?>, residente e domiciliado em <?php echo $retornoOportunidade->EnderecoArea;?>, Telefone Fixo <?php echo $retornoOportunidade->Telefone;?>, Celular <?php echo $retornoOportunidade->Celular;?>, e-mail <?php echo $retornoOportunidade->Email;?>, aqui denominado <strong>CONTRATANTE</strong>. <br />
 <br />
 
-<strong>DO OBJETO DO CONTRATO</strong><br />
-<?php echo $retornoContrato->DoObjetoDoContrato; ?>
+<?php 
+  //pega os dados do contrato faz um explode para separar a parte do valor do orçamento
+  $contrato = explode('"#Aqui não deve ser modificado, dados serão preenchidos do orcamento#"', $retornoContrato->DadosContrato);
+ ?>
+
+<!-- <strong>DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO</strong> -->
+<br />
+<?php echo $contrato[0]. " R$"?>  <?php echo $retornoOportunidade->TotalOrcamentoB;?> <?php echo $retornoOportunidade->FormaPagamento?>, com prazo de <?php echo $retornoOportunidade->Prazo?>.
+<?php echo $contrato[1]; ?>
 <br /><br />
 
-<strong>OBRIGAÇÕES DO CONTRATANTE</strong><br />
-<?php echo $retornoContrato->ObrigacoesContratante; ?>
-<br /><br />
 
-<strong>OBRIGAÇÕES DO CONTRATADO</strong><br />
-<?php echo $retornoContrato->ObrigacoesContratado; ?>
-<br /><br />
-
-<strong>DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO</strong><br />
-<?php echo $retornoContrato->PrecoCondicoesPagamento. " R$"?>  <?php echo $retornoOportunidade->TotalOrcamentoB;?> <?php echo $retornoOportunidade->FormaPagamento?>, com prazo de <?php echo $retornoOportunidade->Prazo?>.
-<br /><br />
-
-<strong>DO INADIMPLEMENTO, DO DESCUMPRIMENTO E DA MULTA</strong><br />
-<?php echo $retornoContrato->InadDescumpMulta; ?>
-<br /><br/>
-
-<strong>DA RESCISÃO IMOTIVADA</strong><br />
-<?php echo $retornoContrato->RecisaoIMotivada; ?>
-<br /><br/>
-
-<strong>DO PRAZO</strong><br />
-<?php echo $retornoContrato->Doprazo; ?>
-<br/><br/>
-
-<strong>DAS CONDIÇÕES GERAIS</strong><br />
-<?php echo $retornoContrato->CondicoesGerais; ?>
-<br /><br/>
-
-<strong>DO FORO</strong><br />
-<?php echo $retornoContrato->DoForo; ?>
-<br /><br />
 
 <img src="imagens/assinaturas.jpg" width="690" height="462" /><br />
 <br />

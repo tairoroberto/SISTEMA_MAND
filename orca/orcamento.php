@@ -25,7 +25,7 @@
 
  <script type="text/javascript">
       function imprimir(){
-      // window.print();
+       window.print();
        // irPagina();
      //  window.close();
       }

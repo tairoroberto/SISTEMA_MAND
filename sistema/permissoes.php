@@ -462,13 +462,27 @@
 
     
 
+     <?php 
+          $IdUsuario = $_SESSION['usuarioID'];        
+          $dataHoje = date('d/m/Y');
+
+          $buscaAlerta = new Conexao();
+          $buscaAlerta->conectar();
+          $buscaAlerta->selecionarDB();
+          $buscaAlerta->set('sql',"SELECT Alerta.*, count(IdAlerta) as contadorAlerta
+                                            FROM Alerta 
+                                            WHERE IdUsuario = '$IdUsuario' 
+                                            ORDER BY IdAlerta DESC");
+          $retornoAlerta = mysql_fetch_object($buscaAlerta->executarQuery());  ?>
+
+
      <div class="pull-right"> 
     <div class="chat-toggler">  
         <a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom"  data-content='' data-toggle="dropdown" data-original-title="Notificações">
           <div class="user-details"> 
             <div class="username">
               <!--Icone de notificação de tarefas -->
-              <span class="badge badge-important"><?php echo $retornoUsuarioEtapaTarefa->contadorTarefa; ?></span> 
+              <span class="badge badge-important"><?php echo $retornoUsuarioEtapaTarefa->contadorTarefa + $retornoAlerta->contadorAlerta; ?></span> 
               <!---->
               <?php $nome = explode(" ", utf8_encode($_SESSION['usuarioNome'])); ?>
               <?php echo $nome[0];?> <span class="bold"><?php if (count($nome) > 1) {
@@ -483,7 +497,52 @@
           <div style="width:300px">
 
           <!--Mensagens de alerta-->
-          <?php 
+          <!--Script para deletar alertas-->
+            <script type="text/javascript">
+                function deletaAlerta(idusuario,msg){
+                  $.ajax({
+                       url: 'includes/php/DeletaAlerta.php',
+                       data: 'idusuario='+ idusuario + "&msg="+msg,
+                       type: "POST",
+                       success: function(json) {
+                           if (json == "Deletado") {
+                                location.reload();
+                                alert(json);
+                            }else{
+                              alert(json);
+                            }                                         
+                       }
+                  });                  
+              }
+
+
+            </script>
+          <!--Fim script-->
+
+             
+
+            <?php if ($retornoAlerta && $retornoAlerta->IdUsuario == $IdUsuario) { ?>
+                <div class="notification-messages info" >
+                  <div class="user-profile">
+                    <img src="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>"  alt="" data-src="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>" data-src-retina="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>" width="35" height="35">
+                  </div>
+                  <div class="message-wrapper" onclick="deletaAlerta('<?php echo $IdUsuario; ?>','<?php echo $retornoAlerta->Mensagem; ?>');">
+                    <div class="heading">
+                      <?php echo $retornoAlerta->Mensagem; ?> 
+                    </div>
+                    <div class="description">
+                      <?php echo $retornoAlerta->Mensagem;?> 
+                    </div>
+                    <div class="date pull-left">
+                    <?php echo $retornoAlerta->contadorAlerta; ?> 
+                    </div>                    
+                  </div>
+                  <div class="clearfix"></div>                  
+                </div>  
+            <?php } ?>   
+
+
+          <?php
 
               /********************************************************************************************/
              /*       Variáveis para inserção no banco de dados, dados do usuario                        */
@@ -501,8 +560,7 @@
                 $buscarEtapaTrasnferida->conectar();
                 $buscarEtapaTrasnferida->selecionarDB(); 
 
-                $IdUsuario = $_SESSION['usuarioID'];        
-                $dataHoje = date('d/m/Y');
+                
                 $buscarTranferencia->set('sql',"SELECT * FROM TranferenciaEtapaTarefa 
                                                          WHERE IdUsuarioPegou = '$IdUsuario' AND
                                                                DataTranferencia = '$dataHoje'

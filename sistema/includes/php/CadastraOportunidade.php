@@ -28,6 +28,10 @@
     $buscaUsuario->conectar();
     $buscaUsuario->selecionarDB();
 
+    $insereAlerta = new Conexao();
+    $insereAlerta->conectar();
+    $insereAlerta->selecionarDB();
+
 
     /********************************************************************************************/
     /*			Verifica se os dados enviados pelo cadastro-holding.html estão completos		*/
@@ -160,7 +164,13 @@ if (isset($_POST['TipoContato'],
         $SituacaoEtapaTarefa = "Trabalhando";
     	$insereEtapaTarefa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
     												VALUES ('$SelectTecnico','$ServicoSolicitado','Verificar oportunidade nova','$DataEntrega','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
-    	$insereEtapaTarefa->executarQuery();       	
+    	$insereEtapaTarefa->executarQuery();
+
+
+
+        $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectTecnico','Verificar Oportunidade de documento - ".date('d/m/Y')."','')");
+        $insereAlerta->executarQuery();       	
 
 
 
