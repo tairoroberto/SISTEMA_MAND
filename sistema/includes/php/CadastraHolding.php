@@ -84,14 +84,15 @@ if (isset($_POST['TipoPessoa'],
 		  $CelularResponsavel  = $_POST['CelularResponsavel'];
 		  $EmailResponsavel  = $_POST['EmailResponsavel'];
 		  $SenhaWebResponsavel  = $_POST['SenhaWebResponsavel'];
+		  $data = date('Y-m-d H:m:s');
     
      /********************************************************************************************/
     /*						Muda a String SQL para inserir no banco								*/
     /********************************************************************************************/
  		   
-	 $insereHoldingResponsavel->set('sql',"INSERT INTO Responsavel(Nome, Cpf, Rg, Cep, Rua, Numero, Bairro, Cidade, Telefone, Celular, Email, SenhaWebResponsavel) 
+	 $insereHoldingResponsavel->set('sql',"INSERT INTO Responsavel(Nome, Cpf, Rg, Cep, Rua, Numero, Bairro, Cidade, Telefone, Celular, Email, SenhaWebResponsavel,created_at) 
 	 					  VALUES ('$NomeResponsavel','$CpfResponsavel','$RgResponsavel','$CepResponsavel','$RuaResponsavel','$NumeroResponsavel',
-	 					  		  '$BairroResponsavel','$CidadeResponsavel','$TelefoneResponsavel','$CelularResponsavel','$EmailResponsavel','$SenhaWebResponsavel');");  
+	 					  		  '$BairroResponsavel','$CidadeResponsavel','$TelefoneResponsavel','$CelularResponsavel','$EmailResponsavel','$SenhaWebResponsavel','$data');");  
   
   	/********************************************************************************************/
     /*								Execulta a String SQL 										*/
@@ -102,7 +103,7 @@ if (isset($_POST['TipoPessoa'],
 	/********************************************************************************************************/
     /*	Seleciona o ID do Responsável para poder inserir na TABELA CadastroHolding como chave estrangeira	*/
     /********************************************************************************************************/
-    $insereHoldingResponsavel->set('sql',"SELECT `IdResponsavel` FROM `Responsavel` WHERE `Nome` = '$NomeResponsavel' AND 
+   /* $insereHoldingResponsavel->set('sql',"SELECT `IdResponsavel` FROM `Responsavel` WHERE `Nome` = '$NomeResponsavel' AND 
     																					  `Cpf` = '$CpfResponsavel' AND 
     																					  `Rg` = '$RgResponsavel' AND 
     																					  `Cep` = '$CepResponsavel' AND
@@ -113,17 +114,18 @@ if (isset($_POST['TipoPessoa'],
     																					  `Telefone` = '$TelefoneResponsavel' AND
     																					  `Celular` = '$CelularResponsavel' AND
     																					  `Email` = '$EmailResponsavel' AND
-    																					  `SenhaWebResponsavel` = '$SenhaWebResponsavel'  ;");
-    $retorno = mysql_fetch_object($insereHoldingResponsavel->executarQuery()); 
+    																					  `SenhaWebResponsavel` = '$SenhaWebResponsavel'  ;");*/
+ $insereHoldingResponsavel->set('sql',"SELECT `IdResponsavel` FROM `Responsavel` WHERE IdResponsavel =  LAST_INSERT_ID()");
+ $retorno = mysql_fetch_object($insereHoldingResponsavel->executarQuery()); 
 
-    
+     
     /********************************************************************************************/
     /*						Muda a String SQL para inserir no banco								*/
     /********************************************************************************************/
     $insereHoldingEmpresa->set('sql',"INSERT INTO CadastroHolding(TipoPessoa, RazaoSocial, NomeFantasia, Atividade, 
-    												 Cnpj, Ccm, Cep, Rua, Numero, Bairro, Cidade, Telefone1, Telefone2, Email,SenhaWebEmpresa,SiteEmpresa,IdResponsavel) 
+    												 Cnpj, Ccm, Cep, Rua, Numero, Bairro, Cidade, Telefone1, Telefone2, Email,SenhaWebEmpresa,SiteEmpresa,IdResponsavel, created_at) 
     					 VALUES ('$TipoPessoa','$RazaoSocial','$NomeFantasia','$Atividade','$Cnpj','$Ccm','$CepEmpresa','$RuaEmpresa',
-    					 		 '$NumeroEmpresa','$BairroEmpresa','$CidadeEmpresa','$Telefone1','$Telefone2','$EmailEmpresa','$SenhaWebEmpresa','$SiteEmpresa','$retorno->IdResponsavel');");
+    					 		 '$NumeroEmpresa','$BairroEmpresa','$CidadeEmpresa','$Telefone1','$Telefone2','$EmailEmpresa','$SenhaWebEmpresa','$SiteEmpresa','$retorno->IdResponsavel', '$data');");
   
   	/********************************************************************************************/
     /*								Execulta a String SQL 										*/

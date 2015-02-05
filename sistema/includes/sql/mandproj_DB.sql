@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.8
 -- http://www.phpmyadmin.net
 --
--- Máquina: localhost
--- Data de Criação: 22-Dez-2014 às 11:57
--- Versão do servidor: 5.5.40-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.5
+-- Host: localhost
+-- Tempo de geração: 05/02/2015 às 13:22
+-- Versão do servidor: 5.6.17-66.0-log
+-- Versão do PHP: 5.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `mandproj_DB`
+-- Banco de dados: `mandproj_DB`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraHistoricoTarefa`
+-- Estrutura para tabela `Alerta`
+--
+
+CREATE TABLE IF NOT EXISTS `Alerta` (
+  `IdAlerta` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `Mensagem` varchar(255) NOT NULL,
+  `SituacaoAlerta` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Fazendo dump de dados para tabela `Alerta`
+--
+
+INSERT INTO `Alerta` (`IdAlerta`, `IdUsuario`, `Mensagem`, `SituacaoAlerta`) VALUES
+(0, 1, 'Solicição de documento - 21/01/2015', ''),
+(0, 4, 'Solicição de documento - 21/01/2015', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `CadastraHistoricoTarefa`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraHistoricoTarefa` (
@@ -31,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `CadastraHistoricoTarefa` (
   `ConteudoHistoricoTarefa` text NOT NULL,
   `IdEtapaTarefa` int(11) NOT NULL,
   PRIMARY KEY (`IdHistoricoTarefa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
 
 --
--- Extraindo dados da tabela `CadastraHistoricoTarefa`
+-- Fazendo dump de dados para tabela `CadastraHistoricoTarefa`
 --
 
 INSERT INTO `CadastraHistoricoTarefa` (`IdHistoricoTarefa`, `ConteudoHistoricoTarefa`, `IdEtapaTarefa`) VALUES
@@ -92,12 +113,38 @@ INSERT INTO `CadastraHistoricoTarefa` (`IdHistoricoTarefa`, `ConteudoHistoricoTa
 (52, 'Etapa Finalizada 01/12/2014 19:13:36', 26),
 (53, 'Etapa pausada 08/12/2014 22:38:55', 78),
 (54, 'Trabalhando em Etapa 08/12/2014 22:39:01', 78),
-(55, 'Etapa editada 13/12/2014 20:13:25', 57);
+(55, 'Etapa editada 13/12/2014 20:13:25', 57),
+(56, 'Etapa editada 22/12/2014 12:30:11', 70),
+(57, 'Etapa editada 22/12/2014 12:30:39', 71),
+(58, 'Etapa editada 22/12/2014 12:30:58', 72),
+(59, 'Etapa editada 22/12/2014 12:31:14', 73),
+(60, 'Etapa editada 22/12/2014 12:31:45', 74),
+(61, 'Etapa editada 22/12/2014 12:32:01', 75),
+(62, 'Etapa editada 22/12/2014 12:32:13', 76),
+(63, 'Etapa editada 22/12/2014 12:32:29', 77),
+(64, 'Etapa editada 22/12/2014 13:58:37', 82),
+(65, 'Etapa pausada 22/12/2014 14:13:51', 72),
+(66, 'Etapa editada 22/12/2014 14:20:44', 74),
+(67, 'Etapa editada 22/12/2014 14:21:02', 75),
+(68, 'Etapa Finalizada 22/12/2014 14:22:52', 77),
+(69, 'Etapa pausada 22/12/2014 14:27:07', 73),
+(70, 'Trabalhando em Etapa 22/12/2014 14:41:50', 73),
+(71, 'Etapa editada 22/12/2014 14:42:30', 75),
+(72, 'Etapa editada 22/12/2014 14:42:52', 75),
+(73, 'Etapa pausada 22/12/2014 14:43:02', 75),
+(74, 'Etapa pausada 22/12/2014 15:26:29', 82),
+(75, 'Trabalhando em Etapa 22/12/2014 15:26:35', 82),
+(76, 'Etapa transferida para Tairo Roberto Miguel de Assunçâo 22/12/2014 16:49:16', 70),
+(77, 'Etapa transferida para Tairo Roberto Miguel de Assunçâo 22/12/2014 16:51:24', 70),
+(78, 'Etapa editada 20/01/2015 23:19:29', 66),
+(79, 'Etapa editada 20/01/2015 23:20:09', 72),
+(80, 'Etapa pausada 21/01/2015 15:29:09', 72),
+(81, 'Trabalhando em Etapa 21/01/2015 15:29:15', 72);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraImovel`
+-- Estrutura para tabela `CadastraImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraImovel` (
@@ -163,19 +210,19 @@ CREATE TABLE IF NOT EXISTS `CadastraImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Extraindo dados da tabela `CadastraImovel`
+-- Fazendo dump de dados para tabela `CadastraImovel`
 --
 
 INSERT INTO `CadastraImovel` (`IdImovel`, `DataEmissao`, `CodigoImovel`, `IdEmpresa`, `NomeEmpresa`, `IdRequerente`, `NomeRequerente`, `NomeExibicao`, `NumeroContribuinte`, `MatriculaContribuinte`, `NomeContribuinte`, `CnpjCpf`, `LocalImovel`, `CepImovel`, `CodLog`, `AreaTerreno`, `Testada`, `AreaConstruida`, `FracaoIdeal`, `AnoConstrucao`, `UsoImovel`, `ZonaLei13885`, `CaBasicoLei13885`, `DistritoLei13885`, `SubPrefeituraLei13885`, `CaMaximoLei13885`, `GabaritoLei13885`, `ToImovelLei13885`, `TxPermLei13885`, `LargViaLei13885`, `ClassificacaoViaLei13885`, `PagGeomapasLei13885`, `ZonaLei16050`, `CaBasicoLei16050`, `DistritoLei16050`, `SubPrefeituraLei16050`, `CaMaximoLei16050`, `GabaritoLei16050`, `ToImovelLei16050`, `TxPermLei16050`, `LargViaLei16050`, `ClassificacaoViaLei16050`, `PagGeomapasLei16050`, `ComentariosZoneamento`, `SituacaoOperacaoUrbana`, `ComentariosOperacaoUrbana`, `ExerciciosIptu`, `ValorTolalIptu`, `ExerciciosMultas`, `ValorTolalMultas`, `TotalExercicios`, `ComentariosDividas`, `QuadraFiscal`, `Geomapas`, `ImagemLocal`, `ImagemMapa`, `ImagemLei`, `SituacaoImovel`) VALUES
 (1, '27/10/2014', 1, 1, 'Holding Teste', 2, 'Vasco Pinheiro dos Santos', 'Imóvel Teste', '434.343.4343-4', '343.434.343', 'Nome do Contribuiente', '333.333.333-33', 'Rua Aluísio Azevedo,Santana,São Paulo,SP', '02.021-030', '447', '100', '23', '200', '1.4', '2012', 'Comercial', 'ZUPI', '1.0', 'SP', 'Santana', '4.0', '2.0', '4.0', '0.2', '4', 'Residencial', '567', '', '', '', '', '', '', '', '', '', '', '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in volutpat enim. Vivamus eget ligula nisl. Aenean sed metus a turpis pellentesque efficitur vitae id velit. Proin dolor sem, pretium a scelerisque sit amet, lacinia quis magna. Donec tortor ex, interdum sit amet cursus quis, venenatis eget ex. Duis sodales at magna semper lobortis. Cras vel fringilla est. Curabitur auctor consequat eros.', 'Sim', '                                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in volutpat enim. Vivamus eget ligula nisl. Aenean sed metus a turpis pellentesque efficitur vitae id velit. Proin dolor sem, pretium a scelerisque sit amet, lacinia quis magna. Donec tortor ex, interdum sit amet cursus quis, venenatis eget ex. Duis sodales at magna semper lobortis. Cras vel fringilla est. Curabitur auctor consequat eros.', '2013 e 2014', '5.000,00', '2014', '20.000,00', '25.000,00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in volutpat enim. Vivamus eget ligula nisl. Aenean sed metus a turpis pellentesque efficitur vitae id velit. Proin dolor sem, pretium a scelerisque sit amet, lacinia quis magna. Donec tortor ex, interdum sit amet cursus quis, venenatis eget ex. Duis sodales at magna semper lobortis. Cras vel fringilla est. Curabitur auctor consequat eros.', 'a1c3d861b38ba3c610e52a3c8f3beb3e.jpg', 'b835bcb19c4a95ebce9e3e8255141315.jpg', '5cf4ce8036344048fc43a15a06ee8b53.jpg', 'ImagemMapa1-02.021-030.jpg', '', ''),
 (2, '29/10/2014', 2, 1, 'Holding Teste', 2, 'Vasco Pinheiro dos Santos', 'Empresa Teste', '432.434.4213-4', '454243244', 'Tairo Roberto Miguel de Assunçâo', '142.341.324-43', 'Rua Esperança,Parque Vila Maria,São Paulo,SP', '02.169-130', '215', '675', '6546', '35365', '0.2', '2010', 'Comercial', 'Norte', '7686', 'São Paulo', 'Vila Maria', '4554', '687346', '7908', '787.99', '23', 'Coletora', 'Págiana 23', '', '', '', '', '', '', '', '', '', '', '', '', 'Sim', '', '2009', '54,35', '2003, 2004, 2013', '55,54', '109,89', '', '471ffa12254fa2f1a839f591fe1f4f98.jpg', 'c0cf14c170ec4f567caaee3b1d7f6731.jpg', '6be9d65de277852694f2780c675f03f4.jpg', 'ImagemMapa2-02.169-130.jpg', '', ''),
-(4, '29/10/2014', 3, 1, 'Holding Teste', 1, 'Renato Andrade', 'Tairo Roberto Miguel de Assunçâo', '412.342.3142-1', '543.5', 'Tairo Roberto Miguel de Assunçâo', '324.132.421-34', 'Rua Benfica,Jardim Brasil,São Paulo,SP', '02.226-010', '103', '675', '6546', '35365', '4564', '47', 'Residencia ', 'Norte', '7686', 'São Paulo', 'Santana', '4554', '687346', '7908', '787.99', '23', 'Coletora', 'Págiana 23', '', '', '', '', '', '', '', '', '', '', '', '', 'Sim', '                                                                                                                                ', '2009', '534,25', '2003, 2004, 2013', '53,45', '587,70', '', 'ff9ef06bc3cc250797d4f278f119dbb5.jpg', '63d9f9a3d32620c3003a64d09affede8.jpg', 'fd9f3f0b52ff0eb90f56168a71288e24.jpg', 'ImagemMapa3-02.226-010.jpg', '', ''),
+(4, '29/10/2014', 3, 5, 'Jorge', 5, 'Renato Andrade', 'Tairo Roberto Miguel de Assunçâo', '412.342.3142-1', '543.5', 'Tairo Roberto Miguel de Assunçâo', '324.132.421-34', 'Rua Benfica,Jardim Brasil,São Paulo,SP', '02.226-010', '103', '675', '6546', '35365', '4564', '47', 'Residencia ', 'Norte', '7686', 'São Paulo', 'Santana', '4554', '687346', '7908', '787.99', '23', 'Coletora', 'Págiana 23', '', '', '', '', '', '', '', '', '', '', '', '', 'Sim', '                                                                                                                                ', '2009', '534,25', '2003, 2004, 2013', '53,45', '587,70', '', 'ff9ef06bc3cc250797d4f278f119dbb5.jpg', '63d9f9a3d32620c3003a64d09affede8.jpg', 'fd9f3f0b52ff0eb90f56168a71288e24.jpg', 'ImagemMapa3-02.226-010.jpg', '', ''),
 (6, '13/12/2014', 4, 5, 'Jorge ', 5, 'Jorge Sabia', 'Fwefwfewf', '515.145.4235-2', '543.542.353', 'Tairo Roberto Miguel de Assunçâo', '412.341.324-13', 'Rua Jorge Bron,Vila Maria Alta,São Paulo,SP', '02.136-030', '23', '100', '23', '200', '1.4', '2012', 'Comercial', 'Noerertr', '543', 'Sao apulo', 'Vila mariana', '545', '545', '545', '545', '545', '4324', '423', 'Lleste', '554325', 'Eu na sei', 'tucuruvi', 't324', '53244', '5435', '5435', '5345', '5345', '5435', '', 'Sim', '                                ', '', '', '', '', '0,00', '', '05f03ea2ac7622adaec155796be1d1a0.jpg', 'cbd94ba8260b7b4fdc5ffb9563f40096.jpg', 'aed599def7aa04e16f189b2b54fc8a5e.jpg', 'ImagemMapa4-02.136-030.jpg', '0da16ab7314c9cc7dd5b015e55bf8f93.jpg', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraIncorporacao`
+-- Estrutura para tabela `CadastraIncorporacao`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraIncorporacao` (
@@ -223,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `CadastraIncorporacao` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Extraindo dados da tabela `CadastraIncorporacao`
+-- Fazendo dump de dados para tabela `CadastraIncorporacao`
 --
 
 INSERT INTO `CadastraIncorporacao` (`IdIncorporacao`, `SiglaIncorporacao`, `TituloIncorporacao`, `CepIncorporacao`, `LocalIncorporacao`, `NumeroIncorporacao`, `EstadoIncorporacao`, `CidadeIncorporacao`, `BairroIncorporacao`, `MetragemIncorporacao`, `ValorVendaIncorporacao`, `AtividadeIncorporacao`, `ZonemanetoInc13885`, `CaBasicoInc13885`, `CaMaximoInc13885`, `ZonemanetoInc16050`, `CaBasicoInc16050`, `CaMaximoInc16050`, `NomeProprietarioIncorporacao`, `TelProprietarioIncorporacao`, `EmailProprietarioIncorporacao`, `NomeCorreteorIncorpotacao`, `TelefoneCorretorIncorporacao`, `EmailCorretorIncorporacao`, `situacao`, `ProjetoAprovado`, `DocumentacaoIncorporacao`, `TituloFoto1`, `Imagem1`, `TituloFoto2`, `Imagem2`, `TituloFoto3`, `Imagem3`, `TituloFoto4`, `Imagem4`, `TituloFoto5`, `Imagem5`, `TituloFoto6`, `Imagem6`, `ImagemMapaIncorporacao`) VALUES
@@ -236,7 +283,7 @@ INSERT INTO `CadastraIncorporacao` (`IdIncorporacao`, `SiglaIncorporacao`, `Titu
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraLinks`
+-- Estrutura para tabela `CadastraLinks`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraLinks` (
@@ -247,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `CadastraLinks` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Extraindo dados da tabela `CadastraLinks`
+-- Fazendo dump de dados para tabela `CadastraLinks`
 --
 
 INSERT INTO `CadastraLinks` (`IdLink`, `NomeExibicao`, `Url`) VALUES
@@ -256,7 +303,7 @@ INSERT INTO `CadastraLinks` (`IdLink`, `NomeExibicao`, `Url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraOrcamentoA`
+-- Estrutura para tabela `CadastraOrcamentoA`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraOrcamentoA` (
@@ -274,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `CadastraOrcamentoA` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Extraindo dados da tabela `CadastraOrcamentoA`
+-- Fazendo dump de dados para tabela `CadastraOrcamentoA`
 --
 
 INSERT INTO `CadastraOrcamentoA` (`IdOrcamentoA`, `RazaoSocial`, `NomeContato`, `Taxas`, `FormaPagamento`, `Prazo`, `ComentariosOrcamento`, `TotalOrcamentoA`, `DataOrcamentoA`, `IdOportunidade`) VALUES
@@ -287,7 +334,7 @@ INSERT INTO `CadastraOrcamentoA` (`IdOrcamentoA`, `RazaoSocial`, `NomeContato`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraOrcamentoB`
+-- Estrutura para tabela `CadastraOrcamentoB`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraOrcamentoB` (
@@ -307,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `CadastraOrcamentoB` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Extraindo dados da tabela `CadastraOrcamentoB`
+-- Fazendo dump de dados para tabela `CadastraOrcamentoB`
 --
 
 INSERT INTO `CadastraOrcamentoB` (`IdOrcamentoB`, `RazaoSocial`, `NomeContato`, `Taxas`, `FormaPagamento`, `Prazo`, `ComentariosOrcamento`, `TotalOrcamentoB`, `TotalServicos`, `DataOrcamentoB`, `IdOrcamentoA`, `IdOportunidade`) VALUES
@@ -319,7 +366,7 @@ INSERT INTO `CadastraOrcamentoB` (`IdOrcamentoB`, `RazaoSocial`, `NomeContato`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraPocesso`
+-- Estrutura para tabela `CadastraPocesso`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraPocesso` (
@@ -333,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `CadastraPocesso` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Extraindo dados da tabela `CadastraPocesso`
+-- Fazendo dump de dados para tabela `CadastraPocesso`
 --
 
 INSERT INTO `CadastraPocesso` (`IdProcesso`, `IdEmpresa`, `IdRequerente`, `IdImovel`, `NomeProcesso`, `AssuntoProcesso`) VALUES
@@ -343,7 +390,7 @@ INSERT INTO `CadastraPocesso` (`IdProcesso`, `IdEmpresa`, `IdRequerente`, `IdImo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraSql`
+-- Estrutura para tabela `CadastraSql`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraSql` (
@@ -355,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `CadastraSql` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastraTarefa`
+-- Estrutura para tabela `CadastraTarefa`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastraTarefa` (
@@ -370,10 +417,10 @@ CREATE TABLE IF NOT EXISTS `CadastraTarefa` (
   `DescricaoProjeto` varchar(200) NOT NULL,
   `SituacaoTarefa` varchar(50) NOT NULL,
   PRIMARY KEY (`IdTarefa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
--- Extraindo dados da tabela `CadastraTarefa`
+-- Fazendo dump de dados para tabela `CadastraTarefa`
 --
 
 INSERT INTO `CadastraTarefa` (`IdTarefa`, `IdEmpresa`, `IdRequerente`, `IdImovel`, `IdOportunidade`, `DataInicio`, `DataEntrega`, `NomeProjeto`, `DescricaoProjeto`, `SituacaoTarefa`) VALUES
@@ -392,17 +439,12 @@ INSERT INTO `CadastraTarefa` (`IdTarefa`, `IdEmpresa`, `IdRequerente`, `IdImovel
 (19, 0, 0, 0, 5, '17/11/2014', '27/11/2014', 'Oportunidade Nova', 'Ver Inicio de oportunidade', 'Finalizada'),
 (20, 0, 0, 0, 6, '17/11/2014', '27/11/2014', 'Oportunidade Nova', 'Ver Inicio de oportunidade', 'Finalizada'),
 (21, 4, 4, 1, 0, '08/12/2014', '12/12/2014', 'Aquisição da Area - SMDU-17', 'Apresentação completa para viabilizar junto a Portuguesa', 'Finalizada'),
-(22, 4, 4, 1, 0, '08/12/2014', '11/12/2014', 'Processo Licença SEGUR 3', 'Processo Licença SEGUR 3', 'Arquivada'),
-(23, 4, 4, 1, 0, '08/12/2014', '11/12/2014', 'Cobrança', 'Entrar em contato com o Alves', ''),
-(24, 5, 5, 1, 0, '08/12/2014', '11/12/2014', 'Alvará de Reforma', 'Elaborar Projetos simplificado. OBS: online', ''),
-(25, 5, 5, 1, 0, '10/12/2014', '17/12/2014', 'IPTU', 'Negociar', ''),
-(26, 0, 0, 0, 7, '08/12/2014', '18/12/2014', 'Oportunidade Nova', 'Ver Inicio de oportunidade', ''),
-(30, 0, 0, 0, 11, '13/12/2014', '15/12/2014', 'Oportunidade Nova', 'Desenvolvimento de sistema Mand5435435234545', '');
+(22, 4, 4, 1, 0, '08/12/2014', '11/12/2014', 'Processo Licença SEGUR 3', 'Processo Licença SEGUR 3', 'Arquivada');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastroFAQ`
+-- Estrutura para tabela `CadastroFAQ`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastroFAQ` (
@@ -417,7 +459,7 @@ CREATE TABLE IF NOT EXISTS `CadastroFAQ` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Extraindo dados da tabela `CadastroFAQ`
+-- Fazendo dump de dados para tabela `CadastroFAQ`
 --
 
 INSERT INTO `CadastroFAQ` (`IdCadastraFaq`, `NomeFaq`, `Imagem1`, `Imagem2`, `Imagem3`, `Descricao`, `IdCategoria`) VALUES
@@ -426,7 +468,7 @@ INSERT INTO `CadastroFAQ` (`IdCadastraFaq`, `NomeFaq`, `Imagem1`, `Imagem2`, `Im
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastroHolding`
+-- Estrutura para tabela `CadastroHolding`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastroHolding` (
@@ -448,23 +490,42 @@ CREATE TABLE IF NOT EXISTS `CadastroHolding` (
   `SenhaWebEmpresa` varchar(50) NOT NULL,
   `SiteEmpresa` varchar(100) NOT NULL,
   `IdResponsavel` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`IdEmpresa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
--- Extraindo dados da tabela `CadastroHolding`
+-- Fazendo dump de dados para tabela `CadastroHolding`
 --
 
-INSERT INTO `CadastroHolding` (`IdEmpresa`, `TipoPessoa`, `RazaoSocial`, `NomeFantasia`, `Atividade`, `Cnpj`, `Ccm`, `Cep`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Telefone1`, `Telefone2`, `Email`, `SenhaWebEmpresa`, `SiteEmpresa`, `IdResponsavel`) VALUES
-(1, 'juridica', 'Holding Teste', 'Holding Teste Fantasia', 'Transporte', '34.543.434/3434-34', '323232323232', '02.021-030', 'Rua Aluísio Azevedo', '447', 'Santana', 'São Paulo', '(11) 3578-0840', '(11) 9357-8084', 'vasco@freelers.com.br', '', 'www.freelers.com.br', 0),
-(2, 'juridica', 'Mand Projetos', 'Mand Projetos', 'Regularização de imoveis ', '00.000.000/0000-00', '0000000000', '02.021-030', 'Rua Aluísio Azevedo', '447', 'Santana', 'São Paulo', '(11) 3578-0840', '', 'atendimento@mandprojetos.com.br', '', 'www.mandprojetos.com.br', 2),
-(4, 'juridica', 'Assoc. Portuguesa de Desportos', 'Portuguesa', 'Clube de Futebol', '61.957.981/0001-54', '', '03.034-070', 'Rua Comendador Nestor Pereira', '33', 'Canindé', 'São Paulo', '', '', 'alves@portuguesa.com.br', '', 'http://www.portuguesa.com.br', 4),
-(5, 'fisica', 'Jorge ', 'Kupfer', 'Proprietário', '333.333.333-33', '', '04.515-000', 'Avenida Sabiá', '430', 'Indianópolis', 'São Paulo', '', '', 'feelimport@gmail.com', '', '', 4);
+INSERT INTO `CadastroHolding` (`IdEmpresa`, `TipoPessoa`, `RazaoSocial`, `NomeFantasia`, `Atividade`, `Cnpj`, `Ccm`, `Cep`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Telefone1`, `Telefone2`, `Email`, `SenhaWebEmpresa`, `SiteEmpresa`, `IdResponsavel`, `created_at`) VALUES
+(1, 'juridica', 'Holding Teste', 'Holding Teste Fantasia', 'Transporte', '34.543.434/3434-34', '323232323232', '02.021-030', 'Rua Aluísio Azevedo', '447', 'Santana', 'São Paulo', '(11) 3578-0840', '(11) 9357-8084', 'vasco@freelers.com.br', '', 'www.freelers.com.br', 1, '2015-02-05 11:46:08'),
+(2, 'juridica', 'Mand Projetos', 'Mand Projetos', 'Regularização de imoveis ', '00.000.000/0000-00', '0000000000', '02.021-030', 'Rua Aluísio Azevedo', '447', 'Santana', 'São Paulo', '(11) 3578-0840', '', 'atendimento@mandprojetos.com.br', '', 'www.mandprojetos.com.br', 2, '2015-02-05 11:39:52'),
+(4, 'juridica', 'Assoc. Portuguesa de Desportos', 'Portuguesa', 'Clube de Futebol', '61.957.981/0001-54', '', '03.034-070', 'Rua Comendador Nestor Pereira', '33', 'Canindé', 'São Paulo', '', '', 'alves@portuguesa.com.br', '', 'http://www.portuguesa.com.br', 2, '2015-02-05 11:47:00'),
+(5, 'fisica', 'Jorge ', 'Kupfer', 'Proprietário', '333.333.333-33', '', '04.515-000', 'Avenida Sabiá', '430', 'Indianópolis', 'São Paulo', '', '', 'feelimport@gmail.com', '', '', 3, '2015-02-05 11:45:57'),
+(6, 'fisica', 'Olga ', 'Otero Gomes', 'Administração de Imóveis', '259.895.688-51', '4.669.368-8', '02.514-000', 'Rua Saguairu', '49', 'Casa Verde', 'São Paulo', '', '', 'adriana.taboada@uol.com.br', '170570', '', 4, '2015-02-05 11:45:41'),
+(7, 'juridica', 'JOIE COMERCIO DE ALIMENTOS E PARTICIPAÇÕES EIRLI EPP', 'Bar Brahma', 'Bares e Estabelecimentos ', '16.984.731/0002-30', '', '02.012-020', 'Avenida Olavo Fontoura', '650', 'Santana', 'São Paulo', '', '', 'neto@fabricadebares.com.br', '', 'http://www.barbrahmacentro.com/', 5, '2015-02-05 11:45:37'),
+(8, 'juridica', 'LINX SISTEMAS E CONSULTORIA LTDA.', 'LINX', 'Sistemas e Consultoria ', '54.517.628/0016-74', '', '05.036-010', 'Rua Cenno Sbrighi', '170', 'Água Branca', 'São Paulo', '', '', 'valerio.oliveira@linx.com.br', '545176', 'http://www.linx.com.br/', 6, '2015-02-05 11:45:32'),
+(9, 'juridica', 'EMPRESA DE ONIBUS PASSARO MARRON S.A.', 'Passaro Marron ', 'Garagem ', '61.563.557/0001-25', '1.019.065-1', '02.518-100', 'Rua Joaquim Mendes', '207', 'Jardim das Laranjeiras', 'São Paulo', '(11) 9878-2811', '', 'pbongiovani@uol.com.br', '020966', 'http://www.passaromarron.com.br/', 7, '2015-02-05 11:45:27'),
+(10, 'fisica', 'Marco ', 'Madjar', 'Engenheiro', '317.276.638-10', '3974894-4', '01.234-020', 'Rua Itabaquara', '129', 'Pacaembu', 'São Paulo', '(11) 9912-1707', '', 'madjar@uol.com.br', '000000', '', 8, '2015-02-05 11:45:23'),
+(11, 'juridica', 'CENTO E VINTE 120 PARTIIPACOES E EMPREENDIMENTOS LTDA.', 'PRO 120', 'Academia', '11.155.365/0001-01', 'SEM', '04.602-002', '', '', '', '', '', '', 'atendimento@mandprojetos.com.br', '', 'http://www.pro120.org.br', 9, '2015-02-05 11:45:12'),
+(12, 'fisica', 'Mohamed', 'Ahmad Osman ', 'Gerenciamento de Imóveis ', '586.029.929-04', '', '02.416-060', 'Francisca Julia', '277', 'Santana', 'São Paulo', '(11) 9474-9901', '', 'atendimento@mandprojetos.com.br', '093106', 'http://www.mandprojetos.com.br/', 10, '2015-02-05 11:44:56'),
+(13, 'juridica', 'COMÉRCIO E EDITORA UMBIGO DO MUNDO LTDA. ', 'Umbigo do Mundo', 'Editora', '03.139.462/0001-82', '27867145', '04.531-004', 'Rua Pedroso Alvarenga ', '1208', 'Itaim Bibi', 'São Paulo', '(34) 3840-15', '(11) 3167-3313', 'lilianeleite@aasp.org.br', '199907', 'http://www.umbigodomundo.com.br/', 11, '2015-02-05 11:44:52'),
+(14, 'juridica', 'URBIN DESENVOLVIMENTO IMOBILIÁRIO LTDA - EPP', 'Urbin', 'Incorporadora', '18.483.060/0001-78', '47898231', '02.021-030', 'Rua Aluisio Azevedo', '447', 'Santana', 'São Paulo', '(11) 9995-2861', '(11) 3731-6388', 'esouza@urbin-di.com.br', '215404', 'www.urbin-di.com.br', 12, '2015-02-05 11:44:48'),
+(15, 'juridica', 'PARAISO 157 COMERCIO DE CALCADOS LTDA - EPP', 'Paraíso Calçados', 'Comercio de Calçados', '14.430.208/0001-55', '4398475-4', '08.210-430', 'Rua Gregôrio Ramalho', '157', 'Itaquera', 'São Paulo', '(11) 2950-050', '(11) 9828-2110', 'ocastelan@terra.com.br', '000000', 'http://www.paraisocalcados.com.br/', 13, '2015-02-05 11:44:36'),
+(16, 'juridica', 'LAMBROSO Fashion Mall', 'Lambrosso', 'Shopping', '60.937.653/0012-3', '', '01.122-020', 'Rua Professor Cesare Lombroso', '305', 'Bom Retiro', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '', 14, '2015-02-05 11:44:09'),
+(17, 'juridica', 'FAPARK São Paulo Estacionamento LTDA-ME', 'FAPARK', 'Estacionamento', '08.608.378/0001-84', '', '04.625-005', 'Rua Henrique Fausto Lancellotti', '6333', 'Nova Piraju', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '', 15, '2015-02-05 11:43:48'),
+(18, 'juridica', 'PARKWAY ESTACIONAMENTOS S/C LTDA', 'Parkway', 'estacionamento ', '61.195.715/0010-22', '98920421', '04.734-003', 'Avenida Adolfo Pinheiro', '02056', 'Santo Amaro', 'São Paulo', '(11) 5579-2322', '', 'marcelo@parkway.com.br', '000000', 'http://www.parkway.com.br/', 16, '2015-02-05 11:43:44'),
+(19, 'fisica', 'Janine ', 'Alvarenga Barbosa', 'Dentistas ', '749.210.376-04', '', '02.515-000', 'Rua Doutor César Castiglioni Júnior', '331', 'Casa Verde', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '', 17, '2015-02-05 11:43:31'),
+(20, 'juridica', 'VIA NOVA ENGENHARIA LTDA', 'Via Nova Engenharia', 'Construtora ', '02.058.151/0001-26', '47214643', '02.310-010', 'Rua Guaraja', '155', 'Vila Mazzei', 'São Paulo', '(11) 2972-9902', '(11) 9711-1054', 'amanda.macedo@vianovaengenharia.com.br', '020581', 'http://www.vianovaengenharia.com.br/', 18, '2015-02-05 11:42:56'),
+(21, 'fisica', 'Alceu', 'Gustavo Correa', 'Arquiteto', '315.749.188-18', '', '04.404-030', 'Rua Baquirivu', '590', 'Cidade Ademar', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '', 19, '2015-02-05 11:42:47'),
+(22, 'juridica', 'CGB COMERCIO DE ALIMENTOS E BEBIDAS LTDA', 'Chili Beans', 'Restaurante', '12.880.599/0001-84', '', '04.515-000', 'Avenida Sabiá', '490', 'Indianópolis', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '', 20, '2015-02-05 11:39:52'),
+(23, 'juridica', 'JOCKEY CLUBE DE SÃO PAULO', 'JOCKEY CLUBE', '73 - CLUBE ESPORTIVO', '60.920.345/0001-95', '', '05.601-001', 'Avenida Lineu de Paula Machado', '1263', 'Jardim Everest', 'São Paulo', '(11) 2161-8340', '(11) 2161-8341', 'secretaria@jockeysp.com.br', '', 'www.jockeysp.com.br', 21, '2015-02-05 11:42:24');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadastroRequerente`
+-- Estrutura para tabela `CadastroRequerente`
 --
 
 CREATE TABLE IF NOT EXISTS `CadastroRequerente` (
@@ -486,19 +547,19 @@ CREATE TABLE IF NOT EXISTS `CadastroRequerente` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Extraindo dados da tabela `CadastroRequerente`
+-- Fazendo dump de dados para tabela `CadastroRequerente`
 --
 
 INSERT INTO `CadastroRequerente` (`IdRequerente`, `Nome`, `Cpf`, `Rg`, `Endereco`, `Numero`, `Bairro`, `Municipio`, `Cep`, `Telefone1`, `Telefone2`, `Celular`, `Email`, `SenhaWeb`) VALUES
 (1, 'Renato Andrade', '333.333.333-33', '333.333.333.3333', 'Rua Belchior Paulo', '21', 'Imirim', 'São Paulo', '02.467-110', '(11) 111-1', '(11) 111-1', '(11) 1111-1111', 'renato.andrade@mandprojetos.com.br', ''),
 (2, 'Vasco Pinheiro dos Santos', '', '', 'Rua Aluísio Azevedo', '', 'Santana', 'São Paulo', '02.021-030', '', '', '', 'vasco@freelers.com.br', ''),
 (4, 'Assoc Portuguesa de Desportos', '61.967.981-00', '', 'Rua Comendador Nestor Pereira', '33', 'Canindé', 'São Paulo', '03.034-070', '(11) 2125-9453', '', '', 'alves@portuguesa.com.br', ''),
-(5, 'Jorge Sabia', '333.333.333-33', '', 'Avenida Sabiá', '430', 'Indianópolis', 'São Paulo', '04.515-000', '', '', '', 'feelimport@gmail.com', '');
+(5, 'Jorge Sabia Req.', '333.333.333-33', '', 'Avenida Sabiá', '430', 'Indianópolis', 'São Paulo', '04.515-000', '', '', '', 'feelimport@gmail.com', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Categoria`
+-- Estrutura para tabela `Categoria`
 --
 
 CREATE TABLE IF NOT EXISTS `Categoria` (
@@ -509,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `Categoria` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Extraindo dados da tabela `Categoria`
+-- Fazendo dump de dados para tabela `Categoria`
 --
 
 INSERT INTO `Categoria` (`IdCategoria`, `NomeCategoria`, `SubCategoria`) VALUES
@@ -518,7 +579,7 @@ INSERT INTO `Categoria` (`IdCategoria`, `NomeCategoria`, `SubCategoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ComentariosProcessoImovel`
+-- Estrutura para tabela `ComentariosProcessoImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `ComentariosProcessoImovel` (
@@ -529,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `ComentariosProcessoImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Extraindo dados da tabela `ComentariosProcessoImovel`
+-- Fazendo dump de dados para tabela `ComentariosProcessoImovel`
 --
 
 INSERT INTO `ComentariosProcessoImovel` (`IdComentariosProcessoImovel`, `Comentarios`, `IdImovel`) VALUES
@@ -543,7 +604,7 @@ INSERT INTO `ComentariosProcessoImovel` (`IdComentariosProcessoImovel`, `Comenta
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Contrato`
+-- Estrutura para tabela `Contrato`
 --
 
 CREATE TABLE IF NOT EXISTS `Contrato` (
@@ -554,7 +615,7 @@ CREATE TABLE IF NOT EXISTS `Contrato` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Extraindo dados da tabela `Contrato`
+-- Fazendo dump de dados para tabela `Contrato`
 --
 
 INSERT INTO `Contrato` (`IdContrato`, `DadosMand`, `DadosContrato`) VALUES
@@ -563,7 +624,7 @@ INSERT INTO `Contrato` (`IdContrato`, `DadosMand`, `DadosContrato`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `DadosAdicionaisImovel`
+-- Estrutura para tabela `DadosAdicionaisImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `DadosAdicionaisImovel` (
@@ -575,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `DadosAdicionaisImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Extraindo dados da tabela `DadosAdicionaisImovel`
+-- Fazendo dump de dados para tabela `DadosAdicionaisImovel`
 --
 
 INSERT INTO `DadosAdicionaisImovel` (`IdDadosAdicionais`, `TituloDadosAdicionais`, `ComentarioDadosAdicionais`, `IdImovel`) VALUES
@@ -589,7 +650,7 @@ INSERT INTO `DadosAdicionaisImovel` (`IdDadosAdicionais`, `TituloDadosAdicionais
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `DetalheProcesso`
+-- Estrutura para tabela `DetalheProcesso`
 --
 
 CREATE TABLE IF NOT EXISTS `DetalheProcesso` (
@@ -605,7 +666,7 @@ CREATE TABLE IF NOT EXISTS `DetalheProcesso` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
--- Extraindo dados da tabela `DetalheProcesso`
+-- Fazendo dump de dados para tabela `DetalheProcesso`
 --
 
 INSERT INTO `DetalheProcesso` (`IdDetalheProcesso`, `DataProcessoDetalhe`, `UnidadeProcessoDetahe`, `DescricaoProcessoDetahe`, `DomProcessoDetalhe`, `Data`, `AcaoProcessoDetalhe`, `IdProcesso`) VALUES
@@ -626,7 +687,7 @@ INSERT INTO `DetalheProcesso` (`IdDetalheProcesso`, `DataProcessoDetalhe`, `Unid
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `DocumentosUsuario`
+-- Estrutura para tabela `DocumentosUsuario`
 --
 
 CREATE TABLE IF NOT EXISTS `DocumentosUsuario` (
@@ -638,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `DocumentosUsuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Extraindo dados da tabela `DocumentosUsuario`
+-- Fazendo dump de dados para tabela `DocumentosUsuario`
 --
 
 INSERT INTO `DocumentosUsuario` (`IdDocumento`, `NomeDocumento`, `data`, `IdUsuario`) VALUES
@@ -650,7 +711,7 @@ INSERT INTO `DocumentosUsuario` (`IdDocumento`, `NomeDocumento`, `data`, `IdUsua
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `EtapaTarefa`
+-- Estrutura para tabela `EtapaTarefa`
 --
 
 CREATE TABLE IF NOT EXISTS `EtapaTarefa` (
@@ -662,10 +723,10 @@ CREATE TABLE IF NOT EXISTS `EtapaTarefa` (
   `SituacaoEtapaTarefa` varchar(100) NOT NULL,
   `IdTarefa` int(11) NOT NULL,
   PRIMARY KEY (`IdEtapaTarefa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
--- Extraindo dados da tabela `EtapaTarefa`
+-- Fazendo dump de dados para tabela `EtapaTarefa`
 --
 
 INSERT INTO `EtapaTarefa` (`IdEtapaTarefa`, `IdUsuario`, `TituloEtapa`, `DescricaoEtapa`, `DataEntregaEtapa`, `SituacaoEtapaTarefa`, `IdTarefa`) VALUES
@@ -712,25 +773,15 @@ INSERT INTO `EtapaTarefa` (`IdEtapaTarefa`, `IdUsuario`, `TituloEtapa`, `Descric
 (63, 5, 'Montagem', '', '10/12/2014', 'Finalizar', 21),
 (64, 11, 'Reunião Haddad', '', '12/12/2014', 'Finalizar', 21),
 (65, 11, 'Reunião Incorp/ Invest.', '', '12/12/2014', 'Finalizar', 21),
-(66, 4, 'Protocolar Processo', '', '11/12/2014', 'Finalizar', 21),
+(66, 4, 'Protocolar Processo', '', '25/01/2015', 'Trabalhando', 21),
 (67, 5, 'Solicitar dos. Técnica', '', '08/12/2014', 'Trabalhando', 22),
 (68, 5, 'copia Documento', '', '10/12/2014', 'Trabalhando', 22),
-(69, 11, 'Junção do Doc. Comum', '', '11/12/2014', 'Trabalhando', 22),
-(70, 2, 'Cobrar Notas', '', '11/12/2014', 'Trabalhando', 23),
-(71, 12, 'Vistoria', '', '10/12/2014', 'Trabalhando', 24),
-(72, 4, 'Correções Plantas', '', '10/12/2014', 'Trabalhando', 24),
-(73, 5, 'Atuação Processo', '', '11/12/2014', 'Trabalhando', 24),
-(74, 11, 'Instruir Processo alteração', '', '10/12/2014', 'Trabalhando', 25),
-(75, 11, 'Apresentar ao Auditor', '', '12/12/2014', 'Trabalhando', 25),
-(76, 4, 'Protocolar Processo', '', '15/12/2014', 'Trabalhando', 25),
-(77, 2, 'Apresentar Proposta', '', '17/12/2014', 'Trabalhando', 25),
-(78, 4, 'Verificar oportunidade', 'Verificar oportunidade nova', '18/12/2014', 'Trabalhando', 26),
-(82, 4, 'Desenvolvimento de sistema Mand5435435234545', 'Verificar oportunidade nova', '15/12/2014', 'Trabalhando', 30);
+(69, 11, 'Junção do Doc. Comum', '', '11/12/2014', 'Trabalhando', 22);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Eventos`
+-- Estrutura para tabela `Eventos`
 --
 
 CREATE TABLE IF NOT EXISTS `Eventos` (
@@ -744,7 +795,7 @@ CREATE TABLE IF NOT EXISTS `Eventos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
 
 --
--- Extraindo dados da tabela `Eventos`
+-- Fazendo dump de dados para tabela `Eventos`
 --
 
 INSERT INTO `Eventos` (`id`, `title`, `start`, `end`, `idusuario`, `allDay`) VALUES
@@ -762,7 +813,7 @@ INSERT INTO `Eventos` (`id`, `title`, `start`, `end`, `idusuario`, `allDay`) VAL
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `HistoricoImovel`
+-- Estrutura para tabela `HistoricoImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `HistoricoImovel` (
@@ -777,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `HistoricoImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Extraindo dados da tabela `HistoricoImovel`
+-- Fazendo dump de dados para tabela `HistoricoImovel`
 --
 
 INSERT INTO `HistoricoImovel` (`IdHistoricoImovel`, `SqlImovel`, `Data`, `AreaTerrenoHistorico`, `AreaEdificada`, `SituacaoHistorico`, `IdImovel`) VALUES
@@ -795,7 +846,7 @@ INSERT INTO `HistoricoImovel` (`IdHistoricoImovel`, `SqlImovel`, `Data`, `AreaTe
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `HistoricoIncorporacao`
+-- Estrutura para tabela `HistoricoIncorporacao`
 --
 
 CREATE TABLE IF NOT EXISTS `HistoricoIncorporacao` (
@@ -807,7 +858,7 @@ CREATE TABLE IF NOT EXISTS `HistoricoIncorporacao` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Extraindo dados da tabela `HistoricoIncorporacao`
+-- Fazendo dump de dados para tabela `HistoricoIncorporacao`
 --
 
 INSERT INTO `HistoricoIncorporacao` (`IdHistoricoIncorporacao`, `DataHistoricoIncorporacao`, `DescricaoHistoricoIncorporacao`, `IdIncorporacao`) VALUES
@@ -822,7 +873,7 @@ INSERT INTO `HistoricoIncorporacao` (`IdHistoricoIncorporacao`, `DataHistoricoIn
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `HistoricoOportunidade`
+-- Estrutura para tabela `HistoricoOportunidade`
 --
 
 CREATE TABLE IF NOT EXISTS `HistoricoOportunidade` (
@@ -832,10 +883,10 @@ CREATE TABLE IF NOT EXISTS `HistoricoOportunidade` (
   `Status` varchar(100) NOT NULL,
   `IdOportunidade` int(11) NOT NULL,
   PRIMARY KEY (`IdHistoricoOprtunidade`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 --
--- Extraindo dados da tabela `HistoricoOportunidade`
+-- Fazendo dump de dados para tabela `HistoricoOportunidade`
 --
 
 INSERT INTO `HistoricoOportunidade` (`IdHistoricoOprtunidade`, `DataHistoricoOportunidade`, `TipoHistoricoOportunidade`, `Status`, `IdOportunidade`) VALUES
@@ -944,12 +995,16 @@ INSERT INTO `HistoricoOportunidade` (`IdHistoricoOprtunidade`, `DataHistoricoOpo
 (103, '22/12/2014', 'Alterado', 'Negociar orçamento com cliente', 3),
 (104, '22/12/2014', 'Alterado', 'Enviado para cliente', 3),
 (105, '22/12/2014', 'Alterado', 'Negociar orçamento com cliente', 3),
-(106, '22/12/2014', 'Alterado', 'Enviado para cliente', 3);
+(106, '22/12/2014', 'Alterado', 'Enviado para cliente', 3),
+(107, '22/12/2014', 'Alterado', 'Negociar orçamento com cliente', 3),
+(108, '15/01/2015', 'Alterado', 'Orçamento aceito pelo cliente', 2),
+(109, '19/01/2015', 'Alterado', 'Inviavel', 11),
+(110, '19/01/2015', 'Alterado', 'Inviavel', 11);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `LinkOrcamentoB`
+-- Estrutura para tabela `LinkOrcamentoB`
 --
 
 CREATE TABLE IF NOT EXISTS `LinkOrcamentoB` (
@@ -962,7 +1017,7 @@ CREATE TABLE IF NOT EXISTS `LinkOrcamentoB` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Extraindo dados da tabela `LinkOrcamentoB`
+-- Fazendo dump de dados para tabela `LinkOrcamentoB`
 --
 
 INSERT INTO `LinkOrcamentoB` (`IdLinkOrcamnetoB`, `Endereco`, `DataEnvio`, `IdOportunidade`, `IdOrcamentoB`) VALUES
@@ -977,7 +1032,7 @@ INSERT INTO `LinkOrcamentoB` (`IdLinkOrcamnetoB`, `Endereco`, `DataEnvio`, `IdOp
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Oportunidade`
+-- Estrutura para tabela `Oportunidade`
 --
 
 CREATE TABLE IF NOT EXISTS `Oportunidade` (
@@ -1007,13 +1062,13 @@ CREATE TABLE IF NOT EXISTS `Oportunidade` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Extraindo dados da tabela `Oportunidade`
+-- Fazendo dump de dados para tabela `Oportunidade`
 --
 
 INSERT INTO `Oportunidade` (`IdOportunidade`, `TipoContato`, `Origem`, `TipoCadastro`, `RazaoSocial`, `NomeContato`, `CnpjCpf`, `Atividade`, `Celular`, `Telefone`, `Email`, `ServicoSolicitado`, `EnderecoArea`, `ContribuinteIptu`, `ComentariosSolicitacao`, `DataSolicitacao`, `DataViabilidade`, `DataProrrogacao`, `Status`, `ValorQueClienteQueria`, `Viabilidade`, `IdUsuario`) VALUES
 (1, 'Novo Cliente', 'Indicação', 'Pessoa Fisica', 'Tairo Roberto', 'Tairo Roberto Miguel de Assunçâo', '019.602.181-23', 'Desenvolvimento', '(41) 2431-24324', '(42) 3143-2432', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand', 'Rua Esperanca 215', '43243434', 'Os valores estão acima do que planejei', '2014/10/23', '23/10/2014', '', 'Orçamento Aceito', '', 'SIM', 4),
 (2, 'Novo Cliente', 'Prospecção', 'Pessoa Juridica', 'Renato Construtor', 'Renato Andrade', '000.000.000-01', 'Chupetinha', '(11) 9898-99898', '(11) 1334-3434', 'tairoroberto@hotmail.com', 'AVCB, licença de Funcionamento condicionada', 'Aluizio Azevedo, 447, sala 2', '3343434343', 'Os valores estão acima do que planejei', '2014/10/27', '27/10/2014', '', 'Orçamento Aceito', 'R$10,00', 'SIM', 4),
-(3, 'Novo Cliente', 'Prospecção', 'Pessoa Fisica', 'empresa Ltda', 'Tairo', '000.000.000-01', 'Desenvolvimento', '(53) 4254-35435', '(54) 3254-3543', 'tairoroberto@hotmail.com', 'sem nada', 'Rua Esperanca 215', '54435', 'Os valores estão acima do que planejei', '2014/10/30', '13/12/2014', '', 'Enviado', '200,00', 'SIM', 4),
+(3, 'Novo Cliente', 'Prospecção', 'Pessoa Fisica', 'empresa Ltda', 'Tairo', '000.000.000-01', 'Desenvolvimento', '(53) 4254-35435', '(54) 3254-3543', 'tairoroberto@hotmail.com', 'sem nada', 'Rua Esperanca 215', '54435', 'Os valores estão acima do que planejei', '2014/10/30', '13/12/2014', '', 'Negociar', '200,00', 'SIM', 4),
 (4, 'Cliente existente', 'Site', 'Pessoa Fisica', 'Tairo Roberto', 'Tairo 2', '000.000.000-02', 'Desenvolvimento', '(45) 5235-43252', '(53) 2545-4354', 'tairoroberto@hotmail.com', 'uiewyt', 'Rua Esperanca 215555', 'vbafpgçjsdknvm', ' Comentários', '2014/10/31', '', '', 'Ficha Tecnica', '', '', 4),
 (5, 'Novo Cliente', 'Prospecção', 'Pessoa Fisica', 'fsdfdf', 'fdfdf', '333.333.333-33', 'ererererere', '(11) 1111-11111', '(11) 1111-1111', 'vasco@freelers.com.br', 'ficha tecnica', 'aluisio', '34343434343', ' Comentários', '2014/11/17', '', '', 'Ficha Tecnica', '', '', 4),
 (6, 'Novo Cliente', 'Prospecção', 'Pessoa Fisica', 'Minha empresa Ltda', 'Tairo', '000.000.000-00', 'Desenvolvimento', '(00) 0000-00000', '(00) 0000-0000', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand', 'Rua Esperanca 215', '32144', 'teste', '2014/11/17', '17/11/2014', '', 'Enviar outro orçamento', '', 'SIM', 4),
@@ -1021,12 +1076,12 @@ INSERT INTO `Oportunidade` (`IdOportunidade`, `TipoContato`, `Origem`, `TipoCada
 (8, 'Novo Cliente', 'Indicação', 'Pessoa Fisica', 'Tairo Roberto M.', 'magrelo', '412.343.124-23', 'Desenvolvimento 3', '(41) 2343-44444', '(44) 4444-4444', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand5435435234545', 'Rua Esperanca 215', '32144545543', '435435vcgwtgtwgrweg ljadvfjwef,frfewfvoejwfbçkeqwfpkwqefvpuewbf', '2014/12/13', '', '', 'Ficha Tecnica', '', '', 4),
 (9, 'Novo Cliente', 'Outro', 'Pessoa Juridica', 'Minha empresa Ltda415435', 'Tairo54315145', '53.145.435/2435-24', 'Desenvolvimento 353453245', '(53) 2454-23543', '(53) 4543-2542', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema ee', 'Rua Esperanca 2153434', '32144545543', ' Comentários', '2014/12/13', '', '', 'Ficha Tecnica', '', '', 5),
 (10, 'Cliente existente', 'Indicação', 'Pessoa Fisica', 'Minha empresa Ltda 34234', 'Tairo413241234', '412.344.132-41', 'Desenvolvimento 353453245', '(42) 1343-43434', '(42) 1343-4324', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand5435435234545', 'Rua Esperanca 215', '32144545543', ' Comentários', '2014/12/13', '', '', 'Ficha Tecnica', '', '', 4),
-(11, 'Cliente existente', 'Indicação', 'Pessoa Fisica', 'Minha empresa Ltda545435', 'Magrelo', '543.125.432-54', 'Desenvolvimento43242134', '(43) 2142-34213', '(42) 3141-2341', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand5435435234545', 'Rua Esperanca 215', '32144', ' Comentários', '2014/12/13', '', '', 'Ficha Tecnica', '', '', 4);
+(11, 'Cliente existente', 'Indicação', 'Pessoa Fisica', 'Minha empresa Ltda545435', 'Magrelo', '543.125.432-54', 'Desenvolvimento43242134', '(43) 2142-34213', '(42) 3141-2341', 'tairoroberto@hotmail.com', 'Desenvolvimento de sistema Mand5435435234545', 'Rua Esperanca 215', '32144', ' Comentários', '2014/12/13', '19/01/2015', '', 'Selecionar', '', 'NÃO', 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `OrcamentoAServicos`
+-- Estrutura para tabela `OrcamentoAServicos`
 --
 
 CREATE TABLE IF NOT EXISTS `OrcamentoAServicos` (
@@ -1039,7 +1094,7 @@ CREATE TABLE IF NOT EXISTS `OrcamentoAServicos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
--- Extraindo dados da tabela `OrcamentoAServicos`
+-- Fazendo dump de dados para tabela `OrcamentoAServicos`
 --
 
 INSERT INTO `OrcamentoAServicos` (`IdOrcamentoAServico`, `IdServico`, `Valor`, `IdOrcamentoA`, `IdOportunidade`) VALUES
@@ -1057,7 +1112,7 @@ INSERT INTO `OrcamentoAServicos` (`IdOrcamentoAServico`, `IdServico`, `Valor`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `OrcamentoBServicos`
+-- Estrutura para tabela `OrcamentoBServicos`
 --
 
 CREATE TABLE IF NOT EXISTS `OrcamentoBServicos` (
@@ -1070,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS `OrcamentoBServicos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
--- Extraindo dados da tabela `OrcamentoBServicos`
+-- Fazendo dump de dados para tabela `OrcamentoBServicos`
 --
 
 INSERT INTO `OrcamentoBServicos` (`IdOrcamentoBServico`, `IdServico`, `Valor`, `IdOrcamentoB`, `IdOportunidade`) VALUES
@@ -1088,7 +1143,7 @@ INSERT INTO `OrcamentoBServicos` (`IdOrcamentoBServico`, `IdServico`, `Valor`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `OutrosLotesImovel`
+-- Estrutura para tabela `OutrosLotesImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `OutrosLotesImovel` (
@@ -1103,7 +1158,7 @@ CREATE TABLE IF NOT EXISTS `OutrosLotesImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Extraindo dados da tabela `OutrosLotesImovel`
+-- Fazendo dump de dados para tabela `OutrosLotesImovel`
 --
 
 INSERT INTO `OutrosLotesImovel` (`IdOutrosLotes`, `SqlOutroLotes`, `AreaTerrenoOutrosLotes`, `AreaConstruidaOutrosLotes`, `TestadaOutrosLotes`, `MatriculaOutrosLotes`, `IdImovel`) VALUES
@@ -1121,7 +1176,7 @@ INSERT INTO `OutrosLotesImovel` (`IdOutrosLotes`, `SqlOutroLotes`, `AreaTerrenoO
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `PermissoesUsuario`
+-- Estrutura para tabela `PermissoesUsuario`
 --
 
 CREATE TABLE IF NOT EXISTS `PermissoesUsuario` (
@@ -1143,7 +1198,7 @@ CREATE TABLE IF NOT EXISTS `PermissoesUsuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Extraindo dados da tabela `PermissoesUsuario`
+-- Fazendo dump de dados para tabela `PermissoesUsuario`
 --
 
 INSERT INTO `PermissoesUsuario` (`IdPermissao`, `Holding`, `Requerente`, `Imovel`, `Oportunidade`, `Orcamento`, `Faq`, `LinksUteis`, `Processos`, `Servicos`, `Tarefas`, `Incorporacao`, `Calendario`, `IdUsuario`) VALUES
@@ -1161,7 +1216,7 @@ INSERT INTO `PermissoesUsuario` (`IdPermissao`, `Holding`, `Requerente`, `Imovel
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ProcessosImovel`
+-- Estrutura para tabela `ProcessosImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `ProcessosImovel` (
@@ -1175,7 +1230,7 @@ CREATE TABLE IF NOT EXISTS `ProcessosImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Extraindo dados da tabela `ProcessosImovel`
+-- Fazendo dump de dados para tabela `ProcessosImovel`
 --
 
 INSERT INTO `ProcessosImovel` (`IdProcessosImovel`, `AnoProcesso`, `Interessado`, `Assunto`, `Situacao`, `IdImovel`) VALUES
@@ -1192,7 +1247,7 @@ INSERT INTO `ProcessosImovel` (`IdProcessosImovel`, `AnoProcesso`, `Interessado`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Responsavel`
+-- Estrutura para tabela `Responsavel`
 --
 
 CREATE TABLE IF NOT EXISTS `Responsavel` (
@@ -1209,24 +1264,41 @@ CREATE TABLE IF NOT EXISTS `Responsavel` (
   `Celular` varchar(14) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `SenhaWebResponsavel` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`IdResponsavel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Extraindo dados da tabela `Responsavel`
+-- Fazendo dump de dados para tabela `Responsavel`
 --
 
-INSERT INTO `Responsavel` (`IdResponsavel`, `Nome`, `Cpf`, `Rg`, `Cep`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Telefone`, `Celular`, `Email`, `SenhaWebResponsavel`) VALUES
-(1, 'Vasco Pinheiro dos Santos', 333333, '333.333.333.33', '02.416-06', 'Rua Camarajé', '34', 'Chácara do Encosto', 'São Paulo', '(11) 3434-3434', '', 'vasco@freelers.com.br', ''),
-(2, 'Vasco Pinheiro dos Santos', 0, '', '', '', '', '', '', '', '', '', ''),
-(3, 'Youssef Ahmad Sleiman', 187010, '', '', '', '', '', '', '', '', '', ''),
-(4, '', 0, '', '', '', '', '', '', '', '', '', ''),
-(5, '', 0, '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `Responsavel` (`IdResponsavel`, `Nome`, `Cpf`, `Rg`, `Cep`, `Rua`, `Numero`, `Bairro`, `Cidade`, `Telefone`, `Celular`, `Email`, `SenhaWebResponsavel`, `created_at`) VALUES
+(1, 'Vasco Pinheiro dos Santos', 333333, '333.333.333.33', '02.416-06', 'Rua Camarajé', '34', 'Chácara do Encosto', 'São Paulo', '(11) 3434-3434', '', 'vasco@freelers.com.br', '', '2015-02-05 11:40:18'),
+(2, 'Vasco Pinheiro dos Santos', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(3, 'Youssef Ahmad Sleiman', 187010, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(4, '', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(5, '', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(6, 'Alberto Menache', 172636, '242.570.367', '05.036-01', 'Rua Cenno Sbrighi', '170', 'Água Branca', 'São Paulo', '(11) 2103-4201', '', 'valerio.oliveira@linx.com.br', '545176', '2015-02-05 11:40:18'),
+(7, 'Paulo Sergio Bongiovanni', 51061, '841.112.0', '02.518-10', 'Rua Joaquim Mendes', '207', 'Jardim das Laranjeiras', 'São Paulo', '(11) 9878-2811', '', 'pbongiovani@uol.com.br', '020966', '2015-02-05 11:40:18'),
+(8, 'Marco Madjar', 317276, '251.398.134', '01.234-02', 'Rua Itabaquara', '129', 'Pacaembu', 'São Paulo', '(11) 9912-1707', '', 'madjar@uol.com.br', '000000', '2015-02-05 11:40:18'),
+(9, '', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(10, 'Mohamed Ahmad Osman ', 586029, '361.789.81', '02.416-06', 'Francisca Julia', '277', 'Santana', 'São Paulo', '(11) 9474-9901', '', 'atendimento@mandprojetos.com.br', '093106', '2015-02-05 11:40:18'),
+(11, 'Marina Pechlivanis Koutsantonis ', 154000, '193.987.77', '05.021-00', 'Rua Cotoxó', '265', 'Perdizes ', 'São Paulo', '(11) 3167-3313', '', 'contato@umbigodomundo.com.br', '199907', '2015-02-05 11:40:18'),
+(12, 'Emerson Inácio de Souza ', 319053, '410.689.35', '02.021-03', 'Rua Aluisio Azevedo', '447', 'Santana', 'São Paulo', '(11) 3731-6388', '(11) 9995-2861', 'esouza@urbin-di.com.br', '215404', '2015-02-05 11:40:18'),
+(13, 'Onivaldo Castelan Filho', 101188, '178.418.420', '08.210-43', 'Rua Gregôrio Ramalho', '157', 'Itaquera', 'São Paulo', '(11) 2950-050', '(11) 9828-2110', 'ocastelan@terra.com.br', '000000', '2015-02-05 11:40:18'),
+(14, '', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(15, 'Bruno Cerqueira Cesar Esteves Villar', 317570, '347.222.547', '04.517-05', 'Avenida dos Eucaliptos', '217', 'Indianópolis', 'São Paulo', '', '', 'atendimento@mandprojetos.com.br', '', '2015-02-05 11:40:18'),
+(16, 'Marcelo Sertório Fernandes', 222108, '303.494.05', '04.734-00', 'Avenida Adolfo Pinheiro', '02056', 'Santo Amaro', 'São Paulo', '(11) 5579-2322', '', 'marcelo@parkway.com.br', '000000', '2015-02-05 11:40:18'),
+(17, '', 0, '', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(18, 'Domingos Vasco', 37161, '116.291.45.', '02.310-01', 'Rua Guaraja', '155', 'Vila Mazzei', 'São Paulo', '(11) 2972-9902', '(11) 9711-1054', 'amanda.macedo@vianovaengenharia.com.br', '020581', '2015-02-05 11:40:18'),
+(19, 'Alceu Gustavo Correa', 315749, '', '04.404-03', 'Rua Baquirivu', '590', 'Cidade Ademar', 'São Paulo', '', '', '', '', '2015-02-05 11:40:18'),
+(20, 'José Rubens de Macedo Filho', 0, '680.285.81', '', '', '', '', '', '', '', '', '', '2015-02-05 11:40:18'),
+(21, 'Eduardo Rocha Azevedo', 0, '', '05.601-00', 'Avenida Lineu de Paula Machado', '1263', 'Jardim Everest', 'São Paulo', '(11) 2161-8340', '', '', '', '2015-02-05 11:40:18');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `RestricoesImovel`
+-- Estrutura para tabela `RestricoesImovel`
 --
 
 CREATE TABLE IF NOT EXISTS `RestricoesImovel` (
@@ -1243,7 +1315,7 @@ CREATE TABLE IF NOT EXISTS `RestricoesImovel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Extraindo dados da tabela `RestricoesImovel`
+-- Fazendo dump de dados para tabela `RestricoesImovel`
 --
 
 INSERT INTO `RestricoesImovel` (`IdRestricoesImovel`, `SqlRestricoes`, `Tombamento`, `AreaManancial`, `AreaContaminada`, `PatrimonioAmbiental`, `ProtecaoAmbiental`, `PedenciaFinanceira`, `IdImovel`) VALUES
@@ -1260,7 +1332,7 @@ INSERT INTO `RestricoesImovel` (`IdRestricoesImovel`, `SqlRestricoes`, `Tombamen
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Servicos`
+-- Estrutura para tabela `Servicos`
 --
 
 CREATE TABLE IF NOT EXISTS `Servicos` (
@@ -1268,19 +1340,24 @@ CREATE TABLE IF NOT EXISTS `Servicos` (
   `TituloServico` varchar(100) NOT NULL,
   `ExplicacaoServico` text NOT NULL,
   PRIMARY KEY (`IdServico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Extraindo dados da tabela `Servicos`
+-- Fazendo dump de dados para tabela `Servicos`
 --
 
 INSERT INTO `Servicos` (`IdServico`, `TituloServico`, `ExplicacaoServico`) VALUES
-(1, 'Auto de Licença', '•	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim aliquam enim ac mollis. Curabitur in ipsum eget dolor varius fringill\r\n•	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim aliquam enim ac mollis. Curabitur in ipsum eget dolor varius fringill\r\n•	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim aliquam enim ac mollis. Curabitur in ipsum eget dolor varius fringill\r\n•	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim aliquam enim ac mollis. Curabitur in ipsum eget dolor varius fringill\r\n');
+(2, 'AUTO DE LICENÇA DE FUNCIONAMENTO', '•	Vistoria inloco <br>\r\n•	Elaboração do processo;<br>\r\n•	Acompanhamento  técnico do processo;<br>\r\n•	Responsabilidade técnica do processo;<br>\r\n•	Autuação do  processo;<br>\r\n•	Acompanhamento físico e ou via Simproc;<br>\r\n•	Atendimento de comunique-se;<br>\r\n•	Tramitação junto a Subprefeitura;<br>'),
+(3, 'AUTO DE VERIFICAÇÃO DE SEGURANÇA (AVS)', '<p>Estão obrigadas à adaptação as Edificações,  que apresentarem altura superior a 9 (nove) metros, ou população superior a 100 (cem) pessoas por andar. </p>\r\n1.	Vistoria Local;<br>\r\n2.	Elaboração do Memorial Descritivo;<br>\r\n3.	Elaboração do Laudo Técnico de Segurança;<br>\r\n4.	Relatório fotográfico da situação atual;<br>\r\n5.	Relatório descritivo para atendimento aos Parâmetros;<br>\r\n6.	Relatório descritivo, contendo proposta de adaptação ás normas de segurança;<br>\r\n7.	Elaboração dos Laudos Técnicos;<br>\r\n8.	Elaboração Atestado de  Elétrica ;<br>\r\n9.	Elaboração do Atestado de estabilidade;<br>\r\n10.	Elaboração do Atestado de Segurança;<br>\r\n11.	Elaboração do Cronograma de Obras, para atendimento as adaptações, conforme execução prevista, pelos responsáveis técnicos da execução de obra;<br>\r\n12.	Orientação quanto a adequação das peças gráficas, contendo o sistema de segurança.\r\n13.	Orientação quanto ao atendimento de IEOS;<br>\r\n14.	Autuação (protocolo) do processo;<br>\r\n15.	Tramitação e acompanhamento  técnico do processo;<br> \r\nA partir da autuação  do processo, instruído com a documentação solicitada, inicia-se a análise das propostas, atentando para os principais itens:<br>\r\n\r\n• Estabilidade da edificação;<br>\r\n• especificação dos espaços de circulação e vias de escoamento, horizontal e vertical;<br>\r\n• potencial de risco;<br>\r\n• cálculo de lotação;<br>\r\n• dimensionamento das vias de escoamento, das saídas e dos espaços de circulação protegidos;<br>\r\n• compartimentação vertical e horizontal;<br>\r\n• setores de incêndio;<br>\r\n• instalações elétricas;<br>\r\n• sistema de proteção contra descargas atmosféricas;<br>\r\n• sistema de iluminação de emergência;<br>\r\n\r\n• sistemas de detecção e alarme de advertência geral;<br>\r\n• equipamentos de combate à incêndio (extintores, hidrantes, chuveiros automáticos, dentre outros);<br>\r\n• sinalização de segurança;<br>\r\n• instalações permanentes de gás combustível;<br>\r\n• brigada de combate à incêndio;<br>\r\n• inflamáveis depositados;<br>\r\n• aparelhos de transporte vertical.<br><br>\r\n\r\n<p>Esta primeira etapa do processo de AVS conclui-se com a aceitação de todas as propostas de adaptação, com carimbo de aceitação em planta(s) e emissão de Intimação para Execução de Obras e Serviços (IEOS), com prazos previstos no Código de Obras e Edificações-COE (180 dias, prorrogados por mais 180 dias)</p>\r\n\r\n<p>A segunda etapa do processo de AVS consiste na comprovação da conclusão das obras e serviços, através da apresentação dos Atestados  abaixo relacionada:</p>\r\n\r\n· Atestado de Conclusão de Obras;<br>\r\n· Atestado de formação de Brigada de Combate à Incêndio;<br>\r\n· Atestado de instalações elétricas;<br>\r\n· Atestado do sistema de proteção contra descargas elétricas atmosféricas;<br>\r\n· Atestado referente às instalações de gás;<br>\r\n· Atestado de Vistoria do Corpo de Bombeiros (AVCB) e / ou Atestado sobre funcionamento dos equipamentos e segurança;<br>\r\n· Declaração de matérias estocados e manipulados;<br>\r\n· Outros, de acordo com a particularidade dos equipamentos.<br>\r\n\r\nAtendida a IEOS será expedido o AVS, sendo que a sua retirada se dará mediante o cadastramento da Ficha de Inscrição no Cadastro de Manutenção (FICAM).<br>\r\n\r\nOs atestados referente a segunda etapa, propomos ser os responsáveis nomeados e ou contratados para execução e ou acompanhamento.<br>'),
+(4, 'APARELHOS DE TRANSPORTE', '<p>Elevadores, esteiras, escadas rolantes e outros aparelhos de transporte.</p><br>\r\n\r\n<b>LICENCIAMENTO</b><br>\r\nTodo aparelho de transporte vertical ou horizontal, de cargas ou de pessoas, necessita de licença para ser instalado e para o seu funcionamento,  por meio do:<br>\r\nAlvará de Instalação, concedido antes da montagem do equipamento e do Alvará de Funcionamento, concedido após instalação.<br><br>\r\n\r\n<p>Para a emissão do Alvará de Instalação, é necessário que a edificação esteja com sua situação regular junto a Municipalidade, ou seja, que possua Alvarás emitidos pela Prefeitura que comprovem essa regularidade. Também os aparelhos a serem instalados devem, nos seus projetos, atenderem as normas específicas emitidas pela ABNT – Associação Brasileira de Normas Técnicas, \r\nconsiderando, se tratar de reforma e a permanência dos mesmos existentes e já em funcionamento, propormos aguardar solicitação em ressalva do Alvara, caso seja necessário.</p>'),
+(5, 'TRAMITAÇÃO DE PROCESSO ', '•	Vistoria inloco <br>\r\n•	Analise da situação atual e pretendida;<br>\r\n•	Orientação ao atendimento dos Parâmetros específicos;<br>\r\n•	Acompanhamento técnico do processo;<br>\r\n•	Atendimento do comunique-se;<br>\r\n•	Adequação nas pecas gráficas;<br>\r\n•	Acompanhamento do processo junto a Prefeitura;<br>\r\n•	Emissão de relatório de tramitação.<br>\r\n'),
+(6, 'CERTIFICADO DE ACESSIBILIDADE', '<p>Certificado de Acessibilidade, comprova  que a edificação apresenta condições de acesso em segurança das pessoas portadoras de necessidades especiais e mobilidade reduzida.</p> <br>\r\n•	Vistoria inloco;<br>\r\n•	Analise da situação atual e pretendida;<br>\r\n•	Orientação quanto a adequação as Normas;<br>\r\n•	Orientação quanto a localização dos equipamentos;<br>\r\n•	Elaboração e apresentação em pecas gráficas;<br>\r\n•	Memorial descritivo das obras e serviços;<br>\r\n•	Acompanhamento técnico do processo;<br>\r\n•	Atendimento do comunique-se;<br>\r\n•	Acompanhamento do processo junto ao órgão publico;<br>\r\n•	Emissão de relatório de tramitação.<br>\r\n'),
+(7, 'ALVARÁ DE  LOCAL DE REUNIÃO', '<p>O Alvara de Funcionamento, comprova que o estabelecimento atende as normas e exigências necessárias para concentração de grande numero de pessoas( lotação superior a 250 pessoas).</p><br>\r\n\r\n•	Vistoria inloco;<br>\r\n•	Elaboração do Memorial Descritivo;<br>\r\n•	Elaboração do Laudo Técnico ;<br>\r\n•	Elaboração Atestado para atendimento aos Parâmetros;<br>\r\n•	Montagem e elaboração do processo;<br>\r\n•	Autuação do processo;<br>\r\n•	Acompanhamento e tramitação junto ao órgão publico;<br>\r\n•	Emissão de relatórios de tramitação; <br>\r\n');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ServicosDocumento`
+-- Estrutura para tabela `ServicosDocumento`
 --
 
 CREATE TABLE IF NOT EXISTS `ServicosDocumento` (
@@ -1288,20 +1365,25 @@ CREATE TABLE IF NOT EXISTS `ServicosDocumento` (
   `NomeDocumento` varchar(100) NOT NULL,
   `IdServico` int(11) NOT NULL,
   PRIMARY KEY (`IdDocumento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Extraindo dados da tabela `ServicosDocumento`
+-- Fazendo dump de dados para tabela `ServicosDocumento`
 --
 
 INSERT INTO `ServicosDocumento` (`IdDocumento`, `NomeDocumento`, `IdServico`) VALUES
-(1, 'IPTU', 1),
-(2, 'SQL', 1);
+(3, 'IPTU', 2),
+(4, '', 2),
+(5, 'IPTU', 3),
+(6, 'Alvarás', 4),
+(7, 'iptu', 5),
+(8, 'IPTU', 6),
+(9, 'IPTU', 7);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `SolicitacaoDocumetosTarefa`
+-- Estrutura para tabela `SolicitacaoDocumetosTarefa`
 --
 
 CREATE TABLE IF NOT EXISTS `SolicitacaoDocumetosTarefa` (
@@ -1317,10 +1399,10 @@ CREATE TABLE IF NOT EXISTS `SolicitacaoDocumetosTarefa` (
   `Solicitar` varchar(50) DEFAULT NULL,
   `Recebido` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdSolicitacaoDocUmento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
--- Extraindo dados da tabela `SolicitacaoDocumetosTarefa`
+-- Fazendo dump de dados para tabela `SolicitacaoDocumetosTarefa`
 --
 
 INSERT INTO `SolicitacaoDocumetosTarefa` (`IdSolicitacaoDocUmento`, `IdEmpresa`, `IdRequerente`, `IdImovel`, `IdOportunidade`, `IdTarefa`, `NomeUsuario`, `DocumentosSolicitacao`, `DataSolicitacao`, `Solicitar`, `Recebido`) VALUES
@@ -1330,12 +1412,18 @@ INSERT INTO `SolicitacaoDocumetosTarefa` (`IdSolicitacaoDocUmento`, `IdEmpresa`,
 (4, 0, 0, 0, 4, 9, 'Matheus Camilo', 'IPTU 12222', '31/10/2014', '31/10/2014', '31/10/2014'),
 (5, 1, 1, 4, 0, 11, 'Matheus Camilo', 'adfadfadf', '05/11/2014', '05/11/2014', '07/11/2014'),
 (6, 1, 2, 1, 0, 8, 'Tairo Roberto Miguel de Assunçâo', 'iptu', '07/11/2014', '07/11/2014', '07/11/2014'),
-(7, 0, 0, 0, 7, 26, 'Matheus Camilo', 'Sql certo', '08/12/2014', '08/12/2014', '');
+(7, 0, 0, 0, 7, 26, 'Matheus Camilo', 'Sql certo', '08/12/2014', '08/12/2014', ''),
+(18, 4, 4, 1, 0, 23, 'Tairo Roberto Miguel de Assunçâo', 'teste doc 1', '22/12/2014', '21/01/2015', '21/01/2015'),
+(19, 5, 5, 1, 0, 24, 'Arthur Karam', 'teste doc 2', '22/12/2014', '', ''),
+(20, 0, 0, 0, 7, 26, 'Matheus Camilo', 'teste doc 3', '22/12/2014', '21/01/2015', '21/01/2015'),
+(21, 4, 4, 1, 0, 23, 'Tairo Roberto Miguel de Assunçâo', 'teste doc 45', '21/01/2015', '21/01/2015', '21/01/2015'),
+(22, 5, 5, 1, 0, 25, 'Matheus Camilo', 'teste doc 44', '21/01/2015', '', ''),
+(23, 5, 5, 1, 0, 25, 'Vasco Pinheiro', 'teste doc 411', '21/01/2015', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `TaxasUsuario`
+-- Estrutura para tabela `TaxasUsuario`
 --
 
 CREATE TABLE IF NOT EXISTS `TaxasUsuario` (
@@ -1346,25 +1434,12 @@ CREATE TABLE IF NOT EXISTS `TaxasUsuario` (
   `checado` varchar(50) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
   PRIMARY KEY (`IdTaxa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Extraindo dados da tabela `TaxasUsuario`
---
-
-INSERT INTO `TaxasUsuario` (`IdTaxa`, `DescricaoTaxa`, `ValorTaxa`, `DataTaxa`, `checado`, `IdUsuario`) VALUES
-(4, 'taxa 1', '3.000,00', '23/10/2014', '', 9),
-(5, 'taxa 2', '200,00', '23/10/2014', 'cobrado', 9),
-(6, 'taxa 3', '200,00', '23/10/2014', 'cobrado', 9),
-(7, 'teste 4', '600,00', '23/10/2014', 'cobrado', 9),
-(8, 'Plotagem', '90,00', '28/10/2014', 'cobrado', 10),
-(9, 'Plotagem 3', '300,00', '28/10/2014', 'cobrado', 10),
-(10, 'Platagem dsdsd', '150,00', '28/10/2014', 'cobrado', 10);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `TranferenciaEtapaTarefa`
+-- Estrutura para tabela `TranferenciaEtapaTarefa`
 --
 
 CREATE TABLE IF NOT EXISTS `TranferenciaEtapaTarefa` (
@@ -1374,21 +1449,22 @@ CREATE TABLE IF NOT EXISTS `TranferenciaEtapaTarefa` (
   `DataTranferencia` varchar(20) NOT NULL,
   `IdEtapaTarefa` int(11) NOT NULL,
   PRIMARY KEY (`IdTransferencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Extraindo dados da tabela `TranferenciaEtapaTarefa`
+-- Fazendo dump de dados para tabela `TranferenciaEtapaTarefa`
 --
 
 INSERT INTO `TranferenciaEtapaTarefa` (`IdTransferencia`, `IdUsuarioTranferiu`, `IdUsuarioPegou`, `DataTranferencia`, `IdEtapaTarefa`) VALUES
 (2, 2, 3, '07/11/2014', 38),
 (13, 1, 1, '01/12/2014', 27),
-(15, 1, 1, '01/12/2014', 26);
+(15, 1, 1, '01/12/2014', 26),
+(17, 1, 1, '22/12/2014', 70);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `Usuarios`
+-- Estrutura para tabela `Usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `Usuarios` (
@@ -1410,17 +1486,15 @@ CREATE TABLE IF NOT EXISTS `Usuarios` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Extraindo dados da tabela `Usuarios`
+-- Fazendo dump de dados para tabela `Usuarios`
 --
 
 INSERT INTO `Usuarios` (`IdUsuario`, `TipoUsuario`, `Email`, `Senha`, `ConfirmaSenha`, `NomeExibicao`, `Entrada`, `Saida`, `Almoco`, `Foto`, `DataCadastro`, `PermissaoProcesso`, `CreditoUsuario`, `CreditoUsuario_final`) VALUES
-(1, 'Administrador', 'tairoroberto@hotmail.com', '123', '123', 'Tairo Roberto Miguel de Assunçâo', '10:0011', '18:00', '14:00', '21b0e4324b56ce75868fb91b2b4bb324.jpg', '28/08/2014', '', '', ''),
+(1, 'Administrador', 'tairoroberto@hotmail.com', '123', '123', 'Tairo Roberto Miguel de Assunçâo', '10:0011', '18:00', '14:00', 'c5a5445878e3f09931f160faa5b74132.jpg', '28/08/2014', '', '', ''),
 (2, 'Administrador', 'vasco.pinheiro@mandprojetos.com.br', 'mand', 'mand', 'Vasco Pinheiro', '09:00', '19:00', '2:00', 'c39b4756bd2461ab0f9781dc9c4cacce.jpg', '01/09/2014', '', '', ''),
 (3, 'Administrador', 'renato.andrade@mandprojetos.com.br', 'm@nd', 'm@nd', 'Renato Andrade', '09:00', '19:00', '2hrs', '487764634274209f611f70491c773538.jpg', '01/09/2014', '', '', ''),
 (4, 'Funcionario', 'tecnico1@mandprojetos.com.br', '2232', '2232', 'Matheus Camilo', '9:00', '16:00', '1:00', '', '01/09/2014', '', '', ''),
 (5, 'Funcionario', 'tecnico2@mandprojetos.com.br', '2262', '2262', 'Bruna Morata', '9:00', '18:00', '1:00', '', '01/09/2014', '', '', ''),
-(9, 'Cliente', 'tairoroberto@hotmail.com', '555', '555', 'Tairo Roberto Miguel de Assunçâo', '', '', '', '', '23/10/2014', '1,2,', '1.000,00', '0,00'),
-(10, 'Cliente', 'atendimento@mandprojetos.com.br', 'm@nd', 'm@nd', 'Teste de Cliente', '', '', '', '', '28/10/2014', '1,2,', '590,00', '50,00'),
 (11, 'Administrador', 'magali@mandprojetos.com.br', '123456', '123456', 'Magali Bastos', '8:00', '20:00', '12:00', '', '07/11/2014', '', '', ''),
 (12, 'Funcionario', 'tecnico3@mandprojetos.com.br', 'm@nd', 'm@nd', 'Arthur Karam', '9:00', '18:00', '12:00', '', '10/11/2014', '', '', ''),
 (13, 'Funcionario', 'esouza@urbin-di.com.br', 'm@nd', 'm@nd', 'Emerson Inácio Souza ', '9:00', '18:00', '12:00', '', '10/11/2014', '', '', ''),

@@ -15,6 +15,10 @@
     $insereEtapa = new Conexao();
     $insereEtapa->conectar();
     $insereEtapa->selecionarDB();
+
+    $insereAlerta = new Conexao();
+    $insereAlerta->conectar();
+    $insereAlerta->selecionarDB();
     
    
     /********************************************************************************************/
@@ -84,6 +88,11 @@ if (isset($_POST['SelectHolding'],
     	$DescricaoTarefa1 = $_POST["DescricaoTarefa1"];
     	$DataEntregaTarefa1 = $_POST["DataEntregaTarefa1"];
     	if ($SelectResponsavel1 != "Responsável") {
+
+        $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectResponsavel1','Nova Tarefa - ".$DescricaoTarefa1."','')");
+        $insereAlerta->executarQuery();
+
     		$insereEtapa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
     				VALUES ('$SelectResponsavel1','$TituloTarefa1','$DescricaoTarefa1','$DataEntregaTarefa1','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
     		$insereEtapa->executarQuery();       	
@@ -104,6 +113,11 @@ if (isset($_POST['SelectHolding'],
     	$DescricaoTarefa2 = $_POST["DescricaoTarefa2"];
     	$DataEntregaTarefa2 = $_POST["DataEntregaTarefa2"];
     	if ($SelectResponsavel2 != "Responsável") {
+
+        $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectResponsavel2','Nova Tarefa - ".$DescricaoTarefa2."','')");
+        $insereAlerta->executarQuery();
+
     		$insereEtapa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
     				VALUES ('$SelectResponsavel2','$TituloTarefa2','$DescricaoTarefa2','$DataEntregaTarefa2','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
     		$insereEtapa->executarQuery();  
@@ -126,6 +140,11 @@ if (isset($_POST['SelectHolding'],
     	$DescricaoTarefa3 = $_POST["DescricaoTarefa3"];
     	$DataEntregaTarefa3 = $_POST["DataEntregaTarefa3"];
     	if ($SelectResponsavel3 != "Responsável") {
+
+        $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectResponsavel3','Nova Tarefa - ".$DescricaoTarefa3."','')");
+        $insereAlerta->executarQuery();
+
     		$insereEtapa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
     				VALUES ('$SelectResponsavel3','$TituloTarefa3','$DescricaoTarefa3','$DataEntregaTarefa3','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
     		$insereEtapa->executarQuery();  
@@ -149,6 +168,11 @@ if (isset($_POST['SelectHolding'],
     	$DescricaoTarefa4 = $_POST["DescricaoTarefa4"];
     	$DataEntregaTarefa4 = $_POST["DataEntregaTarefa4"];
     	if ($SelectResponsavel4 != "Responsável") {
+
+        $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectResponsavel4','Nova Tarefa - ".$DescricaoTarefa4."','')");
+        $insereAlerta->executarQuery();
+
     		$insereEtapa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
     				VALUES ('$SelectResponsavel4','$TituloTarefa4','$DescricaoTarefa4','$DataEntregaTarefa4','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
     		$insereEtapa->executarQuery();  
@@ -177,7 +201,11 @@ if (isset($_POST['SelectHolding'],
    		
    	
    		while($i < count($SelectUsuarioArray) && $j < count($TituloArray) && 
-   			  $k < count($DescricaoArray) && $l < count($DataEntregaArray)){   	 				
+   			  $k < count($DescricaoArray) && $l < count($DataEntregaArray)){   	 			
+
+         $insereAlerta->set('sql',"INSERT INTO Alerta (IdUsuario,Mensagem,SituacaoAlerta) 
+                                    VALUES ('$SelectUsuarioArray[$i]','Nova Tarefa - ".$DescricaoArray[$k]."','')");
+         $insereAlerta->executarQuery();	
    			
    				$insereEtapa->set('sql',"INSERT INTO EtapaTarefa(IdUsuario,TituloEtapa,DescricaoEtapa,DataEntregaEtapa,SituacaoEtapaTarefa,IdTarefa)
    						VALUES ('$SelectUsuarioArray[$i]','$TituloArray[$j]','$DescricaoArray[$k]','$DataEntregaArray[$l]','$SituacaoEtapaTarefa','$retornoTarefa->IdTarefa');");
@@ -190,7 +218,7 @@ if (isset($_POST['SelectHolding'],
    			}
    		}
 
-
+ 
 
 
 	

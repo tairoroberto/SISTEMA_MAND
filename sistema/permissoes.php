@@ -482,7 +482,12 @@
           <div class="user-details"> 
             <div class="username">
               <!--Icone de notificação de tarefas -->
-              <span class="badge badge-important"><?php echo $retornoUsuarioEtapaTarefa->contadorTarefa + $retornoAlerta->contadorAlerta; ?></span> 
+              <span class="badge badge-important">
+                <?php if ($retornoAlerta->IdUsuario == $IdUsuario){
+                echo $retornoUsuarioEtapaTarefa->contadorTarefa + $retornoAlerta->contadorAlerta;
+                }else{
+                  echo $retornoUsuarioEtapaTarefa->contadorTarefa;
+                  } ?></span> 
               <!---->
               <?php $nome = explode(" ", utf8_encode($_SESSION['usuarioNome'])); ?>
               <?php echo $nome[0];?> <span class="bold"><?php if (count($nome) > 1) {
@@ -521,25 +526,29 @@
 
              
 
-            <?php if ($retornoAlerta && $retornoAlerta->IdUsuario == $IdUsuario) { ?>
+            <?php 
+            $queryAlerta = $buscaAlerta->executarQuery();
+            
+            if ($retornoAlerta && $retornoAlerta->IdUsuario == $IdUsuario) {
+              while ($retornoAlerta2 = mysql_fetch_object($queryAlerta)) {?>
                 <div class="notification-messages info" >
                   <div class="user-profile">
                     <img src="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>"  alt="" data-src="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>" data-src-retina="<?php echo 'includes/php/fotos/Funcionario/'.$_SESSION['usuarioFoto'];?>" width="35" height="35">
                   </div>
-                  <div class="message-wrapper" onclick="deletaAlerta('<?php echo $IdUsuario; ?>','<?php echo $retornoAlerta->Mensagem; ?>');">
+                  <div class="message-wrapper" onclick="deletaAlerta('<?php echo $IdUsuario; ?>','<?php echo $retornoAlerta2->Mensagem; ?>');">
                     <div class="heading">
-                      <?php echo $retornoAlerta->Mensagem; ?> 
+                      <?php echo $retornoAlerta2->Mensagem; ?> 
                     </div>
                     <div class="description">
-                      <?php echo $retornoAlerta->Mensagem;?> 
+                      <?php echo $retornoAlerta2->Mensagem;?> 
                     </div>
                     <div class="date pull-left">
-                    <?php echo $retornoAlerta->contadorAlerta; ?> 
+                    <?php echo $retornoAlerta2->contadorAlerta; ?> 
                     </div>                    
                   </div>
                   <div class="clearfix"></div>                  
                 </div>  
-            <?php } ?>   
+            <?php }} ?>   
 
 
           <?php

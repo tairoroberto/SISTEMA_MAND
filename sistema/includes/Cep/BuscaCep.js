@@ -3,7 +3,7 @@
     /*                       Função para a busca de CEP da empresa                              */
     /********************************************************************************************/
     function cepEmpresa() {
-            if($.trim($("#CepEmpresa").val()) != ""){
+           /* if($.trim($("#CepEmpresa").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#CepEmpresa").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -19,14 +19,42 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+            //Nova variável com valor do campo "cep".
+            var cep = $("#CepEmpresa").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#RuaEmpresa").val("...")
+            $("#BairroEmpresa").val("...")
+            $("#CidadeEmpresa").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#RuaEmpresa").val(dados.logradouro);
+                    $("#BairroEmpresa").val(dados.bairro);
+                    $("#CidadeEmpresa").val(dados.localidade);
+                    $("#NumeroEmpresa").val("");
+                    $("#NumeroEmpresa").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
         }
   
      /********************************************************************************************/
     /*                       Função para a busca de CEP do Responsável                          */
     /********************************************************************************************/
   function cepResponsavel() {
-            if($.trim($("#CepResponsavel").val()) != ""){
+           /* if($.trim($("#CepResponsavel").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#CepResponsavel").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -42,15 +70,44 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
-        }
+            }*/
+         
+            //Nova variável com valor do campo "cep".
+            var cep = $("#CepResponsavel").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#RuaResponsavel").val("...")
+            $("#BairroResponsavel").val("...")
+            $("#CidadeResponsavel").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#RuaResponsavel").val(dados.logradouro);
+                    $("#BairroResponsavel").val(dados.bairro);
+                    $("#CidadeResponsavel").val(dados.localidade);
+                    $("#NumeroResponsavel").val("");
+                    $("#NumeroResponsavel").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
+        }//viacep.com.br/ws/01001-000/json
        
 
      /********************************************************************************************/
     /*                       Função para a busca de CEP do Requerente                            */
     /********************************************************************************************/
     function cepRequerente() {
-            if($.trim($("#CepRequerente").val()) != ""){
+            /*if($.trim($("#CepRequerente").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#CepRequerente").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -66,7 +123,35 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+               //Nova variável com valor do campo "cep".
+            var cep = $("#CepRequerente").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#EnderecoRequerente").val("...")
+            $("#BairroRequerente").val("...")
+            $("#MunicipioRequerente").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#EnderecoRequerente").val(dados.logradouro);
+                    $("#BairroRequerente").val(dados.bairro);
+                    $("#MunicipioRequerente").val(dados.localidade);
+                    $("#NumeroRequerente").val("");
+                    $("#NumeroRequerente").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
         }
 
 
@@ -74,7 +159,7 @@
     /*                       Função para a busca de CEP do Imóvel                            */
     /********************************************************************************************/
     function cepImovel() {
-            if($.trim($("#CepRequerente").val()) != ""){
+           /* if($.trim($("#CepRequerente").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#CepRequerente").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -90,7 +175,36 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+
+               //Nova variável com valor do campo "cep".
+            var cep = $("#CepRequerente").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#EnderecoRequerente").val("...")
+            $("#BairroRequerente").val("...")
+            $("#MunicipioRequerente").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#EnderecoRequerente").val(dados.logradouro);
+                    $("#BairroRequerente").val(dados.bairro);
+                    $("#MunicipioRequerente").val(dados.localidade);
+                    $("#NumeroRequerente").val("");
+                    $("#NumeroRequerente").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
         }
 
 
@@ -98,7 +212,7 @@
     /*                       Função para a busca de CEP do Imóvel                            */
     /********************************************************************************************/
     function cepImovelCadastro() {
-            if($.trim($("#Cep").val()) != ""){
+          /*  if($.trim($("#Cep").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#Cep").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -113,7 +227,33 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+
+               //Nova variável com valor do campo "cep".
+            var cep = $("#Cep").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#EnderecoRequerente").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#LocalImovel").val(dados.logradouro+","+dados.bairro+","+dados.localidade+","+dados.uf);
+                    $("#EnderecoMapaAux").val(dados.logradouro+","+dados.bairro+","+dados.localidade+","+dados.uf);
+                    $("#Codlog").val("");
+                    $("#Codlog").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
         }
 
 
@@ -121,7 +261,7 @@
     /*                           Função para a busca de CEP do Imóvel                           */
     /********************************************************************************************/
     function cepIncorporacao() {
-            if($.trim($("#CepIncorporacao").val()) != ""){
+            /*if($.trim($("#CepIncorporacao").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#CepIncorporacao").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -139,7 +279,38 @@
                     $("#ajax-loading").hide(); //EnderecoMapaAux
                     
                 });
-            }
+            }*/
+
+                //Nova variável com valor do campo "cep".
+            var cep = $("#CepIncorporacao").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Verifica se campo cep possui valor informado.
+                
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#LocalIncorporacao").val("...")
+            $("#BairroIncorporacao").val("...")
+            $("#CidadeIncorporacao").val("...")
+            $("#EstadoIncorporacao").val("...")
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#LocalIncorporacao").val(dados.logradouro)
+                    $("#BairroIncorporacao").val(dados.bairro)
+                    $("#CidadeIncorporacao").val(dados.localidade)
+                    $("#EstadoIncorporacao").val(dados.uf)
+                    $("#NumeroIncorporacao").val("");
+                    $("#NumeroIncorporacao").focus();
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
         }
         
 
@@ -149,7 +320,7 @@
     /*                       Função para a busca de CEP do Imóvel                            */
     /********************************************************************************************/
     function cepImovelFichaTecnica() {
-            if($.trim($("#EnderecoAux").val()) != ""){
+            /*if($.trim($("#EnderecoAux").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#EnderecoAux").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -166,7 +337,31 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+
+                //Nova variável com valor do campo "cep".
+            var cep = $("#EnderecoAux").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#EnderecoAux2").val(dados.logradouro+","+$("#EnderecoAuxNumero").val()+","+dados.bairro+","+dados.localidade+","+dados.uf)
+                    if ($("#EnderecoAux2").val() != null) {
+
+                             initialize();     
+
+                    }
+
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
 
             //começo do mapa
                 var geocoder;
@@ -205,7 +400,7 @@
     /*                       Função para a busca de CEP do Imóvel                            */
     /********************************************************************************************/
     function cepIncorporacaoVisualizar() {        
-            if($.trim($("#EnderecoAux").val()) != ""){
+            /*if($.trim($("#EnderecoAux").val()) != ""){
                 $("#ajax-loading").css('display','inline');
                 $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#EnderecoAux").val().replace("-", ""), function(){
                     if(resultadoCEP["resultado"] == 1){
@@ -226,7 +421,33 @@
                     $("#ajax-loading").hide();
                     
                 });
-            }
+            }*/
+                 //Nova variável com valor do campo "cep".
+            var cep = $("#EnderecoAux").val().replace(".", "");
+            cep = cep.replace("-", "");
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#EnderecoAux2").val(dados.logradouro+","+$("#EnderecoAuxNumero").val()+","+dados.bairro+","+dados.localidade+","+dados.uf)
+                    if ($("#EnderecoAux2").val() != null) {
+
+                        if (initialize()) {
+                            return true;
+                        }else{
+                            return false;
+                        }     
+                    }
+
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
 
             //começo do mapa
                 var geocoder;

@@ -3,7 +3,6 @@
 	/* 					Inclui a classe de conexão com o banco 									*/
 	/********************************************************************************************/
     include('conexao/Conexao.class.php');
-    include('conexao/Alerta.php');
  
      /********************************************************************************************/
     /*			Variáveis para inserção no banco de dados, insere o Responsável e a empresa		*/
