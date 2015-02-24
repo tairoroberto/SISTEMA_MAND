@@ -45,12 +45,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 <script type="text/javascript">
   jQuery(function($){
-   
-    if ($('#inputCpf').is(':checked')) {
-      $("#CpfRequerente").mask("999.999.999-99");
-    }else{
-      $("#CpfRequerente").mask("99.999.999/9999-99")
-    }   
+     
    $("#RgRequerente").mask("999.999.999.999.999");
    $("#CepRequerente").mask("99.999-999");
 
@@ -66,9 +61,19 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
       $("#CpfRequerente").mask("999.999.999-99");
     }else{
       $("#CpfRequerente").mask("99.999.999/9999-99")
-    } 
-    
+    }     
   }
+
+  function verificaCpfCnpj(){
+  if ($('#inputCpf').is(':checked')) {
+      $("#CpfRequerente").val("");
+      $("#CpfRequerente").mask("999.999.999-99");
+    }else{
+      $("#CpfRequerente").val("");
+      $("#CpfRequerente").mask("99.999.999/9999-99")
+    }
+}
+
 
 </script>
 
@@ -77,7 +82,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-<body class="">
+<body class="" onload="verificaCpfCnpj();">
 <!-- BEGIN HEADER -->
 
 	 <!-- END TOP NAVIGATION MENU -->
@@ -133,11 +138,11 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       </div>
                       <div class="col-md-1">
                           <label>
-                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf" checked="true" onchange="changeMask()">
+                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf" checked="true" onchange="verificaCpfCnpj()">
                              Cpf
                           </label>
                            <label>
-                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="changeMask()">
+                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="verificaCpfCnpj()">
                               Cnpj
                            </label>
                       </div>

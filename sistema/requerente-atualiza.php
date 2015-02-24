@@ -46,7 +46,6 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
   jQuery(function($){
 
    $("#RgRequerente").mask("999.999.999.9999");
-   $("#CpfRequerente").mask("999.999.999-99");
    $("#CepRequerente").mask("99.999-999");
    $("#TelefoneRequerente1").mask("(99) 999-99999");
    $("#TelefoneRequerente2").mask("(99) 999-99999");
@@ -62,11 +61,18 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
       formRequerenteAtualiza.action = "includes/php/ExcluirRequerente.php";
       formRequerenteAtualiza.submit();
     }
-
-    
-    
   }
   
+
+  function verificaCpfCnpj(){
+  if ($('#inputCpf').is(':checked')) {
+      $("#CpfRequerente").val("");
+      $("#CpfRequerente").mask("999.999.999-99");
+    }else{
+      $("#CpfRequerente").val("");
+      $("#CpfRequerente").mask("99.999.999/9999-99")
+    }
+}
 
 
 
@@ -153,10 +159,20 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
  
                           <input name="NomeRequerente" id="NomeRequerente" type="text"  class="form-control" placeholder="Nome Completo" value="<?php echo $retornoRequerente->Nome;?>">   
                       </div>
+                      <div class="col-md-1">
+                          <label>
+                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf" onchange="verificaCpfCnpj()">
+                             Cpf
+                          </label>
+                           <label>
+                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="verificaCpfCnpj()">
+                              Cnpj
+                           </label>
+                      </div>
                       <div class="col-md-3">
                         <input name="CpfRequerente" id="CpfRequerente" type="text"  class="form-control" placeholder="CPF " value="<?php echo $retornoRequerente->Cpf;?>">
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input name="RgRequerente" id="RgRequerente" type="text"  class="form-control" placeholder="RG " value="<?php echo $retornoRequerente->Rg;?>">
                       </div>
                     </div>
