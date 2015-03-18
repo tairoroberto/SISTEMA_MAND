@@ -49,8 +49,8 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
    $("#RgRequerente").mask("999.999.999.999.999");
    $("#CepRequerente").mask("99.999-999");
 
-   $("#TelefoneRequerente1").mask("(99) 9999-99999");
-   $("#TelefoneRequerente2").mask("(99) 9999-99999");
+   $("#TelefoneRequerente1").mask("(99) 9999-9999");
+   $("#TelefoneRequerente2").mask("(99) 9999-9999");
    $("#CelularRequerente").mask("(99) 9999-99999");
   
 });
@@ -64,7 +64,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
     }     
   }
 
-  function verificaCpfCnpj(){
+function verificaCpfCnpj(){
   if ($('#inputCpf').is(':checked')) {
       $("#CpfRequerente").val("");
       $("#CpfRequerente").mask("999.999.999-99");
@@ -145,7 +145,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                            <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="verificaCpfCnpj()">
                               Cnpj
                            </label>
-                      </div>
+                      </div> 
                       <div class="col-md-3">
                         <input name="CpfRequerente" id="CpfRequerente" type="text"  class="form-control" placeholder="CPF ">
                       </div>

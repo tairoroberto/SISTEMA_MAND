@@ -726,8 +726,34 @@ function encerraImovel(){
       </div>
     </div>
  </div>
-        <!-- BLOCO 2 -->
-        
+
+
+
+<!-- BLOCO 2 -->
+<div  class="row" id="Lei16050">
+<!-- TITULO -->
+      <div class="tiles green added-margin   m-b-20">
+        <div class="tiles-body">
+          <h4 class="text-white no-margin semi-bold">Lei 16050</h4>
+          <br>
+        </div>
+      
+      <!-- TITULO -->       
+      
+      <div class=" tiles white" >                    
+            <div class="col-md-12  no-padding">                  
+               <?php if ($retornoImovel->ImagemLei != null) {
+                    echo "<img src='includes/php/fotos/Imovel/".$retornoImovel->ImagemLei."' width='100%' height='600'>";
+                  }else{
+                    echo "";
+                    }  ?>    
+           </div>        
+          <div class="clearfix"></div>     
+      </div>
+   </div>
+</div>
+<!-- BLOCO 2 -->
+
         
         
          <!-- BLOCO 2 -->

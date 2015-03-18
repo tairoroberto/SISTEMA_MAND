@@ -60,11 +60,7 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
 <script type="text/javascript">
   jQuery(function($){
-   $("#CpfCnpj").mask("999.999.999-99");
    $("#Cep").mask("99.999-999");
-
-   $("#NumeroContribuinte").mask("999.999.9999-9");
-   $("#MatriculaContribuinte").mask("999.999.999.999.999");
    $("input[id='SqlHistoricoArray']").mask("999.999.9999-9");
    $("input[id='SqlOutrosLotesArray']").mask("999.999.9999-9");
    $("input[id='SqlRetricao']").mask("999.999.9999-9");
@@ -103,6 +99,30 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
 
    document.getElementById("imagem-mapa").src="http://maps.googleapis.com/maps/api/staticmap?center="+LocalImovel+","+Codlog+"-"+Cep+"&zoom=15&size=900x300&scale=2&markers=size:mid%20Ccolor:red%7C"+LocalImovel+"+"+Codlog+"+"+Cep+"&sensor=false";
   }
+
+
+  function verificaCpfCnpj(){
+  if ($('#inputCpf').is(':checked')) {
+      $("#CpfCnpj").val("");
+      document.getElementById("CpfCnpj").placeholder = "CPF";
+      $("#CpfCnpj").mask("999.999.999-99");
+    }else{
+      $("#CpfCnpj").val("");
+      document.getElementById("CpfCnpj").placeholder = "CNPJ";
+      $("#CpfCnpj").mask("99.999.999/9999-99")
+    }
+}
+
+function verificaNumeroContribuinte(){
+  $("#NumeroContribuinte").val("");
+  $("#NumeroContribuinte").mask("999.999.9999-9");
+}
+
+function verificamatriculaContribuinte(){
+  $("#MatriculaContribuinte").val("");
+  $("#MatriculaContribuinte").mask("999.999.999.999.999");
+}
+
 </script>
 
 </head>
@@ -323,21 +343,33 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                         
                         <div class="row form-row">
                       <div class="col-md-6">
-                        <input name="NumeroContribuinte" id="NumeroContribuinte" type="text"  class="form-control" placeholder="Numero do Contribuinte" 
+                        <input name="NumeroContribuinte" id="NumeroContribuinte" type="text"  class="form-control" onfocus="verificaNumeroContribuinte();" placeholder="Numero do Contribuinte" 
                                   value="<?php echo $retornoImovel->NumeroContribuinte; ?>">
                       </div>
                       <div class="col-md-6">
-                        <input name="MatriculaContribuinte" id="MatriculaContribuinte" type="text"  class="form-control" placeholder="Matricula" 
+                        <input name="MatriculaContribuinte" id="MatriculaContribuinte" type="text"  class="form-control" onfocus="verificamatriculaContribuinte();" placeholder="Matricula" 
                                   value="<?php echo $retornoImovel->MatriculaContribuinte; ?>">
                       </div>
                     </div>
                     <div class="row form-row">
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                         <input name="NomeContribuinte" id="NomeContribuinte" type="text"  class="form-control" placeholder="Nome do contribuinte" 
                                   value="<?php echo $retornoImovel->NomeContribuinte; ?>">
                       </div>
+
+                      <div class="col-md-1">
+                          <label>
+                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf"  onchange="verificaCpfCnpj()">
+                             Cpf
+                          </label>
+                           <label>
+                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="verificaCpfCnpj()">
+                              Cnpj
+                           </label>
+                      </div>
+
                       <div class="col-md-4">
-                        <input name="CpfCnpj" id="CpfCnpj" type="text"  class="form-control" placeholder="CNPJ/CPF"
+                        <input name="CpfCnpj" id="CpfCnpj" type="text"  class="form-control"  placeholder="CNPJ/CPF"
                                   value="<?php echo $retornoImovel->CnpjCpf; ?>">
                       </div>
                     </div>

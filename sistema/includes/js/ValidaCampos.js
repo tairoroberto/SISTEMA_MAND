@@ -1555,10 +1555,12 @@ function escondeImovelFichaTecnica() {
     }
 
     if (formImovelFichaTecnica.checkZoneamento2.checked == false) {            
-        document.getElementById("DivZoneamento2").style.display = "none"; 
+        document.getElementById("DivZoneamento2").style.display = "none";
+        document.getElementById("Lei16050").style.display = "none"; 
         formPdf.ckZoneamento2.value = 0;           
     }else{
         document.getElementById("DivZoneamento2").style.display = "block"; 
+        document.getElementById("Lei16050").style.display = "block"; 
         formPdf.ckZoneamento2.value = 1;  
     }
 

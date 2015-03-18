@@ -10,8 +10,8 @@ $_SG ['validaSempre'] = true; // Deseja validar o usuário e a senha a cada carr
                              // Evita que, ao mudar os dados do usuário no banco de dado o mesmo contiue logado.
 
 $_SG ['servidor'] = 'localhost'; // Servidor MySQL
-$_SG ['usuario'] = 'mandproj_userDB'; // Usuário MySQL
-$_SG ['senha'] = 'mand@231'; // Senha MySQL
+$_SG ['usuario'] = 'root'; // Usuário MySQL
+$_SG ['senha'] = 'tairo1507'; // Senha MySQL
 $_SG ['banco'] = 'mandproj_DB'; // Banco de dados MySQL
 
 $_SG ['paginaLogin'] = 'login'; // Página de login

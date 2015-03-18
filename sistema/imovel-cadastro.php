@@ -91,6 +91,17 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
     $("input[id='SqlOutrosLotesArray[]']").mask("999.999.9999-9");
   }
 
+function verificaCpfCnpj(){
+  if ($('#inputCpf').is(':checked')) {
+      $("#CpfCnpj").val("");
+      document.getElementById("CpfCnpj").placeholder = "CPF";
+      $("#CpfCnpj").mask("999.999.999-99");
+    }else{
+      $("#CpfCnpj").val("");
+      document.getElementById("CpfCnpj").placeholder = "CNPJ";
+      $("#CpfCnpj").mask("99.999.999/9999-99")
+    }
+}
   
 
 </script>
@@ -298,9 +309,21 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       </div>
                     </div>
                     <div class="row form-row">
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                         <input name="NomeContribuinte" id="NomeContribuinte" type="text"  class="form-control" placeholder="Nome do contribuinte">
                       </div>
+
+                      <div class="col-md-1">
+                          <label>
+                            <input type="radio" name="inputCpf" id="inputCpf" value="cpf" checked="true" onchange="verificaCpfCnpj()">
+                             Cpf
+                          </label>
+                           <label>
+                           <input type="radio" name="inputCpf" id="inputCnpj" value="cnpj" onchange="verificaCpfCnpj()">
+                              Cnpj
+                           </label>
+                      </div>
+
                       <div class="col-md-4">
                         <input name="CpfCnpj" id="CpfCnpj" type="text"  class="form-control" placeholder="CPF">
                       </div>

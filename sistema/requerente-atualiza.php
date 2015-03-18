@@ -46,12 +46,21 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
   jQuery(function($){
 
    $("#RgRequerente").mask("999.999.999.9999");
-   $("#CepRequerente").mask("99.999-999");
-   $("#TelefoneRequerente1").mask("(99) 999-99999");
-   $("#TelefoneRequerente2").mask("(99) 999-99999");
+   $("#CepRequerente").mask("99.999-999"); 
    $("#CelularRequerente").mask("(99) 9999-99999");
 
 });
+
+
+function verificaTelefone1(){
+  $("#TelefoneRequerente1").val("");
+  $("#TelefoneRequerente1").mask("(99) 9999-9999");
+}
+
+function verificaTelefone2(){
+  $("#TelefoneRequerente2").val("");
+  $("#TelefoneRequerente2").mask("(99) 9999-9999");
+}
 
   function enviaformRequerenteAtualiza(acao){
     if (acao == "Atualizar") {
@@ -208,11 +217,11 @@ include("permissoes.php"); //inclui o arquivo que gera o SIDEBAR com as devidas 
                       <div class="col-md-4">
  
                           <input name="TelefoneRequerente1" id="TelefoneRequerente1" type="text"  class="form-control"
-                          			onkeypress="return verificaNumeros();" placeholder="Telefone 1" value="<?php echo $retornoRequerente->Telefone1;?>">   
+                          			onkeypress="return verificaNumeros();" onfocus="verificaTelefone1();" placeholder="Telefone 1" value="<?php echo $retornoRequerente->Telefone1;?>">   
                       </div>
                       <div class="col-md-4">
                         <input name="TelefoneRequerente2" id="TelefoneRequerente2" type="text"  class="form-control"
-                        		onkeypress="return verificaNumeros();" placeholder="Telefone 2 " value="<?php echo $retornoRequerente->Telefone2;?>">
+                        		onkeypress="return verificaNumeros();" onfocus="verificaTelefone2();" placeholder="Telefone 2 " value="<?php echo $retornoRequerente->Telefone2;?>">
                       </div>
                       <div class="col-md-4">
                         <input name="CelularRequerente" id="CelularRequerente" type="text"  class="form-control"
