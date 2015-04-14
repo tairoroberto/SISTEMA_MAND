@@ -43,6 +43,18 @@
           document.getElementById("divOrcamento").style.display = "none";
        }
     }
+
+    function validaRejeitar(){
+        if((document.getElementById("observacaoValor").value != "") |
+          (document.getElementById("observacaoEspe").value != "") |
+          (document.getElementById("observacaoOutros").value != "")){
+
+          document.forms[0].submit();
+        }else{
+          alert("Por favor preencha o campo com o motivo!");
+        }        
+        return;
+    }
 </script>
   
 
@@ -106,7 +118,7 @@
     <br>
     <br />
     <br />
-    <a href="#"><img src="imagens/btn-enviar.png" width="210" height="46" onclick="document.forms[0].submit();" /></a> 
+    <a href="#"><img src="imagens/btn-enviar.png" width="210" height="46" onclick="validaRejeitar();" /></a> 
     </div>
     
 <img src="imagens/roda-pe.png" width="750" height="180" /> 

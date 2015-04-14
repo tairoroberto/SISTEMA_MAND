@@ -148,7 +148,7 @@ $mail = new PHPMailer();
 // Define os dados do servidor e tipo de conexão
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 $mail->IsSMTP(); // Define que a mensagem será SMTP
-$mail->Host = "bh-37.webhostbox.net"; // Endereço do servidor SMTP
+$mail->Host = "mail.mandprojetos.com.br"; // Endereço do servidor SMTP
 $mail->SMTPSecure = "ssl"; 
 $mail->Port = 465;
 $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)

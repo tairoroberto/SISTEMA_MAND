@@ -28,18 +28,19 @@ html {
 
 #esq-serv {
 	width:200px;
-	height:47px;
-	border-top-style:solid;
-	border-top-color:#3b3b43;
+	height:60px;
 	padding-left:20px;
 	padding-top:8px;
 }
 
 #esq-pdf {
-	width:220px;
-	height:45px;
+	width:165px;
+	height:32px;
+	padding-left:55px;
+	padding-top:13px;
 	margin-top:20px;
 	margin-bottom:50px;
+	background-image:url(imagens/pdf.png);
 }
 
 
@@ -69,9 +70,28 @@ html {
 
 #dir-dados-pessoais {
 	width:750px;
-	height:240px;
+	height:290px;
 	background-image:url(imagens/fundo-dados.jpg);
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
+	background-position:left top;
+	background-color:#FFF;
+}
+
+#dir-dados-pessoais2 {
+	width:750px;
+	height:180px;
+	background-image:url(imagens/fundo-dados.jpg);
+	background-repeat: no-repeat;
+	background-position:left top;
+	background-color:#FFF;
+	margin-bottom:30px;
+}
+
+#dir-dados-pessoais3 {
+	width:750px;
+	height:230px;
+	background-image:url(imagens/fundo-dados.jpg);
+	background-repeat: no-repeat;
 	background-position:left top;
 	background-color:#FFF;
 }

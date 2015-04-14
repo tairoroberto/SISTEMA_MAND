@@ -10,9 +10,9 @@
    *                 Declaração dos atributos da classe de conexão                                        *
    *******************************************************************************************************/
    private $host = "localhost"; // Endereço do servidor do banco de dados
-   private $usuario = "root"; // Usuário do banco de dados que possua acesso ao schema
-   private $senha = "tairo1507"; // Senha do usuário
-   private $banco = "mandproj_DB"; // Banco de dados utilizado na conexão
+   private $usuario = "root"; // mandproj_userDB Usuário do banco de dados que possua acesso ao schema
+   private $senha = "tairo1507"; // MandProj@231 Senha do usuário
+   private $banco = "mandproj_DB"; // mandproj_DB Banco de dados utilizado na conexão
    private $sql = ""; // Consulta a ser executada
  
 

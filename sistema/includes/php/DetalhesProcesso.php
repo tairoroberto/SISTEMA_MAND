@@ -44,7 +44,7 @@ if (isset($_POST['DataProcessoDetalhe'],
             $idusuario = $_POST['idusuario'];
             // connection to the database
             try {
-            $bdd = new PDO('mysql:host=localhost;dbname=mandproj_DB', 'mandproj_userDB', 'mand@231');
+            $bdd = new PDO('mysql:host=localhost;dbname=mandproj_DB', 'mandproj_userDB', 'MandProj@231');
             } catch(Exception $e) {
             exit('Unable to connect to database.');
             }
