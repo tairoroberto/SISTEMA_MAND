@@ -21,8 +21,8 @@ include('../../sistema/includes/php/conexao/MPDF57/mpdf.php');
   //Starta o buffer para armazernar o conteúdo 
    ob_start();
    //recebe a pagina pela função
-   //$content = curl("http://www.mandprojetos.com.br/orca/orcamento.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB."");
-   $content = curl("http://localhost/git/SISTEMA-MAND/orca/impressao/impressao.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB."");
+   $content = curl("http://www.mandprojetos.com.br/orca/impressao/impressao.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB."");
+   //$content = curl("http://localhost/git/SISTEMA-MAND/orca/impressao/impressao.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB."");
    
 
    //printa a página  
@@ -46,7 +46,7 @@ include('../../sistema/includes/php/conexao/MPDF57/mpdf.php');
    $mpdf->Output($NomeArquivo);
 
    //ver aqui para gerar pdf
-   header("Location: http://localhost/git/SISTEMA-MAND/orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB);
-   //header("Location: http://www.mandprojetos.com.br/orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB);
+   //header("Location: http://localhost/git/SISTEMA-MAND/orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB);
+   header("Location: http://www.mandprojetos.com.br/orca/index.php?IdOportunidade=".$IdOportunidade."&IdOrcamentoB=".$IdOrcamentoB);
 
 ?>

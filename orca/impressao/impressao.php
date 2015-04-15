@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         
-        <title>Mand Projetos</title>
+        <title></title>
         
     <link href="print.css" rel="stylesheet" type="text/css">
 </head>
@@ -58,7 +58,7 @@ if (($IdOportunidade != null) && ($IdOrcamentoB != null)) {
 
 <table width="670" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td colspan="3" class="titulo"><h3>ORÇAMENTO - Nº 123</h3></td>
+    <td colspan="3" class="titulo"><h3>ORÇAMENTO - Nº <?php echo $retornoOportunidade->IdOportunidade;?></h3></td>
   </tr>
   <tr>
     <td colspan="3" style="background-color:#48bcc0;"><h4 style="color:#FFF;"><strong>DADOS DO CONTRATANTE</strong></h4></td>
@@ -272,7 +272,7 @@ $retornoContrato= mysql_fetch_object($buscaContrato->executarQuery()); ?>
     </h5></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><h4><strong>M. Bento Automotivo Eireli - ME</strong></h4></td>
+    <td colspan="2" align="center"><h4><strong><?php echo $retornoOportunidade->RazaoSocial;?></strong></h4></td>
   </tr>
   <tr>
     <td colspan="2" align="center"><h4>&nbsp;</h4>

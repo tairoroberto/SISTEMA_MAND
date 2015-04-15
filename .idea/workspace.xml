@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ad2c883-4432-41dc-9e92-9802c75e3cd7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/orca/impressao/pdfOrcamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/assinaturas.jpg" afterPath="$PROJECT_DIR$/orca/imagens/assinaturas.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/btn-aceitar.png" afterPath="$PROJECT_DIR$/orca/imagens/btn-aceitar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/btn-entrar.png" afterPath="$PROJECT_DIR$/orca/imagens/btn-entrar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/btn-enviar.png" afterPath="$PROJECT_DIR$/orca/imagens/btn-enviar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/btn-rejeitar.png" afterPath="$PROJECT_DIR$/orca/imagens/btn-rejeitar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/fund-tit.png" afterPath="$PROJECT_DIR$/orca/imagens/fund-tit.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/fundo-dados.jpg" afterPath="$PROJECT_DIR$/orca/imagens/fundo-dados.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/fundo-dados2.jpg" afterPath="$PROJECT_DIR$/orca/imagens/fundo-dados2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/fundo-tit-servicos.jpg" afterPath="$PROJECT_DIR$/orca/imagens/fundo-tit-servicos.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/fundo-topo.jpg" afterPath="$PROJECT_DIR$/orca/imagens/fundo-topo.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/logo.png" afterPath="$PROJECT_DIR$/orca/imagens/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca.zip" afterPath="$PROJECT_DIR$/orca.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/pdf.png" afterPath="$PROJECT_DIR$/orca/imagens/pdf.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/pdf1.png" afterPath="$PROJECT_DIR$/orca/imagens/pdf1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/pdf2.ico" afterPath="$PROJECT_DIR$/orca/imagens/pdf2.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/pdf3.png" afterPath="$PROJECT_DIR$/orca/imagens/pdf3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/imagens/roda-pe.png" afterPath="$PROJECT_DIR$/orca/imagens/roda-pe.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/php/AceitarProposta.php" afterPath="$PROJECT_DIR$/orca/php/AceitarProposta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/ContratoPdf.php" afterPath="$PROJECT_DIR$/orca/ContratoPdf.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/php/EnviarEmail.php" afterPath="$PROJECT_DIR$/orca/php/EnviarEmail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/GerarPdfContrato.php" afterPath="$PROJECT_DIR$/orca/GerarPdfContrato.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/aceitar.php" afterPath="$PROJECT_DIR$/orca/aceitar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/asasasstyle.css" afterPath="$PROJECT_DIR$/orca/asasasstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/asasindex.php" afterPath="$PROJECT_DIR$/orca/asasindex.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/contrato.php" afterPath="$PROJECT_DIR$/orca/contrato.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/error_log" afterPath="$PROJECT_DIR$/orca/error_log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/index.php" afterPath="$PROJECT_DIR$/orca/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/orcamento.php" afterPath="$PROJECT_DIR$/orca/orcamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/pdfOrcamento.php" afterPath="$PROJECT_DIR$/orca/pdfOrcamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/rejeitar.php" afterPath="$PROJECT_DIR$/orca/rejeitar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/salvar.php" afterPath="$PROJECT_DIR$/orca/salvar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/style-orcamento.css" afterPath="$PROJECT_DIR$/orca/style-orcamento.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/style.css" afterPath="$PROJECT_DIR$/orca/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/impressao/impressao.php" afterPath="$PROJECT_DIR$/orca/impressao/impressao.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orca/impressao/pdfOrcamento.php" afterPath="$PROJECT_DIR$/orca/impressao/pdfOrcamento.php" />
     </list>
     <ignored path="SISTEMA-MAND.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AceitarProposta.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AceitarProposta.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orca/php/AceitarProposta.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2682927" vertical-offset="306" max-vertical-offset="880">
+            <state vertical-scroll-proportion="-5.3103447" vertical-offset="306" max-vertical-offset="880">
               <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
               <folding />
             </state>
@@ -118,47 +85,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contrato.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orca/contrato.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.62069" vertical-offset="446" max-vertical-offset="5220">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="45" selection-end-column="71" />
-              <folding>
-                <marker date="1421343108000" expanded="true" signature="660:758" placeholder="..." />
-                <marker date="1421343108000" expanded="true" signature="2127:2459" placeholder="SELECT Oport..CadastraOrcamentoB..." />
-                <marker date="1421343108000" expanded="true" signature="3234:3862" placeholder="SELECT Orcam..Servicos..." />
-                <marker date="1421343108000" expanded="true" signature="6939:6982" placeholder="SELECT * FRO..Contrato..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="impressao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orca/impressao/impressao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="36.551723" vertical-offset="1560" max-vertical-offset="6900">
-              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1429123598367" expanded="true" signature="1356:1686" placeholder="SELECT Oport..CadastraOrcamentoB..." />
-                <marker date="1429123598367" expanded="true" signature="4818:5361" placeholder="SELECT Orcam..Servicos..." />
-                <marker date="1429123598367" expanded="true" signature="8044:8087" placeholder="SELECT * FRO..Contrato..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pdfOrcamento.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orca/impressao/pdfOrcamento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.344828" vertical-offset="360" max-vertical-offset="1140">
-              <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            <state vertical-scroll-proportion="-33.793102" vertical-offset="0" max-vertical-offset="1140">
+              <caret line="49" column="3" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="impressao.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/orca/impressao/impressao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9407666" vertical-offset="4080" max-vertical-offset="6900">
+              <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
+              <folding>
+                <marker date="1429129250719" expanded="true" signature="1343:1673" placeholder="SELECT Oport..CadastraOrcamentoB..." />
+                <marker date="1429129250719" expanded="true" signature="4852:5395" placeholder="SELECT Orcam..Servicos..." />
+                <marker date="1429129250719" expanded="true" signature="8078:8121" placeholder="SELECT * FRO..Contrato..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,13 +132,14 @@
         <option value="$PROJECT_DIR$/sistema/processos-cadastrar.php" />
         <option value="$PROJECT_DIR$/sistema/login.php" />
         <option value="$PROJECT_DIR$/sistema/FAQ.php" />
-        <option value="$PROJECT_DIR$/orca/impressao/impressao.php" />
         <option value="$PROJECT_DIR$/orca/php/EnviarEmail.php" />
         <option value="$PROJECT_DIR$/orca/GerarPdfContrato.php" />
         <option value="$PROJECT_DIR$/orca/pdfOrcamento.php" />
         <option value="$PROJECT_DIR$/orca/index.php" />
         <option value="$PROJECT_DIR$/orca/php/pdfOrcamento.php" />
         <option value="$PROJECT_DIR$/orca/php/AceitarProposta.php" />
+        <option value="$PROJECT_DIR$/orca/impressao/pdfOrcamento.php" />
+        <option value="$PROJECT_DIR$/orca/impressao/impressao.php" />
       </list>
     </option>
   </component>
@@ -554,10 +501,10 @@
         <state vertical-scroll-proportion="-4.62069" vertical-offset="446" max-vertical-offset="5220">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="45" selection-end-column="71" />
           <folding>
-            <marker date="1421343108000" expanded="true" signature="660:758" placeholder="..." />
-            <marker date="1421343108000" expanded="true" signature="2127:2459" placeholder="SELECT Oport..CadastraOrcamentoB..." />
-            <marker date="1421343108000" expanded="true" signature="3234:3862" placeholder="SELECT Orcam..Servicos..." />
-            <marker date="1421343108000" expanded="true" signature="6939:6982" placeholder="SELECT * FRO..Contrato..." />
+            <marker date="1421343108000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1421343108000" expanded="true" signature="-1:-1" placeholder="SELECT Oport..CadastraOrcamentoB..." />
+            <marker date="1421343108000" expanded="true" signature="-1:-1" placeholder="SELECT Orcam..Servicos..." />
+            <marker date="1421343108000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..Contrato..." />
           </folding>
         </state>
       </provider>
@@ -743,36 +690,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orca/impressao/impressao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.551723" vertical-offset="1560" max-vertical-offset="6900">
-          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#td#0;n#tr#0;n#table#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1429123598367" expanded="true" signature="1356:1686" placeholder="SELECT Oport..CadastraOrcamentoB..." />
-            <marker date="1429123598367" expanded="true" signature="4818:5361" placeholder="SELECT Orcam..Servicos..." />
-            <marker date="1429123598367" expanded="true" signature="8044:8087" placeholder="SELECT * FRO..Contrato..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orca/salvar.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4878049" vertical-offset="0" max-vertical-offset="574">
           <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orca/impressao/pdfOrcamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.344828" vertical-offset="360" max-vertical-offset="1140">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -801,9 +722,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/orca/php/AceitarProposta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2682927" vertical-offset="306" max-vertical-offset="880">
+        <state vertical-scroll-proportion="-5.3103447" vertical-offset="306" max-vertical-offset="880">
           <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orca/impressao/pdfOrcamento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.793102" vertical-offset="0" max-vertical-offset="1140">
+          <caret line="49" column="3" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orca/impressao/impressao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9407666" vertical-offset="4080" max-vertical-offset="6900">
+          <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
+          <folding>
+            <marker date="1429129250719" expanded="true" signature="1343:1673" placeholder="SELECT Oport..CadastraOrcamentoB..." />
+            <marker date="1429129250719" expanded="true" signature="4852:5395" placeholder="SELECT Orcam..Servicos..." />
+            <marker date="1429129250719" expanded="true" signature="8078:8121" placeholder="SELECT * FRO..Contrato..." />
+          </folding>
         </state>
       </provider>
     </entry>
