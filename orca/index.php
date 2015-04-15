@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Mand Projetos - Orçamento</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="asasasstyle.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
   function enviar(form){
@@ -88,7 +88,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
                                                                                                  
       $query= $buscarServicosOrcamentoB->executarQuery();
       while($retornoServicosOrcamentoB = mysql_fetch_object($query)) {  ?>
-	
+  
     
       <div id="esq-serv" align="left" class="ver-azu">
         <span class="ver-bra"><?php echo $cont;?> </span> <?php echo $retornoServicosOrcamentoB->TituloServico;?><br />
@@ -124,8 +124,8 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
       <div id="esq-pdf">&nbsp;&nbsp;&nbsp; 
         <a href="salvar.php?arquivo=<?php echo $NomeArquivo; ?>" style="text-decoration: none">
-          
-          <span class="ver-bra">Baixar Pdf </span>
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Baixar Pdf </font>
         </a> 
       </div>
     
@@ -133,8 +133,8 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
       <div id="esq-pdf" onclick="expotarPdf();">&nbsp;&nbsp;&nbsp; 
         <a href="#" style="text-decoration: none">
-          
-          <span class="ver-bra">Exportar para Pdf </span>
+          <img src="imagens/pdf3.png" width="40" height="30" />
+          <font color="FFFFFF">Exportar para Pdf </font>
         </a> 
       </div>
 
@@ -152,11 +152,11 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
 <!--DIREITA-->
 <div id="col-dir">
-	
+  
     <div id="dir-tit" class="tit">ORÇAMENTO</div>
     
   <div id="dir-dados-pessoais">
-    	<div id="dir-linha-dados" class="open-20">DADOS DO CLIENTE</div>
+      <div id="dir-linha-dados" class="open-20">DADOS DO CLIENTE</div>
         <div id="dir-linha-dados" class="open-15">Nome: <?php echo $retornoOportunidade->NomeContato;?></div>
         <div id="dir-linha-dados" class="open-15">Razão social: <?php echo $retornoOportunidade->RazaoSocial;?></div>        
         <div id="dir-linha-dados" class="open-15">Telefone: <?php if (($retornoOportunidade->Telefone != "") && ($retornoOportunidade->Celular != "")) {
@@ -186,19 +186,19 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
     
 
-      <div id="dir-dados-pessoais2">
-      	<div id="dir-linha-dados" class="open-20">VALORES</div>
+      <div id="dir-dados-pessoais">
+        <div id="dir-linha-dados" class="open-20">VALORES</div>
           <div id="dir-linha-dados" class="open-15">Serviços R$ <?php echo $retornoOportunidade->TotalServicos;?></div>
           <div id="dir-linha-dados" class="open-15">Taxas R$ <?php echo $retornoOportunidade->Taxas;?></div>
           <div id="dir-linha-dados" class="open-15">TOTAL <strong>R$ <?php echo $retornoOportunidade->TotalOrcamentoB;?></strong></div>
        </div>
     
-      <div id="dir-dados-pessoais3">
-      	<div id="dir-linha-dados" class="open-20">FORMA DE PAGAMENTO</div>
+      <div id="dir-dados-pessoais">
+        <div id="dir-linha-dados" class="open-20">FORMA DE PAGAMENTO</div>
           <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->FormaPagamento;?></div>
           <div id="dir-linha-dados" class="open-20">PRAZO</div>
           <div id="dir-linha-dados" class="open-15"><?php echo $retornoOportunidade->Prazo;?></div>
-        <div id="dir-linha-dados-comentarios" class="open-15"><?php echo $retornoOportunidade->ComentariosOrcamento;?><strong><br />Data do Orçamento: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
+        <div id="dir-linha-dados-comentarios" class="open-15"><?php echo $retornoOportunidade->ComentariosOrcamento;?>- <strong>Data: <?php echo $retornoOportunidade->DataOrcamentoB;?></strong></div>
       </div>
     
     <br><br><br>
@@ -213,7 +213,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
  
 
 
-<img src="imagens/roda-pe.png" width="750" height="121" /> 
+<img src="imagens/roda-pe.png" width="750" height="180" /> 
 </div>
 <!--DIREITA-->
 </form>

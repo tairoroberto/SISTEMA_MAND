@@ -18,8 +18,12 @@
   function mudaMascaraCnpj(){
     if (formAceitar.radioCnpjCpf.value == "CNPJ") {
      $("#CnpjCpf").mask("99.999.999/9999-99");
+     $("#CnpjCpf").val("");
+     $("#CnpjCpf").focus(); 
    }else{    
-    $("#CnpjCpf").mask("999.999.999-99");   
+    $("#CnpjCpf").mask("999.999.999-99"); 
+    $("#CnpjCpf").val("");  
+    $("#CnpjCpf").focus(); 
    }
 
   }

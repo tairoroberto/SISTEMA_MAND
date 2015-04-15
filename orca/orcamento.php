@@ -136,7 +136,11 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 
 <!--DIREITA-->
 <div id="col-dir" >
-	
+	  
+    <div style="background-image:url(imagens/fundo-topo.jpg);">
+      <img src="imagens/logo.png" width="169" height="169" align="left" />
+    </div>
+
     <div id="dir-tit" class="tit">ORÇAMENTO</div>
     
   <div id="dir-dados-pessoais">

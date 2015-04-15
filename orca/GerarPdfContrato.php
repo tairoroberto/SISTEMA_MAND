@@ -35,7 +35,7 @@ include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
    $stylesheet = file_get_contents('style-orcamento.css'); 
 
    //instancia a nova classe do Mpdf
-   $mpdf = new mPDF();  
+   $mpdf = new mPDF('','',0,'',5,5,5,5,9,9,'L');  
    // Passa o css para a classe
    $mpdf->WriteHTML($stylesheet,1);
    //seta a página como pagina completa
