@@ -1,5 +1,5 @@
 <?php 
-include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
+include('../../sistema/includes/php/conexao/MPDF57/mpdf.php');
   
   //Pega o método GET enviado pelo formulário
    $IdOportunidade = $_POST['IdOportunidadeAux2'];
@@ -31,7 +31,7 @@ include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
    $content = ob_get_contents();
 
    //passa o Css para a página
-   $stylesheet = file_get_contents('impressao/print.css');
+   $stylesheet = file_get_contents('print.css');
 
    //instancia a nova classe do Mpdf
    $mpdf = new mPDF('','',0,'',5,5,5,5,9,9,'L'); 
@@ -42,7 +42,7 @@ include('../sistema/includes/php/conexao/MPDF57/mpdf.php');
    //imprime nossa variável em PDF
    $mpdf->WriteHTML($content,2);    
    //Mostra a saída como download
-   $NomeArquivo = "Orçamento-Mand-".date('d-m-Y').".pdf";
+   $NomeArquivo = "../Orçamento-Mand-".date('d-m-Y').".pdf";
    $mpdf->Output($NomeArquivo);
 
    //ver aqui para gerar pdf

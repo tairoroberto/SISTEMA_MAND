@@ -421,7 +421,7 @@ text-align:inherit!important
             <td class='td_scale' width='600' height='30' bgcolor='#ecf0f1' align='left' valign='middle' style='height: 30px; padding-left:0px; padding-bottom:10px;  font-size:0 ; color:#686868; font-family: Arial,sans-serif; line-height: 0; '>
             
               <p><a href='http://www.mandprojetos.com.br' target='_blank'><br /><br />
-              <img src='http://www.mandprojetos.com.br/mails/sistema/images/logo.png' width='215' height='42' /></a></p>
+              <img src='http://mandprojetos.com.br/sistema/emails/images/logo.png' width='215' height='42' /></a></p>
               <p>
             </td>
           </tr>
@@ -437,7 +437,7 @@ text-align:inherit!important
             <td class='full_width' align='left' valign='top' width='600' bgcolor='#ffffff' style=''><table width='100%'>
                 <!-- START OF IMAGE-->
                 <tr>
-                  <td valign='top' style='padding: 0px; font-size:13px ; color:#727272; font-family: Arial,sans-serif; line-height: 23px; '><img class='img_scale' src='http://www.mandprojetos.com.br/mails/sistema/images/img1.jpg' width='600' height='150' alt='image' border='0' style='display: block;' /> </td>
+                  <td valign='top' style='padding: 0px; font-size:13px ; color:#727272; font-family: Arial,sans-serif; line-height: 23px; '><img class='img_scale' src='http://mandprojetos.com.br/sistema/emails/images/img1.jpg' width='600' height='150' alt='image' border='0' style='display: block;' /> </td>
                 </tr>
                 <!-- END OF IMAGE-->
                 <!-- START OF HEADING-->

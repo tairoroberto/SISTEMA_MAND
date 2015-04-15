@@ -8,7 +8,7 @@
 <script type="text/javascript">
   function enviar(form){
     if (form == 'aceitar') {
-      formIndex.action = "aceitar"
+      formIndex.action = "php/AceitarProposta"
       formIndex.submit();
     }
     if (form == 'rejeitar') {
@@ -217,7 +217,7 @@ include ('../sistema/includes/php/conexao/Conexao.class.php');
 </div>
 <!--DIREITA-->
 </form>
-<form id="formExportar" name="formExportar" method="post" action="pdfOrcamento.php" >
+<form id="formExportar" name="formExportar" method="post" action="impressao/pdfOrcamento.php" >
   <!--Auxiliares para envio-->
      <input type="hidden" name="IdOportunidadeAux2" id="IdOportunidadeAux2" value="<?php echo $IdOportunidade; ?>"> 
      <input type="hidden" name="IdOrcamentoBAux2" id="IdOrcamentoBAux2" value="<?php echo $IdOrcamentoB; ?>"> 

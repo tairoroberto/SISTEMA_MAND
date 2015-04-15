@@ -1,0 +1,75 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@media print {
+	
+	* { 
+	margin-bottom:0.7cm;!important;
+	margin-top:0.0cm;!important;
+	
+       
+    } 
+
+
+}
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+body {
+	background-color:#FFF;
+}
+
+h3
+{
+  margin:5px;
+  font-family: 'Open Sans'; 
+  font-weight: bold;
+  color:#505458;
+  line-height: 30px;
+  font-size:12pt;   
+}
+
+h4 {
+	margin-top: 0px;
+	margin-bottom:0px;
+	margin-left:10px; 
+  font-family: 'Open Sans'; 
+  font-weight: normal;
+  color: #505458;
+  font-size:9pt; 
+}
+
+
+
+h5 {
+	margin-top: 5px;
+	margin-bottom:1px;
+	margin-left:10px; 
+  font-family: 'Open Sans'; 
+  font-weight: 300;
+  color: #444;
+  font-size:9pt; 
+}
+h6 {
+	margin-top: 5px;
+	margin-bottom:1px;
+	margin-left:10px; 
+  font-family: 'Open Sans'; 
+  font-weight: 300;
+  color: #444;
+  font-size:8pt; 
+}
+
+.titulo {
+	background-color: #FFF;
+	
+}
+
+table {
+	margin-bottom:10px;
+	
+}
+
